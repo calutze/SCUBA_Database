@@ -67,8 +67,8 @@
     <th>total_dive_time</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDiver('this.personID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDiver('this.personID')">Delete</a></td>
+    <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >1</td>
     <td >Jacques</td>
     <td>Cousteau</td>
@@ -113,7 +113,8 @@
           <p>Are you sure you wish to delete the following diver?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
           <label><strong>ID:</strong></label> 1
-            <label> <strong>Name</strong> </label> Jeaques Ceausteau
+            <label> <strong>first_name</strong> </label> Jacques 
+            <label> <strong>last_name</strong></label> Cousteau
             
     </fieldset>
     <input class="btn" type="submit" id="DeleteDiver" value="Delete Diver">

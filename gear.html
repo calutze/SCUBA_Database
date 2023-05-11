@@ -52,6 +52,17 @@
 
 [ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
 
+
+<form method="POST" id="SearchDivers">
+  <legend><strong>Search Divers</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> First Name</label> <input type="text" name="fname"> <br>
+      <label> Last Name </label> <input type="text" name="lname"> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchDrivers" value="Submit">
+</form>
+
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
 <table border="1" cellpadding="5">
@@ -95,7 +106,7 @@
             <label> fins </label> <input type="text" name="fins">
             <label> bcd </label> <input type="text" name="bcd">
             <label> regulator </label> <input type="text" name="regulator">
-            <label> diver_id </label> <input type="text" name="diver_id">
+            <label> associated diver_id </label> <input type="text" name="diver_id">
       </fieldset>
           <input class="btn" type="submit" id="addGear" value="Add Gear">
           <input class="btn" type="button" value="cancel" onClick="browseGear()">
@@ -136,7 +147,7 @@
             <label> <strong>fins:</strong> </label> RK3
             <label> <strong>bcd:</strong> </label> ScubaPro HydrosPro w/ Air2
             <label> <strong>regulator:</strong> </label> Mares
-            <label> <strong>associated diver name:</strong> </label> Jeaques Cousteau
+            <label> <strong>associated diver name:</strong> </label> Jacques Cousteau
     </fieldset>
     <input class="btn" type="submit" id="DeleteGear" value="Delete Gear">
           <input class="btn" type="button" value="cancel" onClick="browseGear()">

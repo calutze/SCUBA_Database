@@ -48,9 +48,33 @@
 </head>
 
 <body onload="browseDiver()">
-<h1>Divers</h1>
+<h1>Dives</h1>
 
 [ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
+
+<form method="POST" id="SearchDiveSites">
+  <legend><strong>Search Dive Sites</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> Site Name</label> <input type="text" name="site_name"/> <br>
+      <label> City </label> <input type="text" name="city"> <br>
+      <select name="Country" id="Country">
+        <option value="USA">USA</option>
+        <option value="Honduras">Honduras</option>
+      </select> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchDiveSites" value="Submit">
+</form>
+
+<form method="POST" id="SearchGear">
+  <legend><strong>Search Gear Sets</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> Diver First Name</label> <input type="text" name="first_name"> <br>
+      <label> Diver Last Name </label> <input type="text" name="last_name"> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchGear" value="Submit">
+</form>
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
@@ -59,23 +83,42 @@
     <th><a href="#" onClick="newDive()">New</a></th>
     <th></th>
     <th>dive_id</th>
-    <th>first_name</th>
-    <th>last_name</th>
-    <th>diver_age</th>
-    <th>avg_SAC</th>
-    <th>num_dives</th>
-    <th>total_dive_time</th>
+    <th>gear_id</th>
+    <th>site_name</th>
+    <th>date</th>
+    <th>max_depth</th>
+    <th>avg_depth</th>
+    <th>duration</th>
+    <th>start_pressure</th>
+    <th>end_pressure</th>
+    <th>SAC</th>
+    <th>water_temperature</th>
+    <th>visibility</th>
+    <th>entry_details</th>
+    <th>condition_note</th>
+    <th>note</th>
+    <th>site_rating</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDive('this.personID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDive('this.personID')">Delete</a></td>
+    <td><a href="#" onClick="updateDive('this.diveID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDive('this.diveID')">Delete</a></td>
     <td align="right" >1</td>
-    <td >Jacques</td>
-    <td>Cousteau</td>
-    <td>29</td>
-    <td><a href="dives.html">14</a></td>
-    <td><a href="dives.html">14</a></td>
-    <td><a href="dives.html">14</a></td>
+    <td><a href="gear.html">2</a></td>
+    <td><a href="divesites.html">Golden Arches</a></td>
+    <td>2021-01-16</td>
+    <td>62</td>
+    <td>Null</td>
+    <td>32</td>
+    <td>3000</td>
+    <td>1000</td> 
+    <td></td>
+    <td>55</td>
+    <td>20</td>
+    <td>Shore entry, some waves</td>
+    <td>Slight surge</td>
+    <td>The sea floor was covered in brittle star and sea stars. We say a few schools of fish swimming through. Successfully managed to navigate in a half circle back to the boat anchor throughout the site. The kelp was so tall. We saw a bat ray towards the end of the dive cruising around 40 feet deep.</td>
+    <td>4</td>
+    
   </tr>
 </table>
 <p>&nbsp;</p>

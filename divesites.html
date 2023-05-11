@@ -67,11 +67,11 @@
   <tr>
     <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
-    <td align="right" >1</td>
+    <td align="center" >1</td>
     <td>Golden Arches</td>
     <td>Kona</td>
     <td>United States</a></td>
-    <td><a href="dives.html">3</a></td>
+    <td align="center"><a href="dives.html">3</a></td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -97,7 +97,7 @@
           <label> ID: </label> 1
             <label> Site Name </label> <input type="text" name="diver_name" value="Golden Arches">
             <label> City </label> <input type="text" name="city" value="Kona">
-            <label> Country </label> <input type="text" name="'country" value="'United States"
+            <label> Country </label> <input type="text" name="'country" value="United States"
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveDiveSite" value="Update Dive Site">
           <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
@@ -111,7 +111,9 @@
           <p>Are you sure you wish to delete the following dive site?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
           <label><strong>ID:</strong></label> 1
-            <label> <strong>Site Name</strong> </label> Golden Arches
+            <label> <strong>Site Name: </strong> </label> Golden Arches
+            <label> <strong>City: </strong></label> Kona
+            <label> <strong>Country: </strong></label> United States
             
     </fieldset>
     <input class="btn" type="submit" id="DeleteDiveSite" value="Delete Dive Site">
