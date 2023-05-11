@@ -125,7 +125,7 @@ ENGINE = InnoDB;
 
 
 -- Insert Sample Data Into Tables
-INSERT INTO Divers (first_name, second_name, diver_age)
+INSERT INTO Divers (first_name, last_name, diver_age)
 values ('Jacques', 'Cousteau', 29), 
 ('Syliva', 'Earle', 87),
 ('Jerry', 'Garcia', 52),
