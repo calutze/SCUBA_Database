@@ -1,0 +1,123 @@
+<html>
+<head>
+<title>Gear</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newGear() { showform('insert'); }
+    function updateGear(pid) { showform('update'); }
+    function deleteGear(pid) { showform ('delete'); }
+    function browseGear() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseGear()">
+<h1>Gear</h1>
+
+[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newGear()">New</a></th>
+    <th></th>
+    <th>gear_id</th>
+    <th>exposure_suit</th>
+    <th>boots</th>
+    <th>avg_SAC</th>
+    <th>num_dives</th>
+    <th>total_dive_time</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateGear('this.personID')">Edit</a></td>
+    <td><a href="#" onclick="deleteGear('this.personID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td >Jacques Cousteau</td>
+    <td>29</td>
+    <td><a href="dives.html">14</a></td>
+    <td><a href="dives.html">14</a></td>
+    <td><a href="dives.html">14</a></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addDiver">
+        <legend><strong>Add Diver</strong></legend>
+          <fieldset class="fields">
+            <label> diver_name </label> <input type="text" name="diver_name">
+            <label> age </label> <input type="text" name="diver_age">
+      </fieldset>
+          <input class="btn" type="submit" id="addPerson" value="Add Person">
+          <input class="btn" type="button" value="cancel" onClick="browseGear()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="updateDiver">
+        <legend><strong>Update Diver</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="diver_id" id="update_diver_id" value="1">
+          <label> ID: </label> 1
+            <label> Diver Name: </label> <input type="text" name="diver_name" value="Jacques Cousteau">
+            <label> age </label> <input type="text" name="age" value="29">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveDiver" value="Update Diver">
+          <input class="btn" type="button" value="cancel" onClick="browseGear()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteDiver">
+      <legend><strong>Delete Diver</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following diver?</p>
+          <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
+          <label><strong>ID:</strong></label> 1
+            <label> <strong>Name</strong> </label> Jeaques Ceausteau
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+          <input class="btn" type="button" value="cancel" onClick="browseGear()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
