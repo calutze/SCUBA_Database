@@ -50,7 +50,7 @@
 <body onload="browseGear()">
 <h1>Gear</h1>
 
-[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
+[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
 
 
 <form method="POST" id="SearchDivers">
@@ -92,6 +92,45 @@
     <td>Mares</td>
     <td><a href="divers.html">1</a></td>
   </tr>
+  <tr>
+    <td><a href="#" onClick="updateGear('this.gearID')">Edit</a></td>
+    <td><a href="#" onclick="deleteGear('this.gearID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td>Dry Suit</td>
+    <td>NULL</td>
+    <td>3mm Gloves</td>
+    <td>3mm Hood</td>
+    <td>RK3</td>
+    <td>ScubaPro HydrosPro w/ Air2</td>
+    <td>Mares</td>
+    <td><a href="divers.html">1</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateGear('this.gearID')">Edit</a></td>
+    <td><a href="#" onclick="deleteGear('this.gearID')">Delete</a></td>
+    <td align="right" >3</td>
+    <td >3/4mm Full Suit</td>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>RK3</td>
+    <td>Mares Rover Pro</td>
+    <td>Mares rover 2S</td>
+    <td><a href="divers.html">2</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateGear('this.gearID')">Edit</a></td>
+    <td><a href="#" onclick="deleteGear('this.gearID')">Delete</a></td>
+    <td align="right" >4</td>
+    <td >Rash Guard</td>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>NULL</td>
+    <td>RK3</td>
+    <td>ScubaPro HydrosPro w/ Air2</td>
+    <td>Mares</td>
+    <td><a href="divers.html">5</a></td>
+  </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
@@ -117,8 +156,8 @@
     <form method="POST" id="updateGear">
         <legend><strong>Update Diver</strong></legend>
           <fieldset class="fields">
-          <input type="hidden" name="diver_id" id="update_diver_id" value="1">
-          <label> ID: </label> 1
+          <input type="hidden" name="gear_id" id="update_gear_id" value="1">
+          <label> gear_id: </label> 1
           <label> exposure_suit </label> <input type="text" name="exposure_suit">
           <label> boots </label> <input type="text" name="boots">
           <label> gloves </label> <input type="text" name="gloves">

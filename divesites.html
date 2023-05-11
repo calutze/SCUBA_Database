@@ -50,7 +50,7 @@
 <body onload="browseDiveSite()">
 <h1>Divers</h1>
 
-[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
+[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
@@ -73,6 +73,42 @@
     <td>United States</a></td>
     <td align="center"><a href="dives.html">3</a></td>
   </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >2</td>
+    <td>Casino point</td>
+    <td>Catalina</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">4</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >3</td>
+    <td>Metridium Fields</td>
+    <td>Monterey</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">2</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >4</td>
+    <td>Texas</td>
+    <td>Roatan</td>
+    <td>Honduras</a></td>
+    <td align="center"><a href="dives.html">1</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >5</td>
+    <td>Flame Reef</td>
+    <td>Santa Cruz Island</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">5</a></td>
+  </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
@@ -94,10 +130,10 @@
         <legend><strong>Update Dive Site</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_diver_id" value="1">
-          <label> ID: </label> 1
+          <label> Dive Site ID: </label> 1
             <label> Site Name </label> <input type="text" name="diver_name" value="Golden Arches">
             <label> City </label> <input type="text" name="city" value="Kona">
-            <label> Country </label> <input type="text" name="'country" value="United States"
+            <label> Country </label> <input type="text" name="'country" value="United States">
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveDiveSite" value="Update Dive Site">
           <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
@@ -110,7 +146,7 @@
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following dive site?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
-          <label><strong>ID:</strong></label> 1
+          <label><strong>Dive Site ID:</strong></label> 1
             <label> <strong>Site Name: </strong> </label> Golden Arches
             <label> <strong>City: </strong></label> Kona
             <label> <strong>Country: </strong></label> United States

@@ -50,7 +50,7 @@
 <body onload="browseDiver()">
 <h1>Dives</h1>
 
-[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> ]
+[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
 
 <form method="POST" id="SearchDiveSites">
   <legend><strong>Search Dive Sites</strong></legend>
@@ -91,7 +91,9 @@
     <th>duration</th>
     <th>start_pressure</th>
     <th>end_pressure</th>
+    <th>gas_type</th>
     <th>SAC</th>
+    <th>weight</th>
     <th>water_temperature</th>
     <th>visibility</th>
     <th>entry_details</th>
@@ -105,20 +107,43 @@
     <td align="right" >1</td>
     <td><a href="gear.html">2</a></td>
     <td><a href="divesites.html">Golden Arches</a></td>
-    <td>2021-01-16</td>
+    <td>2019-05-26</td>
     <td>62</td>
-    <td>37</td>
+    <td>NULL</td>
     <td>32</td>
     <td>3000</td>
     <td>1000</td> 
+    <td>Air</td>
     <td>20</td>
+    <td>37</td>
     <td>55</td>
     <td>20</td>
     <td>Shore entry, some waves</td>
     <td>Slight surge</td>
     <td>The sea floor was covered in brittle star and sea stars. We say a few schools of fish swimming through. Successfully managed to navigate in a half circle back to the boat anchor throughout the site. The kelp was so tall. We saw a bat ray towards the end of the dive cruising around 40 feet deep.</td>
     <td>4</td>
-    
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDive('this.diveID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDive('this.diveID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td><a href="gear.html">2</a></td>
+    <td><a href="divesites.html">Metridium Fields</a></td>
+    <td>2021-01-16</td>
+    <td>32</td>
+    <td>24</td>
+    <td>50</td>
+    <td>3200</td>
+    <td>1200</td>
+    <td>Air</td> 
+    <td>20</td>
+    <td>18</td>
+    <td>54</td>
+    <td>20</td>
+    <td>Shore entry</td>
+    <td>Slight surge</td>
+    <td>Swam out along in kelp beds I saw some yellow nudibranches and some white nudibranchs, and a white small slug?. Saw a fair amount of decorator crabs, sea cucumbers, and rock fish, a sea lion, lots of brittle stars. I started to get cold towards the end of the dive but was not shivering.</td>
+    <td>3</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -141,7 +166,16 @@
             <label> entry_details </label> <input type="text" name="entry_details">
             <label> condition_note </label> <input type="text" name="condition_note">
             <label> note </label> <input type="text" name="note">
-            <label> site_rating </label> <input type="text" name="site_rating">
+            <label> site_rating </label>
+            <select name="site_rating" id="site_rating">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>  
+            </select>
+
+            
       </fieldset>
           <input class="btn" type="submit" id="addDive" value="Add Dive">
           <input class="btn" type="button" value="cancel" onClick="browseDiver()">
@@ -181,13 +215,17 @@
   <form method="POST" id="deleteDiver">
       <legend><strong>Delete Diver</strong></legend>
           <fieldset class="fields">
-          <p>Are you sure you wish to delete the following diver?</p>
+          <p>Are you sure you wish to delete the following dive?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
-          <label><strong>ID:</strong></label> 1
-            <label> <strong>Name</strong> </label> Jeaques Ceausteau
+          <label><strong>dive_id:</strong></label> 1
+            <label> <strong>Site Name:</strong> </label> Golden Arches
+            <label> <strong>Date: </strong></label> 2021-01-16
+            <label> <strong>Max Depth: </strong></label> 62
+            <label> <strong>Average Depth: </strong></label> 37
+            <label> <strong>Duration: </strong></label> 32
             
     </fieldset>
-    <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+    <input class="btn" type="submit" id="DeleteDive" value="Delete Dive">
           <input class="btn" type="button" value="cancel" onClick="browseDiver()">
   </form> 
 </div><!-- delete -->

@@ -1,0 +1,165 @@
+<html>
+<head>
+<title>Dive Logs</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newDivelog() { showform('insert'); }
+    function updateDivelog(pid) { showform('update'); }
+    function deleteDivelog(pid) { showform ('delete'); }
+    function browseDivelog() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseDivelog()">
+<h1>Dive Logs</h1>
+
+[ <a href="divers.html">Divers</a> | <a href="gear.html">Gear</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
+
+<form method="POST" id="SearchDivers">
+  <legend><strong>Search Divers</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> First Name</label> <input type="text" name="fname"> <br>
+      <label> Last Name </label> <input type="text" name="lname"> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchDrivers" value="Submit">
+</form>
+<form method="POST" id="SearchDives">
+  <legend><strong>Search Dive Sites</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> Site Name</label> <input type="text" name="site_name"/> <br>
+      <label> Date </label> <input type="text" name="city"> <br>
+      <select name="Country" id="Country">
+        <option value="USA">USA</option>
+        <option value="Honduras">Honduras</option>
+      </select> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchDives" value="Submit">
+</form>
+
+<form method="POST" id="SearchGear">
+  <legend><strong>Search Gear Sets</strong></legend>
+    <fieldset class="fields">
+    <!--  <label> id </label> <input type="text" name="id">-->
+      <label> Diver First Name</label> <input type="text" name="first_name"> <br>
+      <label> Diver Last Name </label> <input type="text" name="last_name"> <br>
+</fieldset>
+    <input class="btn" type="submit" id="SearchGear" value="Submit">
+</form>
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newDivelog()">New</a></th>
+    <th></th>
+    <th>divelog_id</th>
+    <th>dive_id</th>
+    <th>diver_id</th>
+    <th>gear_id</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
+    <td align="right" >1</td>
+    <td><a href="dives.html">1</a></td>
+    <td><a href="divers.html">1</a></td>
+    <td><a href="gear.html">2</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td><a href="dives.html">2</a></td>
+    <td><a href="divers.html">2</a></td>
+    <td><a href="gear.html">NULL</a></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addDivelog">
+        <legend><strong>Add Dive Log</strong></legend>
+          <fieldset class="fields">
+            <label> dive_id </label> <input type="text" name="dive_id">
+            <label> diver_id </label> <input type="text" name="diver_id">
+            <label> gear_id </label> <input type="text" name="gear_id">
+      </fieldset>
+          <input class="btn" type="submit" id="addDivelog" value="Add Dive Log">
+          <input class="btn" type="button" value="cancel" onClick="browseDivelog()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="updateDivelog">
+        <legend><strong>Update Dive Log</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="divelog_id" id="update_divelog_id" value="1">
+          <label> divelog_id: </label> 1
+          <label> dive_id </label> <input type="text" name="dive_id" value="1">
+          <label> diver_id </label> <input type="text" name="diver_id" value="1">
+          <label> gear_id </label> <input type="text" name="gear_id" value="2">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveDivelog" value="Update Dive Log">
+          <input class="btn" type="button" value="cancel" onClick="browseDivelog()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteDivelog">
+      <legend><strong>Delete Dive Log</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following diver?</p>
+          <input type="hidden" name="divelog_id" id="delete_divelog_id" value="1">
+            <label><strong>Dive Site Name:</strong></label> Flame Reef
+            <label><strong>Dive Date:</strong></label> 2019-05-26
+            <label> <strong>dive_id</strong> </label> 1 
+            <label> <strong>Diver Name</strong></label> Jacques Cousteau
+            <label> <strong>gear_id</strong></label> 2
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteDivelog" value="Delete Divelog">
+          <input class="btn" type="button" value="cancel" onClick="browseDivelog()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
