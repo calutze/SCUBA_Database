@@ -122,12 +122,12 @@ ENGINE = InnoDB;
 
 
 -- Insert Data Into Tables
-INSERT INTO Divers (diver_name, diver_age)
-values ('Jacques Cousteau', 29), 
-('Syliva Earle', 87),
-('Jerry Garcia', 52),
-('Greg Louganis', 63),
-('Chris Lutze', 29);
+INSERT INTO Divers (first_name, second_name, diver_age)
+values ('Jacques', 'Cousteau', 29), 
+('Syliva', 'Earle', 87),
+('Jerry', 'Garcia', 52),
+('Greg', 'Louganis', 63),
+('Chris', 'Lutze', 29);
 
 INSERT INTO DiveSites (site_name, city, country)
 values ('Golden Arches', 'Kona', 'United States'), 
