@@ -149,7 +149,7 @@ INSERT INTO Dives (duration, max_depth, avg_depth, start_pressure, end_pressure,
 values (32, 62, NULL, 3000, 1000, 37, 55, 20, 'The sea floor was covered in brittle star and sea stars. We say a few schools of fish swimming through. Successfully managed to navigate in a half circle back to the boat anchor throughout the site. The kelp was so tall. We saw a bat ray towards the end of the dive cruising around 40 feet deep.',
  '2019-05-26', NULL, 'Air', 'Boat', 3),
 (50, 32, 24, 3200, 1200, 18, 54, 10, 'Swam out along in kelp beds I saw some yellow nudibranches and some white nudibranchs, and a white small slug?. Saw a fair amount of decorator crabs, sea cucumbers, and rock fish, a sea lion, lots of brittle stars. I started to get cold towards the end of the dive but was not shivering.',
- '2021-01-16', NULL, 'Air', 'Shore', 3),
+ '2021-01-16', NULL, 'Air', 'Shore', 3);
 
 INSERT INTO Divelogs (dive_id, diver_id, gear_id)
 values (1, 1, 2),
