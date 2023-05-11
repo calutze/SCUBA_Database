@@ -30,6 +30,7 @@ CREATE OR REPLACE TABLE DiveSites (
   PRIMARY KEY (`divesite_id`))
 ENGINE = InnoDB;
 
+-- Create Gear table
 
 CREATE OR REPLACE TABLE Gear (
   `gear_id` INT NOT NULL AUTO_INCREMENT,
@@ -51,6 +52,7 @@ CREATE OR REPLACE TABLE Gear (
 ENGINE = InnoDB;
 
 -- SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
+-- Create Dives table
 
 CREATE OR REPLACE TABLE Dives (
   `dive_id` INT NOT NULL AUTO_INCREMENT,
@@ -72,7 +74,7 @@ CREATE OR REPLACE TABLE Dives (
   PRIMARY KEY (`dive_id`))
 ENGINE = InnoDB;
 
-
+-- Create Divelogs intersection table
 
 CREATE OR REPLACE TABLE Divelogs (
   `divelog_id` INT NOT NULL AUTO_INCREMENT,
@@ -100,6 +102,7 @@ CREATE OR REPLACE TABLE Divelogs (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- Create DiveToDiveSites intersection table
 
 CREATE OR REPLACE TABLE DiveToDiveSites (
   `dives_to_divesites_id` INT NOT NULL AUTO_INCREMENT,
@@ -121,7 +124,7 @@ CREATE OR REPLACE TABLE DiveToDiveSites (
 ENGINE = InnoDB;
 
 
--- Insert Data Into Tables
+-- Insert Sample Data Into Tables
 INSERT INTO Divers (first_name, second_name, diver_age)
 values ('Jacques', 'Cousteau', 29), 
 ('Syliva', 'Earle', 87),
