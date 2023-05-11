@@ -59,8 +59,9 @@
     <th><a href="#" onClick="newDiver()">New</a></th>
     <th></th>
     <th>diver_id</th>
-    <th>diver_name</th>
-    <th>age</th>
+    <th>first_name</th>
+    <th>last_name</th>
+    <th>diver_age</th>
     <th>avg_SAC</th>
     <th>num_dives</th>
     <th>total_dive_time</th>
@@ -69,7 +70,8 @@
     <td><a href="#" onClick="updateDiver('this.personID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.personID')">Delete</a></td>
     <td align="right" >1</td>
-    <td >Jacques Cousteau</td>
+    <td >Jacques</td>
+    <td>Cousteau</td>
     <td>29</td>
     <td><a href="dives.html">14</a></td>
     <td><a href="dives.html">14</a></td>
@@ -85,7 +87,7 @@
             <label> diver_name </label> <input type="text" name="diver_name">
             <label> age </label> <input type="text" name="diver_age">
       </fieldset>
-          <input class="btn" type="submit" id="addPerson" value="Add Person">
+          <input class="btn" type="submit" id="addPerson" value="Add Diver">
           <input class="btn" type="button" value="cancel" onClick="browseDivers()">
 	</form> 
 </div><!-- insert -->
@@ -114,7 +116,7 @@
             <label> <strong>Name</strong> </label> Jeaques Ceausteau
             
     </fieldset>
-    <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+    <input class="btn" type="submit" id="DeleteDiver" value="Delete Diver">
           <input class="btn" type="button" value="cancel" onClick="browseDivers()">
   </form> 
 </div><!-- delete -->

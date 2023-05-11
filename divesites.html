@@ -68,7 +68,7 @@
     <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
     <td align="right" >1</td>
-    <td>Pahoehoe</td>
+    <td>Golden Arches</td>
     <td>Kona</td>
     <td>United States</a></td>
     <td><a href="dives.html">3</a></td>
@@ -90,30 +90,31 @@
 </div><!-- insert -->
 <p>&nbsp;</p>
 <div id="update">
-    <form method="POST" id="updateDiver">
-        <legend><strong>Update Diver</strong></legend>
+    <form method="POST" id="updateDiveSite">
+        <legend><strong>Update Dive Site</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_diver_id" value="1">
           <label> ID: </label> 1
-            <label> Diver Name: </label> <input type="text" name="diver_name" value="Jacques Cousteau">
-            <label> age </label> <input type="text" name="age" value="29">
+            <label> Site Name </label> <input type="text" name="diver_name" value="Golden Arches">
+            <label> City </label> <input type="text" name="city" value="Kona">
+            <label> Country </label> <input type="text" name="'country" value="'United States"
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveDiver" value="Update Diver">
+          <input class="btn" type="submit" id="UpdateSaveDiveSite" value="Update Dive Site">
           <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteDiver">
-      <legend><strong>Delete Diver</strong></legend>
+  <form method="POST" id="deleteDiveSite">
+      <legend><strong>Delete Dive Site</strong></legend>
           <fieldset class="fields">
-          <p>Are you sure you wish to delete the following diver?</p>
+          <p>Are you sure you wish to delete the following dive site?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
           <label><strong>ID:</strong></label> 1
-            <label> <strong>Name</strong> </label> Jeaques Ceausteau
+            <label> <strong>Site Name</strong> </label> Golden Arches
             
     </fieldset>
-    <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+    <input class="btn" type="submit" id="DeleteDiveSite" value="Delete Dive Site">
           <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
   </form> 
 </div><!-- delete -->

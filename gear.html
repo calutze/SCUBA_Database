@@ -61,60 +61,84 @@
     <th>gear_id</th>
     <th>exposure_suit</th>
     <th>boots</th>
-    <th>avg_SAC</th>
-    <th>num_dives</th>
-    <th>total_dive_time</th>
+    <th>hood</th>
+    <th>gloves</th>
+    <th>fins</th>
+    <th>bcd</th>
+    <th>regulator</th>
+    <th>diver_id</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateGear('this.personID')">Edit</a></td>
-    <td><a href="#" onclick="deleteGear('this.personID')">Delete</a></td>
+    <td><a href="#" onClick="updateGear('this.gearID')">Edit</a></td>
+    <td><a href="#" onclick="deleteGear('this.gearID')">Delete</a></td>
     <td align="right" >1</td>
-    <td >Jacques Cousteau</td>
-    <td>29</td>
-    <td><a href="dives.html">14</a></td>
-    <td><a href="dives.html">14</a></td>
-    <td><a href="dives.html">14</a></td>
+    <td >7mm Full Wetsuit</td>
+    <td>5mm Boots</td>
+    <td>3mm Gloves</td>
+    <td>3mm Hood</td>
+    <td>RK3</td>
+    <td>ScubaPro HydrosPro w/ Air2</td>
+    <td>Mares</td>
+    <td><a href="divers.html">1</a></td>
   </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
-    <form method="POST" id="addDiver">
-        <legend><strong>Add Diver</strong></legend>
+    <form method="POST" id="addGear">
+        <legend><strong>Add Gear</strong></legend>
           <fieldset class="fields">
-            <label> diver_name </label> <input type="text" name="diver_name">
-            <label> age </label> <input type="text" name="diver_age">
+            <label> exposure_suit </label> <input type="text" name="exposure_suit">
+            <label> boots </label> <input type="text" name="boots">
+            <label> gloves </label> <input type="text" name="gloves">
+            <label> hood </label> <input type="text" name="hood">
+            <label> fins </label> <input type="text" name="fins">
+            <label> bcd </label> <input type="text" name="bcd">
+            <label> regulator </label> <input type="text" name="regulator">
+            <label> diver_id </label> <input type="text" name="diver_id">
       </fieldset>
-          <input class="btn" type="submit" id="addPerson" value="Add Person">
+          <input class="btn" type="submit" id="addGear" value="Add Gear">
           <input class="btn" type="button" value="cancel" onClick="browseGear()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
 <div id="update">
-    <form method="POST" id="updateDiver">
+    <form method="POST" id="updateGear">
         <legend><strong>Update Diver</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_diver_id" value="1">
           <label> ID: </label> 1
-            <label> Diver Name: </label> <input type="text" name="diver_name" value="Jacques Cousteau">
-            <label> age </label> <input type="text" name="age" value="29">
+          <label> exposure_suit </label> <input type="text" name="exposure_suit">
+          <label> boots </label> <input type="text" name="boots">
+          <label> gloves </label> <input type="text" name="gloves">
+          <label> hood </label> <input type="text" name="hood">
+          <label> fins </label> <input type="text" name="fins">
+          <label> bcd </label> <input type="text" name="bcd">
+          <label> regulator </label> <input type="text" name="regulator">
+          <label> associated diver_id: </label> <input type="text" name="diver_id">
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveDiver" value="Update Diver">
+          <input class="btn" type="submit" id="UpdateSaveGear" value="Update Gear">
           <input class="btn" type="button" value="cancel" onClick="browseGear()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteDiver">
+  <form method="POST" id="deleteGear">
       <legend><strong>Delete Diver</strong></legend>
           <fieldset class="fields">
-          <p>Are you sure you wish to delete the following diver?</p>
-          <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
-          <label><strong>ID:</strong></label> 1
-            <label> <strong>Name</strong> </label> Jeaques Ceausteau
-            
+          <p>Are you sure you wish to delete the following gear set?</p>
+          <input type="hidden" name="gear_id" id="delete_gear_id" value="1">
+          <label><strong>gear_id:</strong></label> 1
+            <label> <strong>exposure_suit:</strong> </label> 7mm Wetsuit
+            <label> <strong>boots:</strong> </label> 5mm Boots
+            <label> <strong>gloves:</strong> </label> 3mm Gloves
+            <label> <strong>hood:</strong> </label> 3mm Hood
+            <label> <strong>fins:</strong> </label> RK3
+            <label> <strong>bcd:</strong> </label> ScubaPro HydrosPro w/ Air2
+            <label> <strong>regulator:</strong> </label> Mares
+            <label> <strong>associated diver name:</strong> </label> Jeaques Cousteau
     </fieldset>
-    <input class="btn" type="submit" id="DeletePerson" value="Delete Person">
+    <input class="btn" type="submit" id="DeleteGear" value="Delete Gear">
           <input class="btn" type="button" value="cancel" onClick="browseGear()">
   </form> 
 </div><!-- delete -->
