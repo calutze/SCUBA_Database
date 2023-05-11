@@ -39,7 +39,7 @@ CREATE OR REPLACE TABLE Gear (
   `gloves` VARCHAR(45) NULL,
   `hood` VARCHAR(45) NULL,
   `fins` VARCHAR(45) NULL,
-  `bcd` VARCHAR(45) NULL,
+  `bcd` VARCHAR(45) NULL,             -- bcd stands for Buoyance Control Device
   `regulator` VARCHAR(45) NULL,
   `diver_id` INT NOT NULL,
   PRIMARY KEY (`gear_id`),
@@ -129,7 +129,7 @@ INSERT INTO Divers (first_name, last_name, diver_age)
 values ('Jacques', 'Cousteau', 29), 
 ('Syliva', 'Earle', 87),
 ('Jerry', 'Garcia', 52),
-('Greg', 'Louganis', 63),
+('Greg', 'Louganis', 63), 
 ('Chris', 'Lutze', 29);
 
 INSERT INTO DiveSites (site_name, city, country)
