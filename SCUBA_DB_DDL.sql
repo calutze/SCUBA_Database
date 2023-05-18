@@ -30,6 +30,7 @@ CREATE OR REPLACE TABLE DiveSites (
   PRIMARY KEY (`divesite_id`))
 ENGINE = InnoDB;
 
+-- Create Gear table
 
 CREATE OR REPLACE TABLE Gear (
   `gear_id` INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +39,7 @@ CREATE OR REPLACE TABLE Gear (
   `gloves` VARCHAR(45) NULL,
   `hood` VARCHAR(45) NULL,
   `fins` VARCHAR(45) NULL,
-  `bcd` VARCHAR(45) NULL,
+  `bcd` VARCHAR(45) NULL,             -- bcd stands for Buoyance Control Device
   `regulator` VARCHAR(45) NULL,
   `diver_id` INT NOT NULL,
   PRIMARY KEY (`gear_id`),
@@ -51,6 +52,7 @@ CREATE OR REPLACE TABLE Gear (
 ENGINE = InnoDB;
 
 -- SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
+-- Create Dives table
 
 CREATE OR REPLACE TABLE Dives (
   `dive_id` INT NOT NULL AUTO_INCREMENT,
@@ -72,7 +74,7 @@ CREATE OR REPLACE TABLE Dives (
   PRIMARY KEY (`dive_id`))
 ENGINE = InnoDB;
 
-
+-- Create Divelogs intersection table
 
 CREATE OR REPLACE TABLE Divelogs (
   `divelog_id` INT NOT NULL AUTO_INCREMENT,
@@ -100,6 +102,7 @@ CREATE OR REPLACE TABLE Divelogs (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
+-- Create DiveToDiveSites intersection table
 
 CREATE OR REPLACE TABLE DiveToDiveSites (
   `dives_to_divesites_id` INT NOT NULL AUTO_INCREMENT,
@@ -121,13 +124,13 @@ CREATE OR REPLACE TABLE DiveToDiveSites (
 ENGINE = InnoDB;
 
 
--- Insert Data Into Tables
-INSERT INTO Divers (diver_name, diver_age)
-values ('Jacques Cousteau', 29), 
-('Syliva Earle', 87),
-('Jerry Garcia', 52),
-('Greg Louganis', 63),
-('Chris Lutze', 29);
+-- Insert Sample Data Into Tables
+INSERT INTO Divers (first_name, last_name, diver_age)
+values ('Jacques', 'Cousteau', 29), 
+('Syliva', 'Earle', 87),
+('Jerry', 'Garcia', 52),
+('Greg', 'Louganis', 63), 
+('Chris', 'Lutze', 29);
 
 INSERT INTO DiveSites (site_name, city, country)
 values ('Golden Arches', 'Kona', 'United States'), 
@@ -146,7 +149,7 @@ INSERT INTO Dives (duration, max_depth, avg_depth, start_pressure, end_pressure,
 values (32, 62, NULL, 3000, 1000, 37, 55, 20, 'The sea floor was covered in brittle star and sea stars. We say a few schools of fish swimming through. Successfully managed to navigate in a half circle back to the boat anchor throughout the site. The kelp was so tall. We saw a bat ray towards the end of the dive cruising around 40 feet deep.',
  '2019-05-26', NULL, 'Air', 'Boat', 3),
 (50, 32, 24, 3200, 1200, 18, 54, 10, 'Swam out along in kelp beds I saw some yellow nudibranches and some white nudibranchs, and a white small slug?. Saw a fair amount of decorator crabs, sea cucumbers, and rock fish, a sea lion, lots of brittle stars. I started to get cold towards the end of the dive but was not shivering.',
- '2021-01-16', NULL, 'Air', 'Shore', 3),
+ '2021-01-16', NULL, 'Air', 'Shore', 3);
 
 INSERT INTO Divelogs (dive_id, diver_id, gear_id)
 values (1, 1, 2),
