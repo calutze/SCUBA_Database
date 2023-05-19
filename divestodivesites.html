@@ -66,15 +66,15 @@
     <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >1</td>
-    <td>psi</td>
-    <td>feet</td>
+    <td>1</td>
+    <td>1</td>
   </tr>
   <tr>
     <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >2</td>
-    <td>bar</td>
-    <td>meters</td>
+    <td>2</td>
+    <td>2</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -83,12 +83,10 @@
     <form method="POST" id="addDiver">
         <legend><strong>Add Unit</strong></legend>
           <fieldset class="fields">
-            <label> pressure_unit </label> <input type="text" name="pressure_unit">
-            <label> length_unit </label> <input type="text" name="length_unit">
-            <label> weight_unit </label> <input type="text" name="weight_unit">
-            <label> temperature_unit </label> <input type="text" name="temperature_unit">
+            <label> dive_id </label> <input type="text" name="1">
+            <label> divesite_id </label> <input type="text" name="1">
       </fieldset>
-          <input class="btn" type="submit" id="addUnit" value="Add Unit">
+          <input class="btn" type="submit" id="addUnit" value="Add">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
 	</form> 
 </div><!-- insert -->
