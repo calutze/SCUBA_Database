@@ -12,36 +12,25 @@
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
 			}
 			else if (dowhat == 'update'){
 				document.getElementById('browse').style.display = 'none';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
 			}
       else if (dowhat == 'all'){
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'block';
 				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'block';
 			}
 			else { //by default display browse
 				document.getElementById('browse').style.display = 'block';
 				document.getElementById('insert').style.display = 'none';
 				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
 			}
 		}
     function newUnits() { showform('insert'); }
     function updateUnits(pid) { showform('update'); }
-    function deleteUnits(pid) { showform ('delete'); }
     function browseUnits() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
@@ -57,7 +46,6 @@
 <table border="1" cellpadding="5">
   <tr>
     <th><a href="#" onClick="newUnits()">New</a></th>
-    <th></th>
     <th>unit_id</th>
     <th>pressure_unit</th>
     <th>length_unit</th>
@@ -65,8 +53,7 @@
     <th>temperature_unit</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteUnits('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Edit</a></td>
     <td align="center" >1</td>
     <td>psi</td>
     <td>feet</td>
@@ -74,8 +61,7 @@
     <td>Fahrenheit</td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteUnits('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Edit</a></td>
     <td align="center" >2</td>
     <td>bar</td>
     <td>meters</td>
@@ -86,7 +72,7 @@
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
-    <form method="POST" id="addDiver">
+    <form method="POST" id="addUnit">
         <legend><strong>Add Unit</strong></legend>
           <fieldset class="fields">
             <label> pressure_unit </label> <input type="text" name="pressure_unit">
@@ -113,24 +99,6 @@
           <input class="btn" type="submit" id="UpdateSaveUnit" value="Update Unit">
           <input class="btn" type="button" value="cancel" onClick="browseUnits()">
 	</form> 
-<p>&nbsp;</p>
-<div id="delete" style="display: block">
-  <form method="POST" id="deleteUnit">
-      <legend><strong>Delete Unit</strong></legend>
-          <fieldset class="fields">
-          <p>Are you sure you wish to delete the following units?</p>
-          <input type="hidden" name="unit_id" id="delete_unit_id" value="1">
-          <label><strong>unit_id</strong></label> 1
-            <label> <strong>pressure_unit</strong> </label> psi 
-            <label> <strong>length_unit</strong> </label> feet
-            <label> <strong>weight_unit</strong> </label> pounds
-            <label> <strong>temperature_unit</strong> </label> Fahrenheit
-            
-    </fieldset>
-    <input class="btn" type="submit" id="DeleteUnit" value="Delete Unit">
-          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
-  </form> 
-</div><!-- delete -->
 
 </body>
 </html>

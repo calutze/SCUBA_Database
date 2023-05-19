@@ -1,8 +1,8 @@
--- MySQL Workbench Forward Engineering
+-- Authored by Chris Lutze and Justin Ngo
+-- Data Definition Queries for Super Cool Underwater Buddy Application (SCUBA) Database
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 SET AUTOCOMMIT = 0;
 
 
@@ -12,9 +12,9 @@ CREATE OR REPLACE TABLE Divers (
   `diver_id` INT NOT NULL AUTO_INCREMENT,
   `diver_name` VARCHAR(100) NOT NULL,
   `diver_age` TINYINT(3) NOT NULL,
-  `avg_SAC` DECIMAL(3,1) NULL,
-  `num_dives` INT NULL,
-  `total_dive_time` INT NULL,
+  `avg_SAC` DECIMAL(3,1) NULL, -- Calculated Value. SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
+  `num_dives` INT NULL, -- Calculated Value
+  `total_dive_time` INT NULL, -- Calculated Value
   PRIMARY KEY (`diver_id`))
 ENGINE = InnoDB;
 
@@ -25,7 +25,7 @@ CREATE OR REPLACE TABLE DiveSites (
   `site_name` VARCHAR(100) NOT NULL,
   `city` VARCHAR(100) NOT NULL,
   `country` VARCHAR(100) NOT NULL,
-  `avg_site_rating` INT NULL,
+  `avg_site_rating` INT NULL, -- Calculated Value
   PRIMARY KEY (`divesite_id`))
 ENGINE = InnoDB;
 
@@ -41,7 +41,6 @@ CREATE OR REPLACE TABLE Units (
   ENGINE = InnoDB;
 
 -- Create Dives table
--- SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
 
 CREATE OR REPLACE TABLE Dives (
   `dive_id` INT NOT NULL AUTO_INCREMENT,
@@ -53,7 +52,7 @@ CREATE OR REPLACE TABLE Dives (
   `start_pressure` INT NULL,
   `end_pressure` INT NULL,
   `gas_type` VARCHAR(10) NULL,
-  `SAC` DECIMAL(3,1) NULL,
+  `SAC` DECIMAL(3,1) NULL, -- Calculated Value. SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
   `weight` INT NULL,
   `water_temperature` INT NULL,
   `visibility` INT NULL,
@@ -112,8 +111,7 @@ CREATE OR REPLACE TABLE DivesToDiveSites (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
-
--- Insert Sample Data Into Tables
+-- Insert Sample Data Into Divers
 INSERT INTO Divers (first_name, last_name, diver_age)
 values ('Jacques', 'Cousteau', 29), 
 ('Syliva', 'Earle', 87),
@@ -121,6 +119,7 @@ values ('Jacques', 'Cousteau', 29),
 ('Greg', 'Louganis', 63), 
 ('Chris', 'Lutze', 29);
 
+-- Insert sample data into DiveSites
 INSERT INTO DiveSites (site_name, city, country)
 values ('Golden Arches', 'Kona', 'United States'), 
 ('Casino Point', 'Catalina', 'United States'),
@@ -128,10 +127,12 @@ values ('Golden Arches', 'Kona', 'United States'),
 ('Texas', 'Roatan', 'Honduras'),
 ('Flame Reef', 'Santa Cruz Island', 'United States');
 
+-- Insert sample data into Units
 INSERT INTO Units (pressure_unit, length_unit, weight_unit, temperature_unit)
-values ('psi', 'ft', 'lb', 'F'),
-('bar', 'm', 'kg', 'C');
+values ('psi', 'ft', 'lb', 'F'), -- Imperial units
+('bar', 'm', 'kg', 'C'); -- Metric units
 
+-- Insert sample data into Dives
 INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure,
 gas_type, SAC, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating)
 VALUES (1, '2019-05-26', 62, NULL, 32, 3000, 1000, 'Air', NULL, 37, 55, 20, 'Boat', 'Mild surge',
@@ -144,17 +145,18 @@ VALUES (1, '2019-05-26', 62, NULL, 32, 3000, 1000, 'Air', NULL, 37, 55, 20, 'Boa
 'This was a drift dive with fairly strong current. We descended to a reef wall and swam through some canyons for the first part of the dive and then entered the current. We followed the reef wall for most of the dive riding the current to the point of the island. I saw a very large rainbow parrot fish and 2 large barracudas. There were very large barrel sponges that I could have fit into. Texas itself was a Sandy patch with very large barrel sponges that looked a bit like tumbleweeds or saguaros. My favorite dive so far. Riding the current and going up and over reef patches was really fun.',
 5);
 
+-- Insert sample data into Divelogs
 INSERT INTO Divelogs (dive_id, diver_id)
 values (1, 1),
 (2, 2),
 (3, 3);
 
+-- Insert sample data into DivesToDiveSites
 INSERT INTO DivesToDiveSites (dive_id, divesite_id)
 values (1, (select divesite_id from DiveSites where site_name = 'Flame Reef')),
 (2, (select divesite_id from DiveSites where site_name = 'Metridium Fields')),
 (3, 4);
 
-SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=1;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 COMMIT;
