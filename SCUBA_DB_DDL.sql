@@ -112,12 +112,12 @@ CREATE OR REPLACE TABLE DivesToDiveSites (
 ENGINE = InnoDB;
 
 -- Insert Sample Data Into Divers
-INSERT INTO Divers (first_name, last_name, diver_age)
-values ('Jacques', 'Cousteau', 29), 
-('Syliva', 'Earle', 87),
-('Jerry', 'Garcia', 52),
-('Greg', 'Louganis', 63), 
-('Chris', 'Lutze', 29);
+INSERT INTO Divers (diver_name, diver_age)
+values ('Jacques Cousteau', 29), 
+('Syliva Earle', 87),
+('Jerry Garcia', 52),
+('Greg Louganis', 63), 
+('Chris Lutze', 29);
 
 -- Insert sample data into DiveSites
 INSERT INTO DiveSites (site_name, city, country)
