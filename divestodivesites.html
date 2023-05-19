@@ -1,6 +1,6 @@
 <html>
 <head>
-<title>Units</title>
+<title>Dives-to-Dive Sites</title>
 <link href="style.css" rel="stylesheet" type="text/css" />
 <script language="JavaScript">
 		function showform(dowhat) {
@@ -39,48 +39,42 @@
 				document.getElementById('delete').style.display = 'none';
 			}
 		}
-    function newUnits() { showform('insert'); }
-    function updateUnits(pid) { showform('update'); }
-    function deleteUnits(pid) { showform ('delete'); }
-    function browseUnits() { showform ('browse'); }
+    function newDivestoDiveSites() { showform('insert'); }
+    function updateDivestoDiveSites(pid) { showform('update'); }
+    function deleteDivestoDiveSites(pid) { showform ('delete'); }
+    function browseDivestoDiveSites() { showform ('browse'); }
     function showAll() { showform ('all'); }
 </script>
 </head>
 
-<body onload="browseUnits()">
-<h1>Units</h1>
+<body onload="browseDivestoDiveSites()">
+<h1>Dives-to-Dive Sites</h1>
 
-[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
 <table border="1" cellpadding="5">
   <tr>
-    <th><a href="#" onClick="newUnits()">New</a></th>
+    <th><a href="#" onClick="newDivestoDiveSites()">New</a></th>
     <th></th>
-    <th>unit_id</th>
-    <th>pressure_unit</th>
-    <th>length_unit</th>
-    <th>weight_unit</th>
-    <th>temperature_unit</th>
+    <th>dives_to_divesites_id</th>
+    <th>dive_id</th>
+    <th>divesite_id</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteUnits('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >1</td>
     <td>psi</td>
     <td>feet</td>
-    <td>pounds</td>
-    <td>Fahrenheit</td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteUnits('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >2</td>
     <td>bar</td>
     <td>meters</td>
-    <td>kilograms</td>
-    <td>Centigrade</td>
   </tr>
 </table>
 <p>&nbsp;</p>
@@ -95,7 +89,7 @@
             <label> temperature_unit </label> <input type="text" name="temperature_unit">
       </fieldset>
           <input class="btn" type="submit" id="addUnit" value="Add Unit">
-          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
 	</form> 
 </div><!-- insert -->
 <p>&nbsp;</p>
@@ -111,7 +105,7 @@
           <label> temperature_unit </label> <input type="text" name="temperature_unit" value="Fahrenheit">
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveUnit" value="Update Unit">
-          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
 	</form> 
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
@@ -128,7 +122,7 @@
             
     </fieldset>
     <input class="btn" type="submit" id="DeleteUnit" value="Delete Unit">
-          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
   </form> 
 </div><!-- delete -->
 
