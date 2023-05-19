@@ -53,7 +53,7 @@
     <th>temperature_unit</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.unitID')">Edit</a></td>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Update</a></td>
     <td align="center" >1</td>
     <td>psi</td>
     <td>feet</td>
@@ -61,7 +61,7 @@
     <td>Fahrenheit</td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateUnits('this.unitID')">Edit</a></td>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Update</a></td>
     <td align="center" >2</td>
     <td>bar</td>
     <td>meters</td>
@@ -73,7 +73,7 @@
 </div> <!-- browse -->
 <div id="insert">
     <form method="POST" id="addUnit">
-        <legend><strong>Add Unit</strong></legend>
+        <legend><strong>Add Unit Set</strong></legend>
           <fieldset class="fields">
             <label> pressure_unit </label> <input type="text" name="pressure_unit">
             <label> length_unit </label> <input type="text" name="length_unit">
@@ -87,7 +87,7 @@
 <p>&nbsp;</p>
 <div id="update">
     <form method="POST" id="updateUnit">
-        <legend><strong>Update Diver</strong></legend>
+        <legend><strong>Update Unit Set</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_unit_id" value="1">
           <label> unit_id: </label> 1

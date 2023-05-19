@@ -67,21 +67,21 @@
     <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >1</td>
     <td>1</td>
-    <td>1</td>
+    <td>Flame Reef</td>
   </tr>
   <tr>
     <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
     <td align="center" >2</td>
     <td>2</td>
-    <td>2</td>
+    <td>Casino Point</td>
   </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
     <form method="POST" id="addDiver">
-        <legend><strong>Add Unit</strong></legend>
+        <legend><strong>Add Dive On Dive Site</strong></legend>
           <fieldset class="fields">
             <label> dive_id </label> <input type="text" name="1">
             <label> divesite_id </label> <input type="text" name="1">
@@ -93,33 +93,29 @@
 <p>&nbsp;</p>
 <div id="update">
     <form method="POST" id="updateUnit">
-        <legend><strong>Update Diver</strong></legend>
+        <legend><strong>Update Dive On Dive Site</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_unit_id" value="1">
-          <label> unit_id: </label> 1
-          <label> pressure_unit </label> <input type="text" name="pressure_unit" value="psi">
-          <label> length_unit </label> <input type="text" name="length_unit" value="feet">
-          <label> weight_unit </label> <input type="text" name="weight_unit" value="pounds">
-          <label> temperature_unit </label> <input type="text" name="temperature_unit" value="Fahrenheit">
+          <label> dites_to_divesites_id: </label> 1
+          <label> dive_id </label> <input type="text" name="1">
+          <label> divesite_id </label> <input type="text" name="1">
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveUnit" value="Update Unit">
+          <input class="btn" type="submit" id="UpdateSaveUnit" value="Update">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
 	</form> 
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
   <form method="POST" id="deleteUnit">
-      <legend><strong>Delete Unit</strong></legend>
+      <legend><strong>Delete Dive On Dive Site</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following units?</p>
           <input type="hidden" name="unit_id" id="delete_unit_id" value="1">
-          <label><strong>unit_id</strong></label> 1
-            <label> <strong>pressure_unit</strong> </label> psi 
-            <label> <strong>length_unit</strong> </label> feet
-            <label> <strong>weight_unit</strong> </label> pounds
-            <label> <strong>temperature_unit</strong> </label> Fahrenheit
+          <label><strong>dives_to_divesites_id</strong> </label> 1
+          <label> dive_id </label> <input type="text" name="1">
+          <label> divesite_id </label> <input type="text" name="1">
             
     </fieldset>
-    <input class="btn" type="submit" id="DeleteUnit" value="Delete Unit">
+    <input class="btn" type="submit" id="DeleteUnit" value="Delete">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
   </form> 
 </div><!-- delete -->

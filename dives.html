@@ -83,8 +83,7 @@
     <th><a href="#" onClick="newDive()">New</a></th>
     <th></th>
     <th>dive_id</th>
-    <th>gear_id</th>
-    <th>site_name</th>
+    <th>unit_id</th>
     <th>date</th>
     <th>max_depth</th>
     <th>avg_depth</th>
@@ -102,11 +101,10 @@
     <th>site_rating</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDive('this.diveID')">Edit</a></td>
+    <td><a href="#" onClick="updateDive('this.diveID')">Update</a></td>
     <td><a href="#" onclick="deleteDive('this.diveID')">Delete</a></td>
     <td align="right" >1</td>
-    <td><a href="gear.html">2</a></td>
-    <td><a href="divesites.html">Golden Arches</a></td>
+    <td><a href="units.html">1</a></td>
     <td>2019-05-26</td>
     <td>62</td>
     <td>NULL</td>
@@ -124,11 +122,10 @@
     <td>4</td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDive('this.diveID')">Edit</a></td>
+    <td><a href="#" onClick="updateDive('this.diveID')">Update</a></td>
     <td><a href="#" onclick="deleteDive('this.diveID')">Delete</a></td>
     <td align="right" >2</td>
-    <td><a href="gear.html">2</a></td>
-    <td><a href="divesites.html">Metridium Fields</a></td>
+    <td><a href="units.html">1</a></td>
     <td>2021-01-16</td>
     <td>32</td>
     <td>24</td>
@@ -145,23 +142,44 @@
     <td>Swam out along in kelp beds I saw some yellow nudibranches and some white nudibranchs, and a white small slug?. Saw a fair amount of decorator crabs, sea cucumbers, and rock fish, a sea lion, lots of brittle stars. I started to get cold towards the end of the dive but was not shivering.</td>
     <td>3</td>
   </tr>
+  <tr>
+    <td><a href="#" onClick="updateDive('this.diveID')">Update</a></td>
+    <td><a href="#" onclick="deleteDive('this.diveID')">Delete</a></td>
+    <td align="right" >2</td>
+    <td><a href="units.html">2</a></td>
+    <td>1993-09-20</td>
+    <td>60</td>
+    <td>45</td>
+    <td>52</td>
+    <td>200</td>
+    <td>50</td>
+    <td>EAN32</td> 
+    <td>0.8</td>
+    <td>6</td>
+    <td>25</td>
+    <td>100</td>
+    <td>Boat</td>
+    <td>Strong drift current</td>
+    <td>This was a drift dive with fairly strong current. We descended to a reef wall and swam through some canyons for the first part of the dive and then entered the current. We followed the reef wall for most of the dive riding the current to the point of the island. I saw a very large rainbow parrot fish and 2 large barracudas. There were very large barrel sponges that I could have fit into. Texas itself was a Sandy patch with very large barrel sponges that looked a bit like tumbleweeds or saguaros. My favorite dive so far. Riding the current and going up and over reef patches was really fun.</td>
+    <td>5</td>
+  </tr>
 </table>
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
     <form method="POST" id="addDiver">
-        <legend><strong>Add Diver</strong></legend>
+        <legend><strong>Add Dive</strong></legend>
           <fieldset class="fields">
-            <label> gear_id </label> <input type="text" name="gear_id">
-            <label> divesite_id </label> <input type="text" name="divesite_id">
+            <label> unit_id </label> <input type="text" name="unit_id">
             <label> date </label> <input type="text" name="date">
             <label> max_depth </label> <input type="text" name="max_depth">
             <label> avg_depth </label> <input type="text" name="avg_depth">
             <label> duration </label> <input type="text" name="duration">
             <label> start_pressure </label> <input type="text" name="start_pressure">
             <label> end_pressure </label> <input type="text" name="end_pressure">
-            <label> SAC </label> <input type="text" name="SAC">
+            <label> gas_type </label> <input type="text" name="gas_type">
             <label> water_temperature </label> <input type="text" name="water_temperature">
+            <label> weight </label> <input type="text" name="weight">
             <label> visibility </label> <input type="text" name="visibility">
             <label> entry_details </label> <input type="text" name="entry_details">
             <label> condition_note </label> <input type="text" name="condition_note">
@@ -183,36 +201,36 @@
 <p>&nbsp;</p>
 <div id="update">
     <form method="POST" id="updateDiver">
-        <legend><strong>Update Diver</strong></legend>
+        <legend><strong>Update Dive</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_diver_id" value="1">
           <label> ID: </label> 1
             <label> Diver Name: </label> <input type="text" name="diver_name" value="Jacques Cousteau">
             <label> age </label> <input type="text" name="age" value="29">
-            <label> gear_id </label> <input type="text" name="gear_id" value="1">
-            <label> divesite_id </label> <input type="text" name="divesite_id" value="2">
+            <label> unit_id </label> <input type="text" name="unit_id" value="1">
             <label> date </label> <input type="text" name="date" value="2021-01-16">
             <label> max_depth </label> <input type="text" name="max_depth" value="62">
             <label> avg_depth </label> <input type="text" name="avg_depth" value="37">
             <label> duration </label> <input type="text" name="duration" value="32">
             <label> start_pressure </label> <input type="text" name="start_pressure" value="3000">
             <label> end_pressure </label> <input type="text" name="end_pressure" value="1000">
-            <label> SAC </label> <input type="text" name="SAC" value="20">
+            <label> gas_type </label> <input type="text" name="gas_type" value="Air">
             <label> water_temperature </label> <input type="text" name="water_temperature" value="55">
+            <label> weight </label> <input type="text" name="weight" value="37">
             <label> visibility </label> <input type="text" name="visibility" value="20">
             <label> entry_details </label> <input type="text" name="entry_details" value="Shore entry, some waves">
             <label> condition_note </label> <input type="text" name="condition_note" value="Some surge">
             <label> note </label> <input type="text" name="note" value="The sea floor was covered in brittle star and sea stars. We say a few schools of fish swimming through. Successfully managed to navigate in a half circle back to the boat anchor throughout the site. The kelp was so tall. We saw a bat ray towards the end of the dive cruising around 40 feet deep.">
             <label> site_rating </label> <input type="text" name="site_rating" value="4">
       </fieldset>
-          <input class="btn" type="submit" id="UpdateSaveDiver" value="Update Diver">
+          <input class="btn" type="submit" id="UpdateSaveDiver" value="Update Dive">
           <input class="btn" type="button" value="cancel" onClick="browseDiver()">
 	</form> 
 </div><!-- update -->
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
   <form method="POST" id="deleteDiver">
-      <legend><strong>Delete Diver</strong></legend>
+      <legend><strong>Delete Dive</strong></legend>
           <fieldset class="fields">
           <p>Are you sure you wish to delete the following dive?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
@@ -222,7 +240,6 @@
             <label> <strong>Max Depth: </strong></label> 62
             <label> <strong>Average Depth: </strong></label> 37
             <label> <strong>Duration: </strong></label> 32
-            
     </fieldset>
     <input class="btn" type="submit" id="DeleteDive" value="Delete Dive">
           <input class="btn" type="button" value="cancel" onClick="browseDiver()">

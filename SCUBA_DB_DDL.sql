@@ -10,7 +10,7 @@ SET AUTOCOMMIT = 0;
 
 CREATE OR REPLACE TABLE Divers (
   `diver_id` INT NOT NULL AUTO_INCREMENT,
-  `diver_name` VARCHAR(100) NOT NULL,
+  `diver_name` VARCHAR(100) NOT NULL UNIQUE,
   `diver_age` TINYINT(3) NOT NULL,
   `avg_SAC` DECIMAL(3,1) NULL, -- Calculated Value. SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
   `num_dives` INT NULL, -- Calculated Value
