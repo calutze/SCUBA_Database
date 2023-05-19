@@ -10,8 +10,7 @@ SET AUTOCOMMIT = 0;
 
 CREATE OR REPLACE TABLE Divers (
   `diver_id` INT NOT NULL AUTO_INCREMENT,
-  `first_name` VARCHAR(100) NOT NULL,
-  `last_name` VARCHAR(100) NOT NULL,
+  `diver_name` VARCHAR(100) NOT NULL,
   `diver_age` TINYINT(3) NOT NULL,
   `avg_SAC` DECIMAL(3,1) NULL,
   `num_dives` INT NULL,
@@ -62,8 +61,8 @@ CREATE OR REPLACE TABLE Units (
     ON UPDATE CASCADE)
 ENGINE = InnoDB;*/
 
--- SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
 -- Create Dives table
+-- SAC stands for Surface Air/Gas Consumption rate which is a normalized gas consumption rate
 
 CREATE OR REPLACE TABLE Dives (
   `dive_id` INT NOT NULL AUTO_INCREMENT,

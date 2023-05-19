@@ -50,7 +50,7 @@
 <body onload="browseDivers()">
 <h1>Divers</h1>
 
-[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
 
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
@@ -59,8 +59,7 @@
     <th><a href="#" onClick="newDiver()">New</a></th>
     <th></th>
     <th>diver_id</th>
-    <th>first_name</th>
-    <th>last_name</th>
+    <th>diver_name</th>
     <th>diver_age</th>
     <th>avg_SAC</th>
     <th>num_dives</th>
@@ -70,8 +69,7 @@
     <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >1</td>
-    <td >Jacques</td>
-    <td>Cousteau</td>
+    <td >Jacques Cousteau</td>
     <td>29</td>
     <td><a href="dives.html">14</a></td>
     <td><a href="dives.html">40</a></td>
@@ -81,8 +79,7 @@
     <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >2</td>
-    <td >Sylvia</td>
-    <td>Earle</td>
+    <td >Sylvia Earle</td>
     <td>87</td>
     <td><a href="dives.html">18</a></td>
     <td><a href="dives.html">200</a></td>
@@ -92,8 +89,7 @@
     <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >3</td>
-    <td >Jerry</td>
-    <td>Garcia</td>
+    <td >Jerry Garcia</td>
     <td>52</td>
     <td><a href="dives.html">22</a></td>
     <td><a href="dives.html">500</a></td>
@@ -103,8 +99,7 @@
     <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >4</td>
-    <td>Greg</td>
-    <td>Louganis</td>
+    <td>Greg Louganis</td>
     <td>63</td>
     <td><a href="dives.html">NULL</a></td>
     <td><a href="dives.html">NULL</a></td>
@@ -114,8 +109,7 @@
     <td><a href="#" onClick="updateDiver('this.diverID')">Edit</a></td>
     <td><a href="#" onclick="deleteDiver('this.diverID')">Delete</a></td>
     <td align="right" >5</td>
-    <td>Chris</td>
-    <td>Lutze</td>
+    <td>Chris Lutze</td>
     <td>29</td>
     <td><a href="dives.html">21</a></td>
     <td><a href="dives.html">112</a></td>
@@ -157,8 +151,7 @@
           <p>Are you sure you wish to delete the following diver?</p>
           <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
           <label><strong>ID:</strong></label> 1
-            <label> <strong>first_name</strong> </label> Jacques 
-            <label> <strong>last_name</strong></label> Cousteau
+            <label> <strong>diver_name</strong> </label> Jacques Cousteau
             
     </fieldset>
     <input class="btn" type="submit" id="DeleteDiver" value="Delete Diver">

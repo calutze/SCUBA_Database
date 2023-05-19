@@ -50,7 +50,7 @@
 <body onload="browseDiver()">
 <h1>Dives</h1>
 
-[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> ]
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
 
 <form method="POST" id="SearchDiveSites">
   <legend><strong>Search Dive Sites</strong></legend>
@@ -165,7 +165,8 @@
             <label> visibility </label> <input type="text" name="visibility">
             <label> entry_details </label> <input type="text" name="entry_details">
             <label> condition_note </label> <input type="text" name="condition_note">
-            <label> note </label> <input type="text" name="note">
+            <p>&nbsp;</p>
+            <label> note </label> <textarea cols='50' rows="5" name="note"></textarea>
             <label> site_rating </label>
             <select name="site_rating" id="site_rating">
               <option value="1">1</option>
@@ -174,8 +175,6 @@
               <option value="4">4</option>
               <option value="5">5</option>  
             </select>
-
-            
       </fieldset>
           <input class="btn" type="submit" id="addDive" value="Add Dive">
           <input class="btn" type="button" value="cancel" onClick="browseDiver()">
