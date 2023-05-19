@@ -63,15 +63,15 @@
     <th>divesite_id</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.divesToDiveSitesID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.divesToDiveSitesID')">Delete</a></td>
     <td align="center" >1</td>
     <td>1</td>
     <td>Flame Reef</td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivestoDiveSites('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDivestoDiveSites('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.divesToDiveSitesID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.divesToDiveSitesID')">Delete</a></td>
     <td align="center" >2</td>
     <td>2</td>
     <td>Casino Point</td>
@@ -83,8 +83,19 @@
     <form method="POST" id="addDiver">
         <legend><strong>Add Dive On Dive Site</strong></legend>
           <fieldset class="fields">
-            <label> dive_id </label> <input type="text" name="1">
-            <label> divesite_id </label> <input type="text" name="1">
+          <strong>Search for Dive ID: </strong>
+          <label> Date </label> <input type="text" name="date">
+          <label> Max Depth </label> <input type="text" name="max_depth"><br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
+          <label> divesite_name </label> 
+          <select name="diver_name" id="diver_name">
+            <option value="Arches">Golden Arches</option>
+            <option value="Casino">Casino Point</option>
+            <option value="Metridium">Metridium Fields</option>
+            <option value="texas">Texas</option>
+            <option value="flameReef">Flame Reef</option>
+          </select>
       </fieldset>
           <input class="btn" type="submit" id="addUnit" value="Add">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
@@ -97,23 +108,34 @@
           <fieldset class="fields">
           <input type="hidden" name="diver_id" id="update_unit_id" value="1">
           <label> dites_to_divesites_id: </label> 1
-          <label> dive_id </label> <input type="text" name="1">
-          <label> divesite_id </label> <input type="text" name="1">
+          <strong>Search for Dive ID: </strong>
+          <label> Date </label> <input type="text" name="date">
+          <label> Max Depth </label> <input type="text" name="max_depth"><br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
+          <label> divesite_name </label> 
+          <select name="diver_name" id="diver_name">
+            <option value="Arches">Golden Arches</option>
+            <option value="Casino">Casino Point</option>
+            <option value="Metridium">Metridium Fields</option>
+            <option value="texas">Texas</option>
+            <option value="flameReef">Flame Reef</option>
+          </select>
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveUnit" value="Update">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
 	</form> 
+</div>
 <p>&nbsp;</p>
 <div id="delete" style="display: block">
-  <form method="POST" id="deleteUnit">
+  <form method="POST" id="deleteDiveToDiveSite">
       <legend><strong>Delete Dive On Dive Site</strong></legend>
           <fieldset class="fields">
-          <p>Are you sure you wish to delete the following units?</p>
-          <input type="hidden" name="unit_id" id="delete_unit_id" value="1">
-          <label><strong>dives_to_divesites_id</strong> </label> 1
-          <label> dive_id </label> <input type="text" name="1">
-          <label> divesite_id </label> <input type="text" name="1">
-            
+          <p>Are you sure you wish to delete the following dive on dive site?</p>
+          <input type="hidden" name="dives_to_divesites_id" id="delete_diveondivesite_id" value="1">
+          <label><strong>dives_to_divesites_id</strong> </label> 1 <br>
+          <label> <strong>dive_id:</strong> </label> 1, Date: 2019-05-26, Max Depth: 62 <br>
+          <label> divesite_name: </label> Flame Reef
     </fieldset>
     <input class="btn" type="submit" id="DeleteUnit" value="Delete">
           <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">

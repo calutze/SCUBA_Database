@@ -52,20 +52,6 @@
 
 [ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
 
-<form method="POST" id="SearchDives">
-  <legend><strong>Search Dives</strong></legend>
-    <fieldset class="fields">
-    <!--  <label> id </label> <input type="text" name="id">-->
-      <label> Site Name</label> <input type="text" name="site_name"/> <br>
-      <label> Date </label> <input type="text" name="city"> <br>
-      <select name="Country" id="Country">
-        <option value="USA">USA</option>
-        <option value="Honduras">Honduras</option>
-      </select> <br>
-</fieldset>
-    <input class="btn" type="submit" id="SearchDives" value="Submit">
-</form>
-
 <div id="browse">
 <p><a href="#" onClick="showAll()">Display all forms</a> </p>
 <p>Note: diver_id shows the diver_name as diver_name is unique</p>
@@ -78,28 +64,28 @@
     <th>diver_id</th>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivelog('this.divelogID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivelog('this.divelogID')">Delete</a></td>
     <td align="right" >1</td>
     <td><a href="dives.html">1</a></td>
     <td><a href="divers.html">Jacques Cousteau</a></td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivelog('this.divelogID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivelog('this.divelogID')">Delete</a></td>
     <td align="right" >2</td>
     <td><a href="dives.html">1</a></td>
     <td><a href="divers.html">Sylvia Earle</a></td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
-    <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
+    <td><a href="#" onClick="updateDivelog('this.divelogID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivelog('this.divedivelogIDrID')">Delete</a></td>
     <td align="right" >3</td>
     <td><a href="dives.html">2</a></td>
     <td><a href="divers.html">Sylvia Earle</a></td>
   </tr>
   <tr>
-    <td><a href="#" onClick="updateDivelog('this.diverID')">Edit</a></td>
+    <td><a href="#" onClick="updateDivelog('this.diverID')">Update</a></td>
     <td><a href="#" onclick="deleteDivelog('this.diverID')">Delete</a></td>
     <td align="right" >4</td>
     <td><a href="dives.html">3</a></td>
@@ -112,8 +98,24 @@
     <form method="POST" id="addDivelog">
         <legend><strong>Add Dive Log</strong></legend>
           <fieldset class="fields">
-            <label> dive_id </label> <input type="text" name="dive_id">
-            <label> diver_id </label> <input type="text" name="diver_id">
+          <strong>Search for Dive ID: </strong>
+          <label> Site Name</label> <input type="text" name="site_name"/>
+          <label> Date </label> <input type="text" name="date">
+          <label> Country </label>
+          <select name="Country" id="Country">
+            <option value="USA">USA</option>
+            <option value="Honduras">Honduras</option>
+          </select> <br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
+          <label> diver_id </label> 
+          <select name="diver_name" id="diver_name">
+            <option value="JacquesCousteau">Jacques Cousteau</option>
+            <option value="SylviaEarle">Sylvia Earle</option>
+            <option value="JerryGarcia">Jerry Garcia</option>
+            <option value="GregLouganis">Greg Louganis</option>
+            <option value="ChrisLutze">Chris Lutze</option>
+          </select>
       </fieldset>
           <input class="btn" type="submit" id="addDivelog" value="Add Dive Log">
           <input class="btn" type="button" value="cancel" onClick="browseDivelog()">
@@ -125,13 +127,24 @@
         <legend><strong>Update Dive Log</strong></legend>
           <fieldset class="fields">
           <input type="hidden" name="divelog_id" id="update_divelog_id" value="1">
-          <label> divelog_id: </label> 1
-          <label> dive_id </label> <input type="text" name="dive_id" value="1">
+          <label> divelog_id: </label> 1 <br>
+          <strong>Search for Dive ID: </strong>
+          <label> Site Name</label> <input type="text" name="site_name"/>
+          <label> Date </label> <input type="text" name="date">
+          <label> Country </label>
+          <select name="Country" id="Country">
+            <option value="USA">USA</option>
+            <option value="Honduras">Honduras</option>
+          </select> <br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
           <label> diver_id </label> 
           <select name="diver_name" id="diver_name">
             <option value="JacquesCousteau">Jacques Cousteau</option>
             <option value="SylviaEarle">Sylvia Earle</option>
             <option value="JerryGarcia">Jerry Garcia</option>
+            <option value="GregLouganis">Greg Louganis</option>
+            <option value="ChrisLutze">Chris Lutze</option>
           </select>
       </fieldset>
           <input class="btn" type="submit" id="UpdateSaveDivelog" value="Update Dive Log">
