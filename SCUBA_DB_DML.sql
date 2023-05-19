@@ -1,10 +1,6 @@
 -- Data Manipulation Queries for Super Cool Underwater Buddy App (SCUBA)
 -- By Justin Ngo and Chris Lutze
 
-SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
-SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET AUTOCOMMIT = 0;
-
 -- Divers Page Queries --------------------
 -- select all data in Divers table
 SELECT * FROM Divers;
@@ -12,6 +8,9 @@ SELECT * FROM Divers;
 -- insert new diver into Divers table
 INSERT INTO Divers (diver_name, diver_age)
 values (:diverNameInput, :ageInput);
+
+-- Show existing values in update diver area
+SELECT diver_name, age FROM Divers WHERE diver_id = :selectedDiverId
 
 -- update diver in Divers table
 UPDATE Divers
@@ -79,8 +78,4 @@ INSERT INTO DivesToDiveSites (dive_id, divesite_id)
 values (:diveIdInput, :diveSiteIdInput)
 
 DELETE FROM DivesToDiveSites WHERE dives_to_divesites_id = :selectedDivesToDiveSitesId
-
-SET FOREIGN_KEY_CHECKS=1;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
-COMMIT;
 
