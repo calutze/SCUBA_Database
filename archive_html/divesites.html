@@ -1,0 +1,161 @@
+<html>
+<head>
+<title>Dive Sites</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newDiveSite() { showform('insert'); }
+    function updateDiveSite(pid) { showform('update'); }
+    function deleteDiveSite(pid) { showform ('delete'); }
+    function browseDiveSite() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseDiveSite()">
+<h1>Dive Sites</h1>
+
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newDiveSite()">New</a></th>
+    <th></th>
+    <th>divesite_id</th>
+    <th>site_name</th>
+    <th>city</th>
+    <th>country</th>
+    <th>avg_site_rating</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Update</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >1</td>
+    <td>Golden Arches</td>
+    <td>Kona</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">3</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Update</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >2</td>
+    <td>Casino point</td>
+    <td>Catalina</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">4</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Update</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >3</td>
+    <td>Metridium Fields</td>
+    <td>Monterey</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">2</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Update</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >4</td>
+    <td>Texas</td>
+    <td>Roatan</td>
+    <td>Honduras</a></td>
+    <td align="center"><a href="dives.html">1</a></td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDiveSite('this.divesiteID')">Update</a></td>
+    <td><a href="#" onclick="deleteDiveSite('this.divesiteID')">Delete</a></td>
+    <td align="center" >5</td>
+    <td>Flame Reef</td>
+    <td>Santa Cruz Island</td>
+    <td>United States</a></td>
+    <td align="center"><a href="dives.html">5</a></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addDiveSite">
+        <legend><strong>Add Dive Site</strong></legend>
+          <fieldset class="fields">
+            <label> site_name </label> <input type="text" name="site_name">
+            <label> city </label> <input type="text" name="city">
+            <label> country </label> <input type="text" name="country">
+      </fieldset>
+          <input class="btn" type="submit" id="addDiveSite" value="Add Dive Site">
+          <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="updateDiveSite">
+        <legend><strong>Update Dive Site</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="diver_id" id="update_diver_id" value="1">
+          <label> Dive Site ID: </label> 1
+            <label> Site Name </label> <input type="text" name="diver_name" value="Golden Arches">
+            <label> City </label> <input type="text" name="city" value="Kona">
+            <label> Country </label> <input type="text" name="'country" value="United States">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveDiveSite" value="Update Dive Site">
+          <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
+	</form> 
+</div><!-- update -->
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteDiveSite">
+      <legend><strong>Delete Dive Site</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following dive site?</p>
+          <input type="hidden" name="diver_id" id="delete_diver_id" value="1">
+          <label><strong>Dive Site ID:</strong></label> 1
+            <label> <strong>Site Name: </strong> </label> Golden Arches
+            <label> <strong>City: </strong></label> Kona
+            <label> <strong>Country: </strong></label> United States
+            
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteDiveSite" value="Delete Dive Site">
+          <input class="btn" type="button" value="cancel" onClick="browseDiveSite()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>

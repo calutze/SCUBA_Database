@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>Units</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+			}
+		}
+    function newUnits() { showform('insert'); }
+    function updateUnits(pid) { showform('update'); }
+    function browseUnits() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseUnits()">
+<h1>Units</h1>
+
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newUnits()">New</a></th>
+    <th>unit_id</th>
+    <th>pressure_unit</th>
+    <th>length_unit</th>
+    <th>weight_unit</th>
+    <th>temperature_unit</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Update</a></td>
+    <td align="center" >1</td>
+    <td>psi</td>
+    <td>feet</td>
+    <td>pounds</td>
+    <td>Fahrenheit</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateUnits('this.unitID')">Update</a></td>
+    <td align="center" >2</td>
+    <td>bar</td>
+    <td>meters</td>
+    <td>kilograms</td>
+    <td>Centigrade</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addUnit">
+        <legend><strong>Add Unit Set</strong></legend>
+          <fieldset class="fields">
+            <label> pressure_unit </label> <input type="text" name="pressure_unit">
+            <label> length_unit </label> <input type="text" name="length_unit">
+            <label> weight_unit </label> <input type="text" name="weight_unit">
+            <label> temperature_unit </label> <input type="text" name="temperature_unit">
+      </fieldset>
+          <input class="btn" type="submit" id="addUnit" value="Add Unit">
+          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="updateUnit">
+        <legend><strong>Update Unit Set</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="diver_id" id="update_unit_id" value="1">
+          <label> unit_id: </label> 1
+          <label> pressure_unit </label> <input type="text" name="pressure_unit" value="psi">
+          <label> length_unit </label> <input type="text" name="length_unit" value="feet">
+          <label> weight_unit </label> <input type="text" name="weight_unit" value="pounds">
+          <label> temperature_unit </label> <input type="text" name="temperature_unit" value="Fahrenheit">
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveUnit" value="Update Unit">
+          <input class="btn" type="button" value="cancel" onClick="browseUnits()">
+	</form> 
+
+</body>
+</html>

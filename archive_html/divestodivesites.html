@@ -1,0 +1,146 @@
+<html>
+<head>
+<title>Dives-to-Dive Sites</title>
+<link href="style.css" rel="stylesheet" type="text/css" />
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newDivestoDiveSites() { showform('insert'); }
+    function updateDivestoDiveSites(pid) { showform('update'); }
+    function deleteDivestoDiveSites(pid) { showform ('delete'); }
+    function browseDivestoDiveSites() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+</head>
+
+<body onload="browseDivestoDiveSites()">
+<h1>Dives-to-Dive Sites</h1>
+
+[ <a href="index.html">Index</a> | <a href="divers.html">Divers</a> | <a href="units.html">Units</a> | <a href="dives.html">Dives</a> | <a href="divesites.html">Dive Sites</a> | <a href="divelogs.html">Dive Logs</a> | <a href="divestodivesites.html">Dives-to-Dive Sites</a>
+
+<div id="browse">
+<p><a href="#" onClick="showAll()">Display all forms</a> </p>
+<table border="1" cellpadding="5">
+  <tr>
+    <th><a href="#" onClick="newDivestoDiveSites()">New</a></th>
+    <th></th>
+    <th>dives_to_divesites_id</th>
+    <th>dive_id</th>
+    <th>divesite_id</th>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.divesToDiveSitesID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.divesToDiveSitesID')">Delete</a></td>
+    <td align="center" >1</td>
+    <td>1</td>
+    <td>Flame Reef</td>
+  </tr>
+  <tr>
+    <td><a href="#" onClick="updateDivestoDiveSites('this.divesToDiveSitesID')">Update</a></td>
+    <td><a href="#" onclick="deleteDivestoDiveSites('this.divesToDiveSitesID')">Delete</a></td>
+    <td align="center" >2</td>
+    <td>2</td>
+    <td>Casino Point</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</div> <!-- browse -->
+<div id="insert">
+    <form method="POST" id="addDiver">
+        <legend><strong>Add Dive On Dive Site</strong></legend>
+          <fieldset class="fields">
+          <strong>Search for Dive ID: </strong>
+          <label> Date </label> <input type="text" name="date">
+          <label> Max Depth </label> <input type="text" name="max_depth"><br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
+          <label> divesite_name </label> 
+          <select name="diver_name" id="diver_name">
+            <option value="Arches">Golden Arches</option>
+            <option value="Casino">Casino Point</option>
+            <option value="Metridium">Metridium Fields</option>
+            <option value="texas">Texas</option>
+            <option value="flameReef">Flame Reef</option>
+          </select>
+      </fieldset>
+          <input class="btn" type="submit" id="addUnit" value="Add">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
+	</form> 
+</div><!-- insert -->
+<p>&nbsp;</p>
+<div id="update">
+    <form method="POST" id="updateUnit">
+        <legend><strong>Update Dive On Dive Site</strong></legend>
+          <fieldset class="fields">
+          <input type="hidden" name="diver_id" id="update_unit_id" value="1">
+          <label> dites_to_divesites_id: </label> 1
+          <strong>Search for Dive ID: </strong>
+          <label> Date </label> <input type="text" name="date">
+          <label> Max Depth </label> <input type="text" name="max_depth"><br>
+          <input class="btn" type="submit" id="SearchDives" value="Dive ID Search"> <br>
+          <label> dive_id: </label> 1 <br>
+          <label> divesite_name </label> 
+          <select name="diver_name" id="diver_name">
+            <option value="Arches">Golden Arches</option>
+            <option value="Casino">Casino Point</option>
+            <option value="Metridium">Metridium Fields</option>
+            <option value="texas">Texas</option>
+            <option value="flameReef">Flame Reef</option>
+          </select>
+      </fieldset>
+          <input class="btn" type="submit" id="UpdateSaveUnit" value="Update">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
+	</form> 
+</div>
+<p>&nbsp;</p>
+<div id="delete" style="display: block">
+  <form method="POST" id="deleteDiveToDiveSite">
+      <legend><strong>Delete Dive On Dive Site</strong></legend>
+          <fieldset class="fields">
+          <p>Are you sure you wish to delete the following dive on dive site?</p>
+          <input type="hidden" name="dives_to_divesites_id" id="delete_diveondivesite_id" value="1">
+          <label><strong>dives_to_divesites_id</strong> </label> 1 <br>
+          <label> <strong>dive_id:</strong> </label> 1, Date: 2019-05-26, Max Depth: 62 <br>
+          <label> divesite_name: </label> Flame Reef
+    </fieldset>
+    <input class="btn" type="submit" id="DeleteUnit" value="Delete">
+          <input class="btn" type="button" value="cancel" onClick="browseDivestoDiveSites()">
+  </form> 
+</div><!-- delete -->
+
+</body>
+</html>
