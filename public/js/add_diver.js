@@ -8,11 +8,11 @@ addDiverForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputDiverName = document.getElementsById("insert_diver_name");
+    let inputDiverName = document.getElementById("insert_diver_name");
     let inputDiverAge = document.getElementById("insert_diver_age");
 
     // Get the values from the form fields
-    let diverNameValue = inputFirstName.value;
+    let diverNameValue = inputDiverName.value;
     let diverAgeValue = inputDiverAge.value;
 
     // Put our data we want to send in a javascript object
@@ -53,7 +53,7 @@ addDiverForm.addEventListener("submit", function (e) {
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
-    let currentTable = document.getElementById("diver-table");
+    let currentTable = document.getElementById("divers-table");
 
     // Get the location where we should insert the new row (end of table)
     let newRowIndex = currentTable.rows.length;
@@ -64,17 +64,17 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
-    let diverIdCell = document.createElement("TD");
+    //let diverIdCell = document.createElement("TD");
     let diverNameCell = document.createElement("TD");
     let diverAgeCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    diverIdCell.innerText = newRow.diver_id;
+    //diverIdCell.innerText = newRow.diver_id;
     diverNameCell.innerText = newRow.diver_name;
     diverAgeCell.innerText = newRow.diver_age;
 
     // Add the cells to the row 
-    row.appendChild(diverIdCell);
+    //row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);
     row.appendChild(diverAgeCell);
     

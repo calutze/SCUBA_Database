@@ -38,10 +38,23 @@ app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
+    // Capture NULL values
+    /*let diver_name = parseInt(data.diver_name);
+    if (isNaN(homeworld))
+    {
+        diver_name = 'NULL'
+    }
+
+    let diver_age = parseInt(data.diver_age);
+    if (isNaN(age))
+    {
+        diver_age = 'NULL'
+    }*/
+
     // Create the query and run it on the database
-    //query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
-    query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data['insert_diver_name']}', '${data['insert_diver_age']}');`;
-    db.pool.query(query2, function(error, rows, fields){
+    query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
+    //query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data['insert_diver_name']}', '${data['insert_diver_age']}');`;
+    db.pool.query(query1, function(error, rows, fields){
 
         // Check to see if there was an error
         if (error) {
@@ -52,9 +65,9 @@ app.post('/addDiver', function(req, res){
         }
         else
         {
-            /*// If no error, perform a SELECT * on divers
-            query3 = `SELECT * FROM Divers;`;
-            db.pool.query(query3, function(error, rows, fields){
+            // If no error, perform a SELECT * on divers
+            query2 = `SELECT * FROM Divers;`;
+            db.pool.query(query2, function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -62,8 +75,8 @@ app.post('/addDiver', function(req, res){
                 else {
                     res.send(rows);
                 }
-            })*/
-            res.redirect('/');
+            })
+            //res.redirect('/');
         }
     })
     
