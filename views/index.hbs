@@ -3,7 +3,7 @@
 <p>If you see this text, the server is <strong>definitely</strong> working!</p>
 
 {{!-- Create a table --}}
-<table>
+<table id="divers-table">
 
     {{!-- Header section --}}
     <thead>
@@ -35,3 +35,18 @@
         {{/each}}
     </tbody>
 </table>
+
+<h2>Add New Diver:</h2>
+<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
+<form id="addDiver">
+    <legend><strong>Add Diver</strong></legend>
+    <fieldset class="fields">
+        <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name">
+        <label for="insert_diver_age"> age </label> <input type="text" name="insert_diver_age">
+    </fieldset>
+    <input class="btn" type="submit" value="Add Diver">
+    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
+</form>
+
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="../public/js/add_diver.js"></script>

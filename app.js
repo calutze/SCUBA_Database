@@ -31,35 +31,41 @@ app.get('/', function(req, res)
         db.pool.query(query1, function(error, rows, fields){
             res.render('index', {data: rows})
         })
-        /*res.send("The Server is running!")*/
-        /*// Define our queries
-        query1 = 'DROP TABLE IF EXISTS diagnostic;';
-        query2 = 'CREATE TABLE diagnostic(id INT PRIMARY KEY AUTO_INCREMENT, text VARCHAR(255) NOT NULL);';
-        query3 = 'INSERT INTO diagnostic (text) VALUES ("MySQL is working!")';
-        query4 = 'SELECT * FROM diagnostic;';
-
-        // Execute every query in an asynchronous manner, we want each query to finish before the next one starts
-
-        // DROP TABLE...
-        db.pool.query(query1, function (err, results, fields){
-
-            // CREATE TABLE...
-            db.pool.query(query2, function(err, results, fields){
-
-                // INSERT INTO...
-                db.pool.query(query3, function(err, results, fields){
-
-                    // SELECT *...
-                    db.pool.query(query4, function(err, results, fields){
-
-                        // Send the results to the browser
-                        let base = "<h1>MySQL Results:</h1>"
-                        res.send(base + JSON.stringify(results));
-                    });
-                });
-            });
-        });*/
     });
+
+// Add Diver Form
+app.post('/addDiver', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
+    db.pool.query(query2, function(error, rows, fields){
+
+        // Check to see if there was an error
+        if (error) {
+
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error)
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT * on divers
+            query3 = `SELECT * FROM Divers;`;
+            db.pool.query(query3, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
 
 /*
     LISTENER
