@@ -39,7 +39,8 @@ app.post('/addDiver', function(req, res){
     let data = req.body;
 
     // Create the query and run it on the database
-    query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
+    //query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
+    query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data['insert_diver_name']}', '${data['insert_diver_age']}');`;
     db.pool.query(query2, function(error, rows, fields){
 
         // Check to see if there was an error
@@ -51,7 +52,7 @@ app.post('/addDiver', function(req, res){
         }
         else
         {
-            // If no error, perform a SELECT * on divers
+            /*// If no error, perform a SELECT * on divers
             query3 = `SELECT * FROM Divers;`;
             db.pool.query(query3, function(error, rows, fields){
                 if (error) {
@@ -61,7 +62,8 @@ app.post('/addDiver', function(req, res){
                 else {
                     res.send(rows);
                 }
-            })
+            })*/
+            res.redirect('/');
         }
     })
     

@@ -119,11 +119,11 @@
 <p>&nbsp;</p>
 </div> <!-- browse -->
 <div id="insert">
-    <form method="POST" id="addDiver">
+    <form method="POST" id="addDiver" action="/addDiver">
         <legend><strong>Add Diver</strong></legend>
           <fieldset class="fields">
-            <label> diver_name </label> <input type="text" name="diver_name">
-            <label> age </label> <input type="text" name="diver_age">
+            <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name">
+            <label for="insert_diver_age"> age </label> <input type="text" name="insert_diver_age">
       </fieldset>
           <input class="btn" type="submit" id="addPerson" value="Add Diver">
           <input class="btn" type="button" value="cancel" onClick="browseDivers()">
