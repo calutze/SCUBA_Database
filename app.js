@@ -31,9 +31,21 @@ app.get('/', function(req, res)
     });
 
 app.get('/divers', function(req, res) {
-    let query1 = "SELECT * FROM Divers;";
+    let query1 = "SELECT * FROM Divers_View;";
 
     db.pool.query(query1, function(error, rows, fields){
+        // Capture NULL values - TODO Does not work...
+        /*let avg_SAC = parseInt(rows.avg_SAC);
+        if (isNaN(avg_SAC))
+        {
+            avg_SAC = 'NULL'
+        }
+
+        let total_dive_time = parseInt(rows.total_dive_time);
+        if (isNaN(total_dive_time))
+        {
+            total_dive_time = 0
+        }*/
         res.render('divers', {data: rows})
     })
 });
@@ -47,11 +59,19 @@ app.get('/units', function(req, res) {
 });
 
 app.get('/dives', function(req, res) {
-    res.render('dives')
+    let query1 = "SELECT * FROM Dives_View;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('dives', {data: rows})
+    })
 });
 
 app.get('/divesites', function(req, res) {
-    res.render('divesites')
+    let query1 = "SELECT * FROM DiverSites_View;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('divesites', {data: rows})
+    })
 });
 
 app.get('/divelogs', function(req, res) {
@@ -68,17 +88,17 @@ app.post('/addDiver', function(req, res){
     let data = req.body;
 
     // Capture NULL values
-    /*let diver_name = parseInt(data.diver_name);
-    if (isNaN(homeworld))
+    let avg_SAC = parseInt(data.avg_SAC);
+    if (isNaN(avg_SAC))
     {
-        diver_name = 'NULL'
+        avg_SAC = 'NULL'
     }
 
-    let diver_age = parseInt(data.diver_age);
-    if (isNaN(age))
+    let total_dive_time = parseInt(data.total_dive_time);
+    if (isNaN(total_dive_time))
     {
-        diver_age = 'NULL'
-    }*/
+        total_dive_time = 0
+    }
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
@@ -95,7 +115,7 @@ app.post('/addDiver', function(req, res){
         else
         {
             // If no error, perform a SELECT * on divers
-            query2 = `SELECT * FROM Divers;`;
+            query2 = `SELECT * FROM Divers_View;`;
             db.pool.query(query2, function(error, rows, fields){
                 if (error) {
                     console.log(error);
@@ -110,6 +130,27 @@ app.post('/addDiver', function(req, res){
     })
     
 });
+
+// Delete Diver Route
+app.delete('/delete-diver/', function(req,res,next){
+    let data = req.body;
+    let diverID = parseInt(data.diver_id);
+    let deleteDiver = `DELETE FROM Divers WHERE diver_id = ?`; 
+  
+    // Run the 1st query
+    db.pool.query(deleteDiver, [diverID], function(error, rows, fields){
+        if (error) {
+
+        // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+        console.log(error);
+        res.sendStatus(400);
+        }
+
+        else
+        {
+        res.sendStatus(204);
+        }
+  })});
 
 /*
     LISTENER
