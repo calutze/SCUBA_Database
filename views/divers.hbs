@@ -48,10 +48,10 @@
     function showAll() { showform ('all'); }
 </script>
 
-<body onload="browseDivers()"></body>
+<body onload="browseDivers()">
 
 {{!-- Create a table --}}
-<table id="divers-table">
+<table id="divers-table" border="1" cellpadding="5">
 
     {{!-- Header section --}}
     <thead>
@@ -59,6 +59,8 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
+            <th><button onClick="newDiver()">Add Diver</button></th>
+            <th></th>
             {{#each data.[0]}}
             <th>
                 {{@key}}
@@ -72,7 +74,10 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
+
         <tr>
+            <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td>
+            <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
             <td>{{this.diver_id}}</td>
             <td>{{this.diver_name}}</td>
             <td>{{this.diver_age}}</td>
@@ -83,18 +88,23 @@
         {{/each}}
     </tbody>
 </table>
-
-<h2>Add New Diver:</h2>
-<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
+<p>&nbsp;</p>
+<div id="insert">
+{{!--<h2>Add New Diver:</h2>
+<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>--}}
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
     <legend><strong>Add Diver</strong></legend>
     <fieldset class="fields">
         <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> age </label> <input type="text" name="insert_diver_age" id="insert_diver_age">
+        <label for="insert_diver_age"> age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
     </fieldset>
     <input class="btn" type="submit" value="Add Diver">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
-
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_diver.js"></script>
+</div>
+
+
+
+</body>

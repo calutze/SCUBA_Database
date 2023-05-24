@@ -64,21 +64,50 @@ addRowToTable = (data) => {
     let parsedData = JSON.parse(data);
     let newRow = parsedData[parsedData.length - 1]
 
-    // Create a row and 4 cells
+    // Create a row and 6 cells
     let row = document.createElement("TR");
     let diverIdCell = document.createElement("TD");
     let diverNameCell = document.createElement("TD");
     let diverAgeCell = document.createElement("TD");
+    let diverSACCell = document.createElement("TD");
+    let diverNumDives = document.createElement("TD");
+    let diverTotalDiveTime = document.createElement("TD");
+
+    let updateCell = document.createElement("TD");
+    let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
+    updateCell = document.createElement("button");
+    updateCell.innerHTML = "Update";
+    updateCell.onclick = function(){
+        updateDiver(newRow.id);
+    };
+
+    deleteCell = document.createElement("button");
+    deleteCell.innerHTML = "Delete";
+    deleteCell.onclick = function(){
+        deleteDiver(newRow.id);
+    };
+
     diverIdCell.innerText = newRow.diver_id;
     diverNameCell.innerText = newRow.diver_name;
     diverAgeCell.innerText = newRow.diver_age;
+    diverSACCell.innerText = newRow.avg_SAC;
+    diverNumDives.innerText = newRow.num_dives;
+    diverTotalDiveTime.innerText = newRow.total_dive_time;
 
     // Add the cells to the row 
+    row.appendChild(updateCell);
+    row.appendChild(deleteCell);
     row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);
     row.appendChild(diverAgeCell);
+    row.appendChild(diverSACCell);
+    row.appendChild(diverNumDives);
+    row.appendChild(diverTotalDiveTime);
+
+    // Add a row attribute so the deleteRow function can find a newly added row
+    row.setAttribute('data-value', newRow.id);
     
     // Add the row to the table
     currentTable.appendChild(row);
