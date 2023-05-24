@@ -1,5 +1,6 @@
 /*
     SETUP for a simple web app
+    Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
 */
 
 // Express
@@ -26,12 +27,40 @@ app.use(express.static('public'))
 */
 app.get('/', function(req, res)
     {
-        let query1 = "SELECT * FROM Divers;";
-
-        db.pool.query(query1, function(error, rows, fields){
-            res.render('index', {data: rows})
-        })
+        res.render('index')
     });
+
+app.get('/divers', function(req, res) {
+    let query1 = "SELECT * FROM Divers;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('divers', {data: rows})
+    })
+});
+
+app.get('/units', function(req, res) {
+    let query1 = "SELECT * FROM Units;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('units', {data: rows})
+    })
+});
+
+app.get('/dives', function(req, res) {
+    res.render('dives')
+});
+
+app.get('/divesites', function(req, res) {
+    res.render('divesites')
+});
+
+app.get('/divelogs', function(req, res) {
+    res.render('divelogs')
+});
+
+app.get('/divestodivesites', function(req, res) {
+    res.render('divestodivesites')
+});
 
 // Add Diver Form
 app.post('/addDiver', function(req, res){

@@ -1,3 +1,5 @@
+// Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
+
 // Get the objects we need to modify
 let addDiverForm = document.getElementById('addDiver');
 
@@ -64,17 +66,17 @@ addRowToTable = (data) => {
 
     // Create a row and 4 cells
     let row = document.createElement("TR");
-    //let diverIdCell = document.createElement("TD");
+    let diverIdCell = document.createElement("TD");
     let diverNameCell = document.createElement("TD");
     let diverAgeCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    //diverIdCell.innerText = newRow.diver_id;
+    diverIdCell.innerText = newRow.diver_id;
     diverNameCell.innerText = newRow.diver_name;
     diverAgeCell.innerText = newRow.diver_age;
 
     // Add the cells to the row 
-    //row.appendChild(diverIdCell);
+    row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);
     row.appendChild(diverAgeCell);
     

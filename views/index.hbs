@@ -1,52 +1,23 @@
 <!-- index.hbs -->
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<title>SCUBA DB Index</title>
+<h1>Super Cool Underwater Buddy App (SCUBA) Index Page</h1>
 
-{{!-- Create a table --}}
-<table id="divers-table">
+[<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a
+    href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive
+    Sites</a>]
 
-    {{!-- Header section --}}
-    <thead>
-
-        {{!-- For just the first row, we print each key of the row object as a header cell so we
-        know what each column means when the page renders --}}
-        <tr>
-            {{#each data.[0]}}
-            <th>
-                {{@key}}
-            </th>
-            {{/each}}
-        </tr>
-    </thead>
-
-    {{!-- Body section --}}
-    <tbody>
-
-        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
-        {{#each data}}
-        <tr>
-            <td>{{this.diver_id}}</td>
-            <td>{{this.diver_name}}</td>
-            <td>{{this.diver_age}}</td>
-            <td>{{this.avg_SAC}}</td>
-            <td>{{this.num_dives}}</td>
-            <td>{{this.total_dive_time}}</td>
-        </tr>
-        {{/each}}
-    </tbody>
-</table>
-
-<h2>Add New Diver:</h2>
-<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
-<form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-    <legend><strong>Add Diver</strong></legend>
-    <fieldset class="fields">
-        <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> age </label> <input type="text" name="insert_diver_age" id="insert_diver_age">
-    </fieldset>
-    <input type="submit" value="Add Diver">
-    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
-</form>
-
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_diver.js"></script>
+<p>The <strong>Divers</strong> page allows the user to add a new diver, update the information for an existing diver,
+    and delete an existing diver. </p>
+<p>The <strong>Units</strong> page allows the user to add a new set of units, update the information for an existing set
+    of units, and delete an existing set of units.</p>
+<p>The <strong>Dives</strong> page allows the user to add a new dive record, update the information for an existing dive
+    record, and delete an existing dive record. It also has search bar to help the user find a divesite_id based on the
+    site name, city, and country. It has a search bar to help the user find a gear_id based on the first and last name
+    of the diver who owns that gear set.</p>
+<p>The <strong>Dive Sites</strong> page allows the user to add a new dive site, update the information for an existing
+    dive site, and delete and existing dive site.</p>
+<p>The <strong>Dive Logs</strong> page allows the user to add a new dive log record, update the information for an
+    existing dive log record, and delete an existing dive log record. It has a search bar to find a diver_id based on
+    the first and last name of the diver. It has another search bar to help the user find a dive_id based on the site
+    name, date, and country where the dive was completed. It also has a search bar to help the user find a gear_id based
+    on the first and last name of the diver who owns that gear set.</p>
