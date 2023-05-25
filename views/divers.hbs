@@ -88,6 +88,7 @@
         {{/each}}
     </tbody>
 </table>
+<script src="./js/delete_driver.js"></script>
 <p>&nbsp;</p>
 <div id="insert">
 {{!--<h2>Add New Diver:</h2>
@@ -105,6 +106,20 @@
 <script src="./js/add_diver.js"></script>
 </div>
 
+
+{{!--<h2>Update Existing Diver:</h2>
+<p>To update an existing diver, please click 'Update' for a specific diver, update their information, and click 'Update Driver'!</p>--}}
+<form id="updateDiver" {{!--method="POST" action="/updateDiver"--}}>
+    <legend><strong>Update Diver</strong></legend>
+    <fieldset class="fields">
+        <label for="selected_diver_name">new diver_name </label> <input type="text" name="selected_diver_name" id="selected_diver_name">
+        <label for="selected_diver_age">new age </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
+    </fieldset>
+    <input class="btn" type="submit" value="Update Diver">
+    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
+</form>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/update_diver.js"></script>
 
 
 </body>

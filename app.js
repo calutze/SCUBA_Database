@@ -65,10 +65,10 @@ app.get('/divestodivesites', function(req, res) {
 // Add Diver Form
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
+    /* let data = req.body;
 
     // Capture NULL values
-    /*let diver_name = parseInt(data.diver_name);
+    let diver_name = parseInt(data.diver_name);
     if (isNaN(homeworld))
     {
         diver_name = 'NULL'
@@ -78,7 +78,7 @@ app.post('/addDiver', function(req, res){
     if (isNaN(age))
     {
         diver_age = 'NULL'
-    }*/
+    } */
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
@@ -110,6 +110,55 @@ app.post('/addDiver', function(req, res){
     })
     
 });
+
+
+   // Delete Diver Form
+   app.delete('/deleteDriver', function(req, res, next) {
+    let data = req.body;
+    let diverID = parseInt(data.diver_id);
+    let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
+
+    db.pool.query(deleteDivers, [diverID], function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+
+    // Update Diver Form
+    app.put('/updateDiver', function(req, res, next){
+        let data = req.body;
+
+        let diver_name = parseInt(data.diver_name);
+        let diver_age = parseInt(data.diver_age);
+
+        let queryUpdateDiver = 'UPDATE Divers SET diver_name = ? WHERE Divers.divers_id = ?';
+        let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
+
+            db.pool.query(queryUpdateDiver, [diver_name, diver_age], function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+
+                else
+                {
+                    db.pool.query(selectDiver, [diver_name], function(error, rows, fields) {
+
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.send(rows);
+                        }
+                    })
+                }
+            })
+    });
 
 /*
     LISTENER
