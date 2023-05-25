@@ -15,6 +15,7 @@ function deleteDiver(diverID) {
         deleteRow(diverID);
       }
     });
+    console.log(diverID);
   }
   
   function deleteRow(diverID){
