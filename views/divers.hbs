@@ -1,10 +1,54 @@
 <!-- divers.hbs -->
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> <!-- Script for jquery-->
 <h1>Divers</h1>
 <p>Display, Add, Update, and Delete Diver Records</p>
 
 [<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
 
+<script language="JavaScript">
+		function showform(dowhat) {
+			/*
+			* four DIVS: browse, insert, update, delete
+			* this function sets one visible the others not
+			*/
+			if (dowhat == 'insert'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'update'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'none';
+			}
+			else if (dowhat == 'delete'){
+				document.getElementById('browse').style.display = 'none';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'block';
+			}
+      else if (dowhat == 'all'){
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'block';
+				document.getElementById('update').style.display = 'block';
+				document.getElementById('delete').style.display = 'block';
+			}
+			else { //by default display browse
+				document.getElementById('browse').style.display = 'block';
+				document.getElementById('insert').style.display = 'none';
+				document.getElementById('update').style.display = 'none';
+				document.getElementById('delete').style.display = 'none';
+			}
+		}
+    function newDiver() { showform('insert'); }
+    function updateDiver(pid) { showform('update'); }
+    function deleteDiver(pid) { showform ('delete'); }
+    function browseDivers() { showform ('browse'); }
+    function showAll() { showform ('all'); }
+</script>
+
+<body onload="browseDivers()">
 
 {{!-- Create a table --}}
 <table id="divers-table" border="1" cellpadding="5">
@@ -15,7 +59,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            {{!--<th><button onClick="newDiver()">Add Diver</button></th>--}}
+            <th><button onClick="newDiver()">Add Diver</button></th>
             <th></th>
             {{#each data.[0]}}
             <th>
@@ -28,10 +72,11 @@
     {{!-- Body section --}}
     <tbody>
 
-        {{!-- For each row, print the diver_id, diver_name, diver_age, etc in order --}}
+        {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
 
         <tr>
+            <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td>
             <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
             <td>{{this.diver_id}}</td>
             <td>{{this.diver_name}}</td>
@@ -43,10 +88,10 @@
         {{/each}}
     </tbody>
 </table>
-<script src="./js/delete_diver.js"></script>
-
-<h3>Add New Diver:</h3>
-<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
+<p>&nbsp;</p>
+<div id="insert">
+{{!--<h2>Add New Diver:</h2>
+<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>--}}
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
     <legend><strong>Add Diver</strong></legend>
     <fieldset class="fields">
@@ -54,21 +99,12 @@
         <label for="insert_diver_age"> age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
     </fieldset>
     <input class="btn" type="submit" value="Add Diver">
+    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_diver.js"></script>
+</div>
 
-<h3>Update Diver:</h3>
-<p>To update diver record, please select their name, enter the updated information below, and click 'Update Diver'!</p>
-<form id="updateDiver" {{!--method="POST" action="/addDiver"--}}>
-    <legend><strong>Update Diver</strong></legend>
-    <fieldset class="fields">
-        <label for="insert_diver_name"> diver_name </label> <input type="text" name="update_diver_name" id="update_diver_name">
-        <label for="insert_diver_age"> age </label> <input type="number" name="update_diver_age" id="update_diver_age">
-    </fieldset>
-    <input class="btn" type="submit" value="Update Diver">
-</form>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/update_diver.js"></script>
+
 
 </body>
