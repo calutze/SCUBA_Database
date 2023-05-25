@@ -32,6 +32,7 @@ app.get('/', function(req, res)
 
 app.get('/divers', function(req, res) {
     let query1 = "SELECT * FROM Divers;";
+    let query1 = "SELECT * FROM Divers;";
 
     db.pool.query(query1, function(error, rows, fields){
         res.render('divers', {data: rows})
@@ -48,9 +49,11 @@ app.get('/units', function(req, res) {
 
 app.get('/dives', function(req, res) {
     res.render('dives')
+    res.render('dives')
 });
 
 app.get('/divesites', function(req, res) {
+    res.render('divesites')
     res.render('divesites')
 });
 
@@ -111,11 +114,13 @@ app.post('/addDiver', function(req, res){
     
 });
 
-
-   // Delete Diver Form
-   app.delete('/delete_diver', function(req, res, next) {
+// Delete Diver Route
+app.delete('/delete_diver/', function(req,res,next){
     let data = req.body;
     let diverID = parseInt(data.diver_id);
+    let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
+
+    db.pool.query(deleteDivers, [diverID], function(error, rows, fields) {
     let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
 
     db.pool.query(deleteDivers, [diverID], function(error, rows, fields) {
@@ -125,6 +130,7 @@ app.post('/addDiver', function(req, res){
         } else {
             res.sendStatus(204);
         }
+    })
     })
 });
 
