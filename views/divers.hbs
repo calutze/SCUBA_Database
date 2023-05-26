@@ -78,15 +78,15 @@
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
 
-        <tr>
-            <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td>
-            <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
+        <tr data-value={{this.diver_id}}>
             <td>{{this.diver_id}}</td>
             <td>{{this.diver_name}}</td>
             <td>{{this.diver_age}}</td>
             <td>{{this.avg_SAC}}</td>
             <td>{{this.num_dives}}</td>
             <td>{{this.total_dive_time}}</td>
+            <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td>
+            <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
         </tr>
         {{/each}}
     </tbody>

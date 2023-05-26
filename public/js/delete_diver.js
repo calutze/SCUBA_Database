@@ -21,7 +21,8 @@ function deleteDiver(diverID) {
 function deleteRow(diverID){
     let table = document.getElementById("divers-table");
     for (let i = 0, row; row = table.rows[i]; i++) {
-       if (table.rows[i].getAttribute("data-value") == diverID) {
+       let value = table.rows[i].getAttribute("data-value");
+       if (value == diverID) {
             table.deleteRow(i);
             break;
        }
