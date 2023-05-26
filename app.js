@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12317;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12316;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -67,7 +67,20 @@ app.get('/divestodivesites', function(req, res) {
 // Add Diver Form
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
+    /* let data = req.body;
+
+    // Capture NULL values
+    let diver_name = parseInt(data.diver_name);
+    if (isNaN(diver_name))
+    {
+        diver_name = 'NULL'
+    }
+
+    let diver_age = parseInt(data.diver_age);
+    if (isNaN(diver_age))
+    {
+        diver_age = 'NULL'
+    } */
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', ${data.diver_age})`;
@@ -84,7 +97,7 @@ app.post('/addDiver', function(req, res){
         else
         {
             // If no error, perform a SELECT * on divers
-            query2 = `SELECT * FROM Divers_View;`;
+            query2 = `SELECT * FROM Divers;`;
             db.pool.query(query2, function(error, rows, fields){
                 if (error) {
                     console.log(error);
@@ -128,7 +141,7 @@ app.put('/updateDiver', function(req, res, next){
     let queryUpdateDiver = 'UPDATE Divers SET diver_age = ? WHERE diver_id = ?';
     let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
 
-        db.pool.query(queryUpdateDiver, ['${data.diver_age}'], function(error, rows, fields){
+    db.pool.query(queryUpdateDiver, [`${data.diver_age}`, data.diver_id], function(error, rows, fields){
             if (error) {
                 console.log(error);
                 res.sendStatus(400);
@@ -136,7 +149,7 @@ app.put('/updateDiver', function(req, res, next){
 
             else
             {
-                db.pool.query(selectDiver, [data.diver_name], function(error, rows, fields) {
+                db.pool.query(selectDiver, [data.diver_id], function(error, rows, fields) {
 
                     if (error) {
                         console.log(error);

@@ -73,15 +73,15 @@ addRowToTable = (data) => {
     let diverNumDives = document.createElement("TD");
     let diverTotalDiveTime = document.createElement("TD");
 
-    let updateCell = document.createElement("TD");
+    // let updateCell = document.createElement("TD");
     let deleteCell = document.createElement("TD");
 
     // Fill the cells with correct data
-    updateCell = document.createElement("button");
+    /* updateCell = document.createElement("button");
     updateCell.innerHTML = "Update";
     updateCell.onclick = function(){
         updateDiver(newRow.diver_id);
-    };
+    }; */
 
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
@@ -97,7 +97,7 @@ addRowToTable = (data) => {
     diverTotalDiveTime.innerText = newRow.total_dive_time;
 
     // Add the cells to the row 
-    row.appendChild(updateCell);
+    //row.appendChild(updateCell);
     row.appendChild(deleteCell);
     row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);
@@ -112,6 +112,7 @@ addRowToTable = (data) => {
     // Add the row to the table
     currentTable.appendChild(row);
 
+    // Adds into the dropdown menu of updating a diver
     let selectMenu = document.getElementById("mySelect");
     let option = document.createElement("option");
     option.text = newRow.diver_name;
