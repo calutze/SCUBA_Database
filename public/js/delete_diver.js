@@ -1,15 +1,9 @@
 // Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 function deleteDiver(diverID) {
-<<<<<<< HEAD
-  let link = '/delete_diver/';
-  let data = {
-    diver_id: diverID
-=======
   let link = '/delete-diver/';
   let data = {
-    id: diverID
->>>>>>> 0280e850175873b88aca8009098c65ccf0fc5c0c
+    diver_id: diverID
   };
 
   $.ajax({

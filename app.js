@@ -31,8 +31,7 @@ app.get('/', function(req, res)
     });
 
 app.get('/divers', function(req, res) {
-    let query1 = "SELECT * FROM Divers;";
-    let query1 = "SELECT * FROM Divers;";
+    let query1 = "SELECT * FROM Divers_View;";
 
     db.pool.query(query1, function(error, rows, fields){
         res.render('divers', {data: rows})
@@ -115,7 +114,7 @@ app.post('/addDiver', function(req, res){
 });
 
 // Delete Diver Route
-app.delete('/delete_diver/', function(req,res,next){
+app.delete('/delete-diver/', function(req,res,next){
     let data = req.body;
     let diverID = parseInt(data.diver_id);
     let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
@@ -135,36 +134,36 @@ app.delete('/delete_diver/', function(req,res,next){
 });
 
 
-    // Update Diver Form
-    app.put('/updateDiver', function(req, res, next){
-        let data = req.body;
+// Update Diver Form
+app.put('/updateDiver', function(req, res, next){
+    let data = req.body;
 
-        let diver_name = parseInt(data.diver_name);
-        let diver_age = parseInt(data.diver_age);
+    let diver_name = parseInt(data.diver_name);
+    let diver_age = parseInt(data.diver_age);
 
-        let queryUpdateDiver = 'UPDATE Divers SET diver_name = ? WHERE Divers.divers_id = ?';
-        let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
+    let queryUpdateDiver = 'UPDATE Divers SET diver_name = ? WHERE Divers.divers_id = ?';
+    let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
 
-            db.pool.query(queryUpdateDiver, [diver_name, diver_age], function(error, rows, fields){
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                }
+        db.pool.query(queryUpdateDiver, [diver_name, diver_age], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
 
-                else
-                {
-                    db.pool.query(selectDiver, [diver_name], function(error, rows, fields) {
+            else
+            {
+                db.pool.query(selectDiver, [diver_name], function(error, rows, fields) {
 
-                        if (error) {
-                            console.log(error);
-                            res.sendStatus(400);
-                        } else {
-                            res.send(rows);
-                        }
-                    })
-                }
-            })
-    });
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        res.send(rows);
+                    }
+                })
+            }
+        })
+});
 
 /*
     LISTENER
