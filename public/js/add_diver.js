@@ -33,7 +33,7 @@ addDiverForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response); // TODO - change this data to the table view
 
             // Clear the input fields for another transaction
             inputDiverName.value = '';
