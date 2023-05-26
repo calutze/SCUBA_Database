@@ -111,4 +111,10 @@ addRowToTable = (data) => {
     
     // Add the row to the table
     currentTable.appendChild(row);
+
+    let selectMenu = document.getElementById("mySelect");
+    let option = document.createElement("option");
+    option.text = newRow.diver_name;
+    option.value = newRow.diver_id;
+    selectMenu.add(option);
 }

@@ -6,7 +6,7 @@ updateDiverForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    let selectDiverName = document.getElementById("selected_diver_name");
+    let selectDiverName = document.getElementById("mySelect");
     let selectDiverAge = document.getElementById("selected_diver_age");
 
     let diverNameValue = selectDiverName.value;
@@ -48,9 +48,12 @@ function updateRow(data, diver_id){
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            let td = updateRowIndex.getElementsByTagName("td")[3];
+            updateRowIndex.getElementsByTagName("td")[1].innerHTML = parsedData.diver_name;
+            updateRowIndex.getElementsByTagName("td")[2].innerHTML = parsedData.diver_age;
+            
+            //let td = updateRowIndex.getElementsByTagName("td")[3];
 
-            td.innerHTML = parsedData[0].name;
+            //td.innerHTML = parsedData[0].name;
         }
     }
 }
