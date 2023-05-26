@@ -31,7 +31,7 @@ app.get('/', function(req, res)
     });
 
 app.get('/divers', function(req, res) {
-    let query1 = "SELECT * FROM Divers_View;";
+    let query1 = "SELECT * FROM Divers;";
 
     db.pool.query(query1, function(error, rows, fields){
         res.render('divers', {data: rows})
