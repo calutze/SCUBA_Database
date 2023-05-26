@@ -67,20 +67,26 @@ app.get('/divestodivesites', function(req, res) {
 // Add Diver Form
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
-    /* let data = req.body;
+    let data = req.body;
 
     // Capture NULL values
-    let diver_name = parseInt(data.diver_name);
-    if (isNaN(diver_name))
+    /*let avg_SAC = parseInt(data.avg_SAC);
+    if (isNaN(avg_SAC))
     {
-        diver_name = 'NULL'
+        avg_SAC = 'N/A'
     }
 
-    let diver_age = parseInt(data.diver_age);
-    if (isNaN(diver_age))
+    let num_dives = parseInt(data.num_dives);
+    if (isNaN(num_dives))
     {
-        diver_age = 'NULL'
-    } */
+        num_dives = 0
+    }
+
+    let total_dive_time = parseInt(data.total_dive_time);
+    if (isNaN(total_dive_time))
+    {
+        total_dive_time = 0
+    }*/
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', ${data.diver_age})`;
