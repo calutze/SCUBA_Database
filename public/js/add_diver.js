@@ -80,13 +80,13 @@ addRowToTable = (data) => {
     updateCell = document.createElement("button");
     updateCell.innerHTML = "Update";
     updateCell.onclick = function(){
-        updateDiver(newRow.id);
+        updateDiver(newRow.diver_id);
     };
 
     deleteCell = document.createElement("button");
     deleteCell.innerHTML = "Delete";
     deleteCell.onclick = function(){
-        deleteDiver(newRow.id);
+        deleteDiver(newRow.diver_id);
     };
 
     diverIdCell.innerText = newRow.diver_id;
@@ -107,7 +107,7 @@ addRowToTable = (data) => {
     row.appendChild(diverTotalDiveTime);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.id);
+    row.setAttribute('data-value', newRow.diver_id);
     
     // Add the row to the table
     currentTable.appendChild(row);

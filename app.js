@@ -120,16 +120,12 @@ app.delete('/delete-diver/', function(req,res,next){
     let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
 
     db.pool.query(deleteDivers, [diverID], function(error, rows, fields) {
-    let deleteDivers = 'DELETE FROM Divers WHERE diver_id = ?';
-
-    db.pool.query(deleteDivers, [diverID], function(error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
         } else {
             res.sendStatus(204);
         }
-    })
     })
 });
 
