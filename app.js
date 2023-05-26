@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12316;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12315;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -67,20 +67,7 @@ app.get('/divestodivesites', function(req, res) {
 // Add Diver Form
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
-    /* let data = req.body;
-
-    // Capture NULL values
-    let diver_name = parseInt(data.diver_name);
-    if (isNaN(homeworld))
-    {
-        diver_name = 'NULL'
-    }
-
-    let diver_age = parseInt(data.diver_age);
-    if (isNaN(age))
-    {
-        diver_age = 'NULL'
-    } */
+    let data = req.body;
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', '${data.diver_age}');`;
@@ -97,7 +84,7 @@ app.post('/addDiver', function(req, res){
         else
         {
             // If no error, perform a SELECT * on divers
-            query2 = `SELECT * FROM Divers;`;
+            query2 = `SELECT * FROM Divers_View;`;
             db.pool.query(query2, function(error, rows, fields){
                 if (error) {
                     console.log(error);
