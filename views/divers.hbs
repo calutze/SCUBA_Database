@@ -110,18 +110,25 @@
 </div>
 
 
-{{!--<h2>Update Existing Diver:</h2>
-<p>To update an existing diver, please click 'Update' for a specific diver, update their information, and click 'Update Driver'!</p>--}}
-<form id="updateDiver" {{!--method="POST" action="/updateDiver"--}}>
-    <legend><strong>Update Diver</strong></legend>
-    <fieldset class="fields">
-        <label for="selected_diver_name">new diver_name </label> <input type="text" name="selected_diver_name" id="selected_diver_name">
-        <label for="selected_diver_age">new age </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
-    </fieldset>
-    <input class="btn" type="submit" value="Update Diver">
-    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
+<h2>Updating A Diver</h2>
+    <p>To update a diver, select the diver name from the dropdown and update their information.</p>
+    <form id="updateDiver">
+
+        <label for="selected_diver_name">Diver Name: </label>
+        <select name="selected_diver_name" id="mySelect">
+            <option value="option">Select a Diver</option>
+            {{#each data}}
+            <option value="{{this.diver_id}}">{{this.diver_name}}</option>
+            {{/each}}
+        </select>
+
+        <label for="selected_diver_age">Diver Age: </label>
+                <input type="text" name="selected_diver_age" id="selected_diver_age">
+        <input type="submit">
 </form>
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
+ 
+
 <script src="./js/update_diver.js"></script>
 
 
