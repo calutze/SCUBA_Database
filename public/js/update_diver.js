@@ -6,15 +6,15 @@ updateDiverForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    let selectDiverName = document.getElementById("mySelect");
+    let selectDiverId = document.getElementById("mySelect");
     let selectDiverAge = document.getElementById("selected_diver_age");
 
-    let diverNameValue = selectDiverName.value;
+    let diverIdValue = selectDiverId.value;
     let diverAgeValue = selectDiverAge.value;
 
 
     let data = {
-        diver_name: diverNameValue,
+        diver_id: diverIdValue,
         diver_age: diverAgeValue
     }
 
@@ -27,7 +27,7 @@ updateDiverForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, diverNameValue);
+            updateRow(xhttp.response, diverIdValue);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log ("There was an error with the input.")
@@ -48,7 +48,7 @@ function updateRow(data, diver_id){
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            updateRowIndex.getElementsByTagName("td")[1].innerHTML = parsedData.diver_name;
+            updateRowIndex.getElementsByTagName("td")[1].innerHTML = parsedData.diver_id;
             updateRowIndex.getElementsByTagName("td")[2].innerHTML = parsedData.diver_age;
             
             //let td = updateRowIndex.getElementsByTagName("td")[3];
