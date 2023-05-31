@@ -146,7 +146,7 @@ app.get('/units', function(req, res) {
 });
 
 app.get('/dives', function(req, res) {
-    let querySelectDives = "SELECT * FROM Dives_View;";
+    let querySelectDives = "SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id;";
 
     db.pool.query(querySelectDives, function(error, rows, fields){
         for (let i=0; i < rows.length; i++) {
@@ -169,7 +169,7 @@ app.get('/dives', function(req, res) {
             let gas_type = parseInt(rows[i].gas_type);
             if (isNaN(gas_type))
             {
-                rows[i].gas_type = "N/A"
+                rows[i].gas_type = "Air"
             }
             let weight = parseInt(rows[i].weight);
             if (isNaN(weight))

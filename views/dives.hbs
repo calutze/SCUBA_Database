@@ -34,13 +34,14 @@
         <tr data-value={{this.dive_id}}>
             <td><button onclick="deleteDive({{this.dive_id}})">Delete</button></td>
             <td>{{this.dive_id}}</td>
-            <td>{{this.unit_id}}</td>
+            <td>{{this.units}}</td>
             <td>{{this.date}}</td>
             <td>{{this.max_depth}}</td>
             <td>{{this.avg_depth}}</td>
             <td>{{this.duration}}</td>
             <td>{{this.start_pressure}}</td>
             <td>{{this.end_pressure}}</td>
+            <td>{{this.SAC}}</td>
             <td>{{this.gas_type}}</td>
             <td>{{this.weight}}</td>
             <td>{{this.water_temperature}}</td>
@@ -49,7 +50,6 @@
             <td>{{this.condition_note}}</td>
             <td>{{this.note}}</td>
             <td>{{this.site_rating}}</td>
-            <td>{{this.SAC}}</td>
         </tr>
         {{/each}}
     </tbody>
@@ -57,23 +57,27 @@
 
 <script src="./js/delete_dive.js"></script>
 <p>&nbsp;</p>
-<h2>Add A New Diver</h2>
-<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
+<h2>Add A New Dive</h2>
+<p>To add a new dive, please enter the dive information below and click 'Add Diver'!</p>
 <div id="insert">
-<form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-        <label for="insert_diver_name"> Diver Name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> Age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
+<form id="addDive" {{!--method="POST" action="/addDiver"--}}>
+        {{!--<select name="selected_unit_id" id="unitsSelect">Units: 
+            <option value="option">Units</option>
+            {{#each data}}
+            <option value="{{this.unit_id}}">{{this.unit_name}}</option>
+        </select>--}}
+        <label for="insert_dive_name"> Diver Name </label> <input type="text" name="insert_dive_name" id="insert_dive_name">
+        <label for="insert_dive_age"> Age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
     <input class="btn" type="submit" value="Add Diver">
-    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_diver.js"></script>
 </div>
 
 
-<h2>Updating A Diver</h2>
-    <p>To update a diver, select the diver name from the dropdown and update their information.</p>
-    <form id="updateDiver">
+<h2>Updating A Dive</h2>
+    <p>To update a dive, select the diver name from the dropdown and update the dive information.</p>
+    <form id="updateDive">
         <label for="selected_diver_name">Diver Name: </label>
         <select name="selected_diver_name" id="mySelect">
             <option value="option">Select a Diver</option>
