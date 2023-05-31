@@ -32,7 +32,7 @@
         {{#each data}}
 
         <tr data-value={{this.dive_id}}>
-            <td><button onclick="deleteDiver({{this.dive_id}})">Delete</button></td>
+            <td><button onclick="deleteDive({{this.dive_id}})">Delete</button></td>
             <td>{{this.dive_id}}</td>
             <td>{{this.unit_id}}</td>
             <td>{{this.date}}</td>
@@ -55,7 +55,7 @@
     </tbody>
 </table>
 
-<script src="./js/delete_diver.js"></script>
+<script src="./js/delete_dive.js"></script>
 <p>&nbsp;</p>
 <h2>Add A New Diver</h2>
 <p>To add a new diver, please enter their information below and click 'Add Diver'!</p>

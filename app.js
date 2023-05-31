@@ -196,7 +196,53 @@ app.get('/dives', function(req, res) {
     })
 });
 
+// Add Dive Form
+app.post('/addDive', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
 
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) VALUES ('${data.diver_name}', ${data.diver_age})`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT * on divers
+            query2 = `SELECT * FROM Dives_View;`;
+            db.pool.query(query2, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
+
+// Delete Dive Route
+app.delete('/delete-dive/', function(req,res,next){
+    let data = req.body;
+    let diveID = parseInt(data.dive_id);
+    let deleteDive = 'DELETE FROM Dives WHERE dive_id = ?';
+
+    db.pool.query(deleteDive, [diveID], function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
 
 app.get('/divesites', function(req, res) {
     res.render('divesites')
