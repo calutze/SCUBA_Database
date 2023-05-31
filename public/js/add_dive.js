@@ -111,6 +111,7 @@ addRowToTable = (data) => {
     let durationCell = document.createElement("TD");
     let startPressureCell = document.createElement("TD");
     let endPressureCell = document.createElement("TD");
+    let SACCell = document.createElement("TD");
     let gasTypeCell = document.createElement("TD");
     let waterTempCell = document.createElement("TD");
     let WeightCell = document.createElement("TD");
@@ -136,6 +137,7 @@ addRowToTable = (data) => {
     durationCell.innerText = newRow.duration;
     startPressureCell.innerText = newRow.start_pressure;
     endPressureCell.innerText = newRow.end_pressure;
+    SACCell.innerText = newRow.SAC;
     gasTypeCell.innerText = newRow.gas_type;
     waterTempCell.innerText = newRow.water_temperature;
     WeightCell.innerText = newRow.weight;
@@ -155,6 +157,7 @@ addRowToTable = (data) => {
     row.appendChild(durationCell);
     row.appendChild(startPressureCell);
     row.appendChild(endPressureCell);
+    row.appendChild(SACCell);
     row.appendChild(gasTypeCell);
     row.appendChild(waterTempCell);
     row.appendChild(WeightCell);

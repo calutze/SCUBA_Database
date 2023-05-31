@@ -214,7 +214,7 @@ app.post('/addDive', function(req, res){
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) VALUES (${data.unit_id}, '${data.date}', ${data.max_depth}, ${data.avg_depth}, ${data.duration}, ${data.start_pressure}, ${data.end_pressure}, '${data.gas_type}', ${data.water_temperature}, ${data.weight}, ${data.visibility}, '${data.entry_details}', '${data.condition_note}', '${data.note}', ${data.site_rating});`;
+    query1 = `INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) VALUES (${data.unit_id}, '${data.date}', ${data.max_depth}, ${data.avg_depth}, ${data.duration}, ${data.start_pressure}, ${data.end_pressure}, '${data.gas_type}', ${data.weight}, ${data.water_temperature}, ${data.visibility}, '${data.entry_details}', '${data.condition_note}', '${data.note}', ${data.site_rating});`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -232,6 +232,50 @@ app.post('/addDive', function(req, res){
                     res.sendStatus(400);
                 }
                 else {
+                    for (let i=0; i < rows.length; i++) {
+                        // Capture NULL values
+                        let avg_depth = parseInt(rows[i].avg_depth);
+                        if (isNaN(avg_depth))
+                        {
+                            rows[i].avg_depth = "N/A"
+                        }
+                        let start_pressure = parseInt(rows[i].start_pressure);
+                        if (isNaN(start_pressure))
+                        {
+                            rows[i].start_pressure = "N/A"
+                        }
+                        let end_pressure = parseInt(rows[i].end_pressure);
+                        if (isNaN(end_pressure))
+                        {
+                            rows[i].end_pressure = "N/A"
+                        }
+                        let gas_type = parseInt(rows[i].gas_type);
+                        if (isNaN(gas_type))
+                        {
+                            rows[i].gas_type = "Air"
+                        }
+                        let weight = parseInt(rows[i].weight);
+                        if (isNaN(weight))
+                        {
+                            rows[i].weight = "N/A"
+                        }
+                        let water_temperature = parseInt(rows[i].water_temperature);
+                        if (isNaN(water_temperature))
+                        {
+                            rows[i].water_temperature = "N/A"
+                        }
+                        let visibility = parseInt(rows[i].visibility);
+                        if (isNaN(visibility))
+                        {
+                            rows[i].visibility = "N/A"
+                        }
+                        let SAC = parseInt(rows[i].SAC);
+                        if (isNaN(SAC))
+                        {
+                            rows[i].SAC = "N/A"
+                        }
+                    }
+                    console.log(rows)
                     res.send(rows);
                 }
             })
