@@ -57,7 +57,7 @@ addDiverForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            //addRowToTable(xhttp.response);
+            addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
             inputUnits = '';
@@ -103,39 +103,69 @@ addRowToTable = (data) => {
 
     // Create a row and 6 cells
     let row = document.createElement("TR");
-    let diverIdCell = document.createElement("TD");
-    let diverNameCell = document.createElement("TD");
-    let diverAgeCell = document.createElement("TD");
-    let diverSACCell = document.createElement("TD");
-    let diverNumDives = document.createElement("TD");
-    let diverTotalDiveTime = document.createElement("TD");
+    let diveIDCell = document.createElement("TD");
+    let unitCell = document.createElement("TD");
+    let dateCell = document.createElement("TD");
+    let maxDepthCell = document.createElement("TD");
+    let avgDepthCell = document.createElement("TD");
+    let durationCell = document.createElement("TD");
+    let startPressureCell = document.createElement("TD");
+    let endPressureCell = document.createElement("TD");
+    let gasTypeCell = document.createElement("TD");
+    let waterTempCell = document.createElement("TD");
+    let WeightCell = document.createElement("TD");
+    let visibilityCell = document.createElement("TD");
+    let entryDetailsCell = document.createElement("TD");
+    let conditionNoteCell = document.createElement("TD");
+    let noteCell = document.createElement("TD");
+    let siteRatingCell = document.createElement("TD");
 
     let deleteCell = document.createElement("TD");
     let deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
     deleteButton.onclick = function(){
-        deleteDiver(newRow.diver_id);
+        deleteDiver(newRow.dive_id);
     };
     deleteCell.appendChild(deleteButton);
 
-    diverIdCell.innerText = newRow.diver_id;
-    diverNameCell.innerText = newRow.diver_name;
-    diverAgeCell.innerText = newRow.diver_age;
-    diverSACCell.innerText = newRow.avg_SAC;
-    diverNumDives.innerText = newRow.num_dives;
-    diverTotalDiveTime.innerText = newRow.total_dive_time;
+    diveIDCell.innerText = newRow.dive_id
+    unitCell.innerText = newRow.units;
+    dateCell.innerText = newRow.date;
+    maxDepthCell.innerText = newRow.max_depth;
+    avgDepthCell.innerText = newRow.avg_depth;
+    durationCell.innerText = newRow.duration;
+    startPressureCell.innerText = newRow.start_pressure;
+    endPressureCell.innerText = newRow.end_pressure;
+    gasTypeCell.innerText = newRow.gas_type;
+    waterTempCell.innerText = newRow.water_temperature;
+    WeightCell.innerText = newRow.weight;
+    visibilityCell.innerText = newRow.visibility;
+    entryDetailsCell.innerText = newRow.entry_details;
+    conditionNoteCell.innerText = newRow.condition_note;
+    noteCell.innerText = newRow.note;
+    siteRatingCell.innerText = newRow.site_rating;
 
     // Add the cells to the row 
     row.appendChild(deleteCell);
-    row.appendChild(diverIdCell);
-    row.appendChild(diverNameCell);
-    row.appendChild(diverAgeCell);
-    row.appendChild(diverSACCell);
-    row.appendChild(diverNumDives);
-    row.appendChild(diverTotalDiveTime);
+    row.appendChild(diveIDCell);
+    row.appendChild(unitCell);
+    row.appendChild(dateCell);
+    row.appendChild(maxDepthCell);
+    row.appendChild(avgDepthCell);
+    row.appendChild(durationCell);
+    row.appendChild(startPressureCell);
+    row.appendChild(endPressureCell);
+    row.appendChild(gasTypeCell);
+    row.appendChild(waterTempCell);
+    row.appendChild(WeightCell);
+    row.appendChild(visibilityCell);
+    row.appendChild(entryDetailsCell);
+    row.appendChild(conditionNoteCell);
+    row.appendChild(noteCell);
+    row.appendChild(siteRatingCell);
 
     // Add a row attribute so the deleteRow function can find a newly added row
-    row.setAttribute('data-value', newRow.diver_id);
+    row.setAttribute('data-value', newRow.dive_id);
     
     // Add the row to the table
     currentTable.appendChild(row);
