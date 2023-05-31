@@ -71,7 +71,7 @@ CREATE OR REPLACE TABLE Dives (
   `duration` INT NOT NULL,
   `start_pressure` INT NULL,
   `end_pressure` INT NULL,
-  `gas_type` VARCHAR(10) NULL,
+  `gas_type` VARCHAR(10) DEFAULT 'Air',
   `weight` INT NULL,
   `water_temperature` INT NULL,
   `visibility` INT NULL,

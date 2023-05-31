@@ -1,14 +1,14 @@
-<!-- divers.hbs -->
+<!-- dives.hbs -->
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<h1>Divers</h1>
-<p>Display, Add, Update, and Delete Diver Records</p>
+<h1>Dives</h1>
+<p>Display, Add, Update, and Delete Dive Records</p>
 
 [<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
 
 {{!-- Create a table --}}
-<table id="divers-table" border="1" cellpadding="5">
+<table id="dives-table" border="1" cellpadding="5">
 
     {{!-- Header section --}}
     <thead>
@@ -31,15 +31,25 @@
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
 
-        <tr data-value={{this.diver_id}}>
-            {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
-            <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
-            <td>{{this.diver_id}}</td>
-            <td>{{this.diver_name}}</td>
-            <td>{{this.diver_age}}</td>
-            <td>{{this.avg_SAC}}</td>
-            <td>{{this.num_dives}}</td>
-            <td>{{this.total_dive_time}}</td>
+        <tr data-value={{this.dive_id}}>
+            <td><button onclick="deleteDiver({{this.dive_id}})">Delete</button></td>
+            <td>{{this.dive_id}}</td>
+            <td>{{this.unit_id}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.max_depth}}</td>
+            <td>{{this.avg_depth}}</td>
+            <td>{{this.duration}}</td>
+            <td>{{this.start_pressure}}</td>
+            <td>{{this.end_pressure}}</td>
+            <td>{{this.gas_type}}</td>
+            <td>{{this.weight}}</td>
+            <td>{{this.water_temperature}}</td>
+            <td>{{this.visibility}}</td>
+            <td>{{this.entry_details}}</td>
+            <td>{{this.condition_note}}</td>
+            <td>{{this.note}}</td>
+            <td>{{this.site_rating}}</td>
+            <td>{{this.SAC}}</td>
         </tr>
         {{/each}}
     </tbody>

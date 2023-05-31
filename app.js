@@ -146,12 +146,59 @@ app.get('/units', function(req, res) {
 });
 
 app.get('/dives', function(req, res) {
-    res.render('dives')
-    res.render('dives')
+    let querySelectDives = "SELECT * FROM Dives_View;";
+
+    db.pool.query(querySelectDives, function(error, rows, fields){
+        for (let i=0; i < rows.length; i++) {
+            // Capture NULL values
+            let avg_depth = parseInt(rows[i].avg_depth);
+            if (isNaN(avg_depth))
+            {
+                rows[i].avg_depth = "N/A"
+            }
+            let start_pressure = parseInt(rows[i].start_pressure);
+            if (isNaN(start_pressure))
+            {
+                rows[i].start_pressure = "N/A"
+            }
+            let end_pressure = parseInt(rows[i].end_pressure);
+            if (isNaN(end_pressure))
+            {
+                rows[i].end_pressure = "N/A"
+            }
+            let gas_type = parseInt(rows[i].gas_type);
+            if (isNaN(gas_type))
+            {
+                rows[i].gas_type = "N/A"
+            }
+            let weight = parseInt(rows[i].weight);
+            if (isNaN(weight))
+            {
+                rows[i].weight = "N/A"
+            }
+            let water_temperature = parseInt(rows[i].water_temperature);
+            if (isNaN(water_temperature))
+            {
+                rows[i].water_temperature = "N/A"
+            }
+            let visibility = parseInt(rows[i].visibility);
+            if (isNaN(visibility))
+            {
+                rows[i].visibility = "N/A"
+            }
+            let SAC = parseInt(rows[i].SAC);
+            if (isNaN(SAC))
+            {
+                rows[i].SAC = "N/A"
+            }
+        }
+        res.render('dives', {data: rows})
+    })
 });
 
+
+
 app.get('/divesites', function(req, res) {
-    res.render('divesites')
     res.render('divesites')
 });
 
