@@ -147,8 +147,13 @@ app.get('/units', function(req, res) {
 
 app.get('/dives', function(req, res) {
     let querySelectDives = "SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id;";
+    let querySelectUnits = "SELECT * FROM Units;";
 
     db.pool.query(querySelectDives, function(error, rows, fields){
+        if (error) {
+            console.log(error)
+            return;
+        }
         for (let i=0; i < rows.length; i++) {
             // Capture NULL values
             let avg_depth = parseInt(rows[i].avg_depth);
@@ -192,7 +197,14 @@ app.get('/dives', function(req, res) {
                 rows[i].SAC = "N/A"
             }
         }
-        res.render('dives', {data: rows})
+        db.pool.query(querySelectUnits, function (error, Units, fields) {
+            if (error) {
+                console.log(error)
+                return;
+            }
+            res.render('dives', {data: rows, unitsData: Units})
+        })
+        
     })
 });
 
@@ -202,7 +214,7 @@ app.post('/addDive', function(req, res){
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) VALUES ('${data.diver_name}', ${data.diver_age})`;
+    query1 = `INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) VALUES (${data.unit_id}, '${data.date}', ${data.max_depth}, ${data.avg_depth}, ${data.duration}, ${data.start_pressure}, ${data.end_pressure}, '${data.gas_type}', ${data.water_temperature}, ${data.weight}, ${data.visibility}, '${data.entry_details}', '${data.condition_note}', '${data.note}', ${data.site_rating});`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -213,8 +225,8 @@ app.post('/addDive', function(req, res){
         else
         {
             // If no error, perform a SELECT * on divers
-            query2 = `SELECT * FROM Dives_View;`;
-            db.pool.query(query2, function(error, rows, fields){
+            querySelectDives = "SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id;";
+            db.pool.query(querySelectDives, function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
