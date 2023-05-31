@@ -161,6 +161,7 @@ app.put('/updateDiver', function(req, res, next){
                         console.log(error);
                         res.sendStatus(400);
                     } else {
+                        console.log('Updated Diver Data:', rows)
                         res.send(rows);
                     }
                 })
