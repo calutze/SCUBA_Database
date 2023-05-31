@@ -79,7 +79,7 @@ app.post('/addDiver', function(req, res){
     let num_dives = parseInt(data.num_dives);
     if (isNaN(num_dives))
     {
-        num_dives = 0
+        num_dives = 
     }
 
     let total_dive_time = parseInt(data.total_dive_time);
@@ -103,7 +103,7 @@ app.post('/addDiver', function(req, res){
         else
         {
             // If no error, perform a SELECT * on divers
-            query2 = `SELECT * FROM Divers;`;
+            query2 = `SELECT * FROM Divers_View;`;
             db.pool.query(query2, function(error, rows, fields){
                 if (error) {
                     console.log(error);
