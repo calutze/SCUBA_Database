@@ -34,6 +34,27 @@ app.get('/divers', function(req, res) {
     let query1 = "SELECT * FROM Divers_View;";
 
     db.pool.query(query1, function(error, rows, fields){
+        for (let i=0; i < rows.length; i++) {
+            // Capture NULL values
+            let avg_SAC = parseInt(rows[i].avg_SAC);
+            console.log(avg_SAC)
+            if (isNaN(avg_SAC))
+            {
+                rows[i].avg_SAC = "N/A"
+            }
+
+            let num_dives = parseInt(rows[i].num_dives);
+            if (isNaN(num_dives))
+            {
+                rows[i].num_dives = 0
+            }
+
+            let total_dive_time = parseInt(rows[i].total_dive_time);
+            if (isNaN(total_dive_time))
+            {
+                rows[i].total_dive_time = 0
+            }
+        }
         res.render('divers', {data: rows})
     })
 });
@@ -68,25 +89,6 @@ app.get('/divestodivesites', function(req, res) {
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-
-    // Capture NULL values
-    /*let avg_SAC = parseInt(data.avg_SAC);
-    if (isNaN(avg_SAC))
-    {
-        avg_SAC = 'N/A'
-    }
-
-    let num_dives = parseInt(data.num_dives);
-    if (isNaN(num_dives))
-    {
-        num_dives = 
-    }
-
-    let total_dive_time = parseInt(data.total_dive_time);
-    if (isNaN(total_dive_time))
-    {
-        total_dive_time = 0
-    }*/
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', ${data.diver_age})`;
