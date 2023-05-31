@@ -62,7 +62,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            <th><button onClick="newDiver()">Add Diver</button></th>
+            <th></th>
             {{#each data.[0]}}
             <th>
                 {{@key}}
@@ -91,19 +91,15 @@
     </tbody>
 </table>
 
-<button onClick="updateDiver()">Update Diver</button>
-
 <script src="./js/delete_diver.js"></script>
 <p>&nbsp;</p>
+<h2>Add A New Diver</h2>
 <div id="insert">
 {{!--<h2>Add New Diver:</h2>
 <p>To add a new diver, please enter their information below and click 'Add Diver'!</p>--}}
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-    <legend><strong>Add Diver</strong></legend>
-    <fieldset class="fields">
-        <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
-    </fieldset>
+        <label for="insert_diver_name"> Diver Name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
+        <label for="insert_diver_age"> Age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
     <input class="btn" type="submit" value="Add Diver">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
