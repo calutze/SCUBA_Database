@@ -66,7 +66,7 @@ CREATE OR REPLACE TABLE Units (
 CREATE OR REPLACE TABLE Dives (
   `dive_id` INT NOT NULL AUTO_INCREMENT,
   `unit_id` INT NOT NULL,
-  `date` DATETIME NOT NULL,
+  `date` DATE NOT NULL,
   `max_depth` INT NOT NULL,
   `avg_depth` INT NULL,
   `duration` INT NOT NULL,
