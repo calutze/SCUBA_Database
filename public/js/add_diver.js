@@ -33,7 +33,7 @@ addDiverForm.addEventListener("submit", function (e) {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
             // Add the new data to the table
-            addRowToTable(xhttp.response); // TODO - change this data to the table view
+            addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
             inputDiverName.value = '';
@@ -50,8 +50,7 @@ addDiverForm.addEventListener("submit", function (e) {
 })
 
 
-// Creates a single row from an Object representing a single record from 
-// bsg_people
+// Creates a single row from an Object representing a single record from Divers
 addRowToTable = (data) => {
 
     // Get a reference to the current table on the page and clear it out.
@@ -73,22 +72,14 @@ addRowToTable = (data) => {
     let diverNumDives = document.createElement("TD");
     let diverTotalDiveTime = document.createElement("TD");
 
-    // let updateCell = document.createElement("TD");
     let deleteCell = document.createElement("TD");
-
-    // Fill the cells with correct data
-    /* updateCell = document.createElement("button");
-    updateCell.innerHTML = "Update";
-    updateCell.onclick = function(){
-        updateDiver(newRow.diver_id);
-    }; */
-
     let deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
     deleteButton.onclick = function(){
         deleteDiver(newRow.diver_id);
     };
     deleteCell.appendChild(deleteButton);
+
     diverIdCell.innerText = newRow.diver_id;
     diverNameCell.innerText = newRow.diver_name;
     diverAgeCell.innerText = newRow.diver_age;
@@ -97,7 +88,6 @@ addRowToTable = (data) => {
     diverTotalDiveTime.innerText = newRow.total_dive_time;
 
     // Add the cells to the row 
-    //row.appendChild(updateCell);
     row.appendChild(deleteCell);
     row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);

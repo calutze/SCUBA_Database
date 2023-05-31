@@ -35,9 +35,8 @@ app.get('/divers', function(req, res) {
 
     db.pool.query(query1, function(error, rows, fields){
         for (let i=0; i < rows.length; i++) {
-            // Capture NULL values
+        // Capture NULL values
             let avg_SAC = parseInt(rows[i].avg_SAC);
-            console.log(avg_SAC)
             if (isNaN(avg_SAC))
             {
                 rows[i].avg_SAC = "N/A"
@@ -92,12 +91,9 @@ app.post('/addDiver', function(req, res){
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data.diver_name}', ${data.diver_age})`;
-    //query2 = `INSERT INTO Divers (diver_name, diver_age) VALUES ('${data['insert_diver_name']}', '${data['insert_diver_age']}');`;
     db.pool.query(query1, function(error, rows, fields){
-
         // Check to see if there was an error
         if (error) {
-
             // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
             console.log(error);
             res.sendStatus(400);
@@ -115,7 +111,6 @@ app.post('/addDiver', function(req, res){
                     res.send(rows);
                 }
             })
-            //res.redirect('/');
         }
     })
     
@@ -142,9 +137,6 @@ app.delete('/delete-diver/', function(req,res,next){
 app.put('/updateDiver', function(req, res, next){
     let data = req.body;
     console.log('Update Diver Data Received:', data);
-    
-    //let diver_name = parseInt(data.diver_name);
-    //let diver_age = parseInt(data.diver_age);
 
     let queryUpdateDiver = 'UPDATE Divers SET diver_name = ?, diver_age = ? WHERE diver_id = ?';
     let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'

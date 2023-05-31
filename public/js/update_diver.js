@@ -42,7 +42,6 @@ updateDiverForm.addEventListener("submit", function (e) {
 
 function updateRow(data, diver_id){
     let parsedData = JSON.parse(data);
-    console.log(parsedData);
 
     let table = document.getElementById("divers-table");
 
@@ -54,10 +53,7 @@ function updateRow(data, diver_id){
 
             updateRowIndex.getElementsByTagName("td")[2].innerHTML = parsedData[0].diver_name;
             updateRowIndex.getElementsByTagName("td")[3].innerHTML = parsedData[0].diver_age;
-            
-            //let td = updateRowIndex.getElementsByTagName("td")[3];
 
-            //td.innerHTML = parsedData[0].name;
         }
     }
 }

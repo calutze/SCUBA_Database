@@ -7,52 +7,6 @@
 
 [<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
 
-{{!--<script language="JavaScript">
-		function showform(dowhat) {
-			/*
-			* four DIVS: browse, insert, update, delete
-			* this function sets one visible the others not
-			*/
-			if (dowhat == 'insert'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'update'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'none';
-			}
-			else if (dowhat == 'delete'){
-				document.getElementById('browse').style.display = 'none';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'block';
-			}
-      else if (dowhat == 'all'){
-				document.getElementById('browse').style.display = 'block';
-				document.getElementById('insert').style.display = 'block';
-				document.getElementById('update').style.display = 'block';
-				document.getElementById('delete').style.display = 'block';
-			}
-			else { //by default display browse
-				document.getElementById('browse').style.display = 'block';
-				document.getElementById('insert').style.display = 'none';
-				document.getElementById('update').style.display = 'none';
-				document.getElementById('delete').style.display = 'none';
-			}
-		}
-    function newDiver() { showform('insert'); }
-    function updateDiver(pid) { showform('update'); }
-    function deleteDiver(pid) { showform ('delete'); }
-    function browseDivers() { showform ('browse'); }
-    function showAll() { showform ('all'); }
-</script>
-
-<body onload="browseDivers()">--}}
-
 {{!-- Create a table --}}
 <table id="divers-table" border="1" cellpadding="5">
 
@@ -94,9 +48,8 @@
 <script src="./js/delete_diver.js"></script>
 <p>&nbsp;</p>
 <h2>Add A New Diver</h2>
+<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
 <div id="insert">
-{{!--<h2>Add New Diver:</h2>
-<p>To add a new diver, please enter their information below and click 'Add Diver'!</p>--}}
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
         <label for="insert_diver_name"> Diver Name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
         <label for="insert_diver_age"> Age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
