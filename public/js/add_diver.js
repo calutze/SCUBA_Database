@@ -83,12 +83,12 @@ addRowToTable = (data) => {
         updateDiver(newRow.diver_id);
     }; */
 
-    deleteCell = document.createElement("button");
-    deleteCell.innerHTML = "Delete";
-    deleteCell.onclick = function(){
+    let deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
+    deleteButton.onclick = function(){
         deleteDiver(newRow.diver_id);
     };
-
+    deleteCell.appendChild(deleteButton);
     diverIdCell.innerText = newRow.diver_id;
     diverNameCell.innerText = newRow.diver_name;
     diverAgeCell.innerText = newRow.diver_age;
