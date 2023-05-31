@@ -8,13 +8,16 @@ updateDiverForm.addEventListener("submit", function (e) {
 
     let selectDiverId = document.getElementById("mySelect");
     let selectDiverAge = document.getElementById("selected_diver_age");
+    let updatedDiverName = document.getElementById("updated_diver_name")
 
     let diverIdValue = selectDiverId.value;
     let diverAgeValue = selectDiverAge.value;
+    let updatedDiverNameValue = updatedDiverName.value
 
 
     let data = {
         diver_id: diverIdValue,
+        diver_name: updatedDiverNameValue,
         diver_age: diverAgeValue
     }
 

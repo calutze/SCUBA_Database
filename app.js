@@ -144,10 +144,10 @@ app.put('/updateDiver', function(req, res, next){
     //let diver_name = parseInt(data.diver_name);
     //let diver_age = parseInt(data.diver_age);
 
-    let queryUpdateDiver = 'UPDATE Divers SET diver_age = ? WHERE diver_id = ?';
+    let queryUpdateDiver = 'UPDATE Divers SET diver_name = ?, diver_age = ? WHERE diver_id = ?';
     let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
 
-    db.pool.query(queryUpdateDiver, [`${data.diver_age}`, data.diver_id], function(error, rows, fields){
+    db.pool.query(queryUpdateDiver, [data.diver_name, data.diver_age, data.diver_id], function(error, rows, fields){
             if (error) {
                 console.log(error);
                 res.sendStatus(400);
