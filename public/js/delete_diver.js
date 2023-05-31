@@ -6,6 +6,16 @@ function deleteDiver(diverID) {
     diver_id: diverID
   };
 
+  var result = confirm("Are you sure you want to delete this Diver?");
+
+  if (result){
+    alert("Diver deleted successfully")
+  }
+  else {
+    alert("Delete action canceled")
+    return
+  }
+
   $.ajax({
     url: link,
     type: 'DELETE',
