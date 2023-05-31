@@ -53,6 +53,7 @@ FROM DiveSites;
 
 CREATE OR REPLACE TABLE Units (
   `unit_id` INT NOT NULL AUTO_INCREMENT,
+  `unit_name` VARCHAR(10) NOT NULL,
   `pressure_unit` VARCHAR(10) NOT NULL,
   `length_unit` VARCHAR(10) NOT NULL,
   `weight_unit` VARCHAR(10) NOT NULL,
@@ -157,9 +158,9 @@ values ('Golden Arches', 'Kona', 'United States'),
 ('Flame Reef', 'Santa Cruz Island', 'United States');
 
 -- Insert sample data into Units
-INSERT INTO Units (pressure_unit, length_unit, weight_unit, temperature_unit)
-values ('psi', 'ft', 'lb', 'F'), -- Imperial units
-('bar', 'm', 'kg', 'C'); -- Metric units
+INSERT INTO Units (unit_name, pressure_unit, length_unit, weight_unit, temperature_unit)
+values ('Imperial', 'psi', 'ft', 'lb', 'F'), -- Imperial units
+('Metric', 'bar', 'm', 'kg', 'C'); -- Metric units
 
 -- Insert sample data into Dives
 INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure,
