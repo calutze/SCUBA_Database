@@ -58,32 +58,6 @@ app.get('/divers', function(req, res) {
     })
 });
 
-app.get('/units', function(req, res) {
-    let query1 = "SELECT * FROM Units;";
-
-    db.pool.query(query1, function(error, rows, fields){
-        res.render('units', {data: rows})
-    })
-});
-
-app.get('/dives', function(req, res) {
-    res.render('dives')
-    res.render('dives')
-});
-
-app.get('/divesites', function(req, res) {
-    res.render('divesites')
-    res.render('divesites')
-});
-
-app.get('/divelogs', function(req, res) {
-    res.render('divelogs')
-});
-
-app.get('/divestodivesites', function(req, res) {
-    res.render('divestodivesites')
-});
-
 // Add Diver Form
 app.post('/addDiver', function(req, res){
     // Capture the incoming data and parse it back to a JS object
@@ -161,6 +135,32 @@ app.put('/updateDiver', function(req, res, next){
                 })
             }
         })
+});
+
+app.get('/units', function(req, res) {
+    let query1 = "SELECT * FROM Units;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('units', {data: rows})
+    })
+});
+
+app.get('/dives', function(req, res) {
+    res.render('dives')
+    res.render('dives')
+});
+
+app.get('/divesites', function(req, res) {
+    res.render('divesites')
+    res.render('divesites')
+});
+
+app.get('/divelogs', function(req, res) {
+    res.render('divelogs')
+});
+
+app.get('/divestodivesites', function(req, res) {
+    res.render('divestodivesites')
 });
 
 /*
