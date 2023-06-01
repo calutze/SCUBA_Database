@@ -339,7 +339,32 @@ app.get('/divesites', function(req, res) {
 });
 
 app.get('/divelogs', function(req, res) {
-    res.render('divelogs')
+    let queryDivelogs = 'SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id;';
+
+    db.pool.query(queryDivelogs, function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.render('divelogs', {data: rows})
+        }
+    });
+});
+
+// Delete Dive Route
+app.delete('/delete-divelog/', function(req,res,next){
+    let data = req.body;
+    let divelogID = parseInt(data.divelog_id);
+    let deleteDive = 'DELETE FROM Divelogs WHERE divelog_id = ?';
+
+    db.pool.query(deleteDive, [divelogID], function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
 });
 
 app.get('/divestodivesites', function(req, res) {

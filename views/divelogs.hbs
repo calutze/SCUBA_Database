@@ -1,0 +1,78 @@
+<!-- divers.hbs -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Dive Log</h1>
+<p>Display, Add, Update, and Delete Dive Log Records</p>
+
+[<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
+
+{{!-- Create a table --}}
+<table id="divelog-table" border="1" cellpadding="5">
+
+    {{!-- Header section --}}
+    <thead>
+
+        {{!-- For just the first row, we print each key of the row object as a header cell so we
+        know what each column means when the page renders --}}
+        <tr>
+            <th></th>
+            <th>divelog_id</th>
+            <th>Dive</th>
+            <th>diver_name</th>
+        </tr>
+    </thead>
+
+    {{!-- Body section --}}
+    <tbody>
+
+        {{!-- For each row, print the attributes in order --}}
+        {{#each data}}
+
+        <tr data-value={{this.divelog_id}}>
+            {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
+            <td><button onclick="deleteDivelog({{this.divelog_id}})">Delete</button></td>
+            <td>{{this.divelog_id}}</td>
+            <td><strong>Dive ID: </strong> {{this.dive_id}} <strong>Date: </strong> {{this.date}} <strong>Max Depth: </strong> {{this.max_depth}} <strong>Duration: </strong> {{this.duration}}</td>
+            <td>{{this.diver_name}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="./js/delete_divelog.js"></script>
+<p>&nbsp;</p>
+<h2>Add A New Dive Log</h2>
+<p>To add a new dive log, please enter the information below and click 'Add Dive Log'!</p>
+<div id="insert">
+<form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
+        <label for="insert_dive_id"> Diver Name </label> <input type="text" name="insert_dive_id" id="insert_diinsert_dive_idver_name">
+        <label for="insert_diver_id"> Age </label> <input type="number" name="insert_diver_id" id="insert_diver_id">
+    <input class="btn" type="submit" value="Add Dive Log">
+</form>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
+<script src="./js/add_divelog.js"></script>
+</div>
+
+
+<h2>Updating A Dive Log</h2>
+    <p>To update a dive log, select the divelog to update from the dropdowns and update the associated dive and diver name from the dropdowns.</p>
+    <form id="updateDiver">
+        <label for="selected_diver_name">Diver Name: </label>
+        <select name="selected_diver_name" id="mySelect">
+            <option value="option">Select a Diver</option>
+            {{#each data}}
+            <option value="{{this.diver_id}}">{{this.diver_name}}</option>
+            {{/each}}
+        </select>
+        <label for="updated_diver_name">Updated Diver Name: </label> <input type="text" name="updated_diver_name" id="updated_diver_name">
+        <label for="selected_diver_age">Diver Age: </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
+        <input type="submit">
+</form>
+{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
+ 
+
+<script src="./js/update_divelog.js"></script>
+
+
+</body>
