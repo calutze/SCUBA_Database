@@ -279,7 +279,6 @@ app.post('/addDive', function(req, res){
                             rows[i].SAC = "N/A"
                         }
                     }
-                    console.log(rows)
                     res.send(rows);
                 }
             })
@@ -338,8 +337,9 @@ app.get('/divesites', function(req, res) {
     res.render('divesites')
 });
 
+// Display Divelogs Route
 app.get('/divelogs', function(req, res) {
-    let queryDivelogs = 'SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id;';
+    let queryDivelogs = 'SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.diver_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;';
 
     db.pool.query(queryDivelogs, function(error, rows, fields) {
         if (error) {
@@ -349,6 +349,39 @@ app.get('/divelogs', function(req, res) {
             res.render('divelogs', {data: rows})
         }
     });
+});
+
+// Add Dive Form
+app.post('/addDivelog', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Divelogs (dive_id, diver_id) VALUES (${data.dive_id}, ${data.diver_id});`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT on Divelogs
+            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
+            db.pool.query(querySelectDivelogs, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    console.log(rows)
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
 });
 
 // Delete Dive Route

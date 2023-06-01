@@ -45,10 +45,22 @@
 <h2>Add A New Dive Log</h2>
 <p>To add a new dive log, please enter the information below and click 'Add Dive Log'!</p>
 <div id="insert">
-<form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-        <label for="insert_dive_id"> Diver Name </label> <input type="text" name="insert_dive_id" id="insert_diinsert_dive_idver_name">
-        <label for="insert_diver_id"> Age </label> <input type="number" name="insert_diver_id" id="insert_diver_id">
-    <input class="btn" type="submit" value="Add Dive Log">
+<form id="addDivelog" {{!--method="POST" action="/addDiver"--}}>
+        <label for="insert_dive_name">Dive: </label>
+        <select name="insert_dive_name" id="insertDiveSelect">
+            <option value="option">Select a Dive</option>
+            {{#each data}}
+            <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
+            {{/each}}
+        </select>
+        <label for="insert_diver_name">Diver Name: </label>
+        <select name="insert_diver_name" id="insertDiverSelect">
+            <option value="option">Diver Name</option>
+            {{#each data}}
+            <option value="{{this.diver_id}}">{{this.diver_name}}</option>
+            {{/each}}
+        </select>
+        <input class="btn" type="submit" value="Add Dive Log">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_divelog.js"></script>
@@ -58,15 +70,27 @@
 <h2>Updating A Dive Log</h2>
     <p>To update a dive log, select the divelog to update from the dropdowns and update the associated dive and diver name from the dropdowns.</p>
     <form id="updateDiver">
-        <label for="selected_diver_name">Diver Name: </label>
-        <select name="selected_diver_name" id="mySelect">
-            <option value="option">Select a Diver</option>
+        <label for="selected_divelog_id">Divelog ID: </label>
+        <select name="selected_divelog_id" id="selectedDivelogId">
+            <option value="option">divelog_id</option>
+            {{#each data}}
+            <option value="{{this.divelog_id}}">{{this.divelog_id}}</option>
+            {{/each}}
+        </select>
+       <label for="update_dive_name">Dive: </label>
+        <select name="update_dive_name" id="updateDiveSelect">
+            <option value="option">Select a Dive</option>
+            {{#each data}}
+            <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
+            {{/each}}
+        </select>
+        <label for="update_diver_name">Diver Name: </label>
+        <select name="update_diver_name" id="updateDiverSelect">
+            <option value="option">Diver Name</option>
             {{#each data}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
         </select>
-        <label for="updated_diver_name">Updated Diver Name: </label> <input type="text" name="updated_diver_name" id="updated_diver_name">
-        <label for="selected_diver_age">Diver Age: </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
