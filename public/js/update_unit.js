@@ -6,40 +6,34 @@ updateUnitForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    let selectUnitId = document.getElementById("mySelect");
-    let selectPressureUnit = document.getElementById("selected_pressure_unit");
-    let selectLengthUnit = document.getElementById("selected_length_unit");
-    let selectWeightUnit = document.getElementById("selected_weight_unit");
-    let selectTemperatureUnit = document.getElementById("selected_temperature_unit");
-    let updatedUnitName = document.getElementById("updated_unit_name")
+    let selectUnitId = document.getElementById("mySelect").value;
+    let selectPressureUnit = document.getElementById("selected_pressure_unit").value;
+    let selectLengthUnit = document.getElementById("selected_length_unit").value;
+    let selectWeightUnit = document.getElementById("selected_weight_unit").value;
+    let selectTemperatureUnit = document.getElementById("selected_temperature_unit").value;
+    let updatedUnitName = document.getElementById("updated_unit_name").value;
 
-    let unitIdValue = selectUnitId.value;
-    let pressureUnitValue = selectPressureUnit.value;
-    let lengthUnitValue = selectLengthUnit.value;
-    let weightUnitValue = selectWeightUnit.value;
-    let temperatureUnitValue = selectTemperatureUnit.value;
-    let updatedUnitNameValue = updatedUnitName.value
 
 
     let data = {
-        unit_id: unitIdValue,
-        unit_name: updatedUnitNameValue,
-        pressure_unit: pressureUnitValue,
-        length_unit: lengthUnitValue,
-        weight_unit: weightUnitValue,
-        temperature_unit: temperatureUnitValue
+        unit_id: selectUnitId,
+        unit_name: updatedUnitName,
+        pressure_unit: selectPressureUnit,
+        length_unit: selectLengthUnit,
+        weight_unit: selectWeightUnit,
+        temperature_unit: selectTemperatureUnit
     }
 
 
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/updatedUnit", true);
+    xhttp.open("PUT", "/updateUnit", true);
     xhttp.setRequestHeader("Content-type", "application/json");
 
     
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, unitIdValue);
+            updateRow(xhttp.response, selectUnitId);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log ("There was an error with the input.")

@@ -10,26 +10,19 @@ addUnitForm.addEventListener("submit", function (e) {
     e.preventDefault();
 
     // Get form fields we need to get data from
-    let inputUnitName = document.getElementById("insert_unit_name");
-    let inputPressureUnit = document.getElementById("insert_pressure_unit");
-    let inputLengthUnit = document.getElementById("insert_length_unit");
-    let inputWeightUnit = document.getElementById("insert_weight_unit");
-    let inputTemperatureUnit = document.getElementById("insert_temperature_unit");
-
-    // Get the values from the form fields
-    let unitNameValue = inputUnitName.value;
-    let pressureUnitValue = inputPressureUnit.value;
-    let lengthUnitValue = inputLengthUnit.value;
-    let weightUnitValue = inputWeightUnit.value;
-    let temperatureUnitValue = inputTemperatureUnit.value;
+    let inputUnitName = document.getElementById("insert_unit_name").value;
+    let inputPressureUnit = document.getElementById("insert_pressure_unit").value;
+    let inputLengthUnit = document.getElementById("insert_length_unit").value;
+    let inputWeightUnit = document.getElementById("insert_weight_unit").value;
+    let inputTemperatureUnit = document.getElementById("insert_temperature_unit").value;
 
     // Put our data we want to send in a javascript object
     let data = {
-        unit_name: unitNameValue,
-        pressure_unit: pressureUnitValue,
-        length_unit: lengthUnitValue,
-        weight_unit: weightUnitValue,
-        temperature_unit: temperatureUnitValue
+        unit_name: inputUnitName,
+        pressure_unit: inputPressureUnit,
+        length_unit: inputLengthUnit,
+        weight_unit: inputWeightUnit,
+        temperature_unit: inputTemperatureUnit
     }
     
     // Setup our AJAX request
@@ -45,11 +38,11 @@ addUnitForm.addEventListener("submit", function (e) {
             addRowToTable(xhttp.response);
 
             // Clear the input fields for another transaction
-            inputUnitName.value = '';
-            inputPressureUnit.value = '';
-            inputLengthUnit.value = '';
-            inputWeightUnit.value = '';
-            inputTemperatureUnit.value = '';
+            inputUnitName = '';
+            inputPressureUnit = '';
+            inputLengthUnit = '';
+            inputWeightUnit = '';
+            inputTemperatureUnit = '';
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log("There was an error with the input.")

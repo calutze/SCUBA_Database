@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12316;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12317;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -412,7 +412,7 @@ app.post('/addUnit', function(req, res){
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO Units (unit_id, unit_name, pressure_unit, length_unit, weight_unit, temperature_unit) VALUES (${data.unit_id}, '${data.unit_name}', ${data.pressure_unit}, ${data.length_unit}, ${data.weight_unit}, ${data.temperature_unit});`;
+    query1 = `INSERT INTO Units (unit_name, pressure_unit, length_unit, weight_unit, temperature_unit) VALUES ('${data.unit_name}', '${data.pressure_unit}', '${data.length_unit}', '${data.weight_unit}', '${data.temperature_unit}');`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -460,7 +460,7 @@ app.put('/updateUnit', function(req, res, next){
     console.log('Update Unit Data Received:', data);
 
     let queryUpdateUnit = 'UPDATE Units SET unit_name = ?, pressure_unit = ?, length_unit = ?, weight_unit = ?, temperature_unit = ? WHERE unit_id = ?';
-    let selectUnit = querySelectUnits = "SELECT * FROM Units;";
+    let selectUnit = "SELECT * FROM Units WHERE unit_id = ?";
 
     db.pool.query(queryUpdateUnit, [data.unit_name, data.pressure_unit, data.length_unit, data.weight_unit, data.temperature_unit], function(error, rows, fields){
             if (error) {
