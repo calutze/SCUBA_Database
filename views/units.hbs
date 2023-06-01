@@ -1,11 +1,14 @@
-<!-- index.hbs -->
-<h1>The server is running!</h1>
-<p>If you see this text, the server is <strong>definitely</strong> working!</p>
+<!-- units.hbs -->
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<h1>Units</h1>
+<p>Display, Add, Update, and Delete Unit Records</p>
 
 [<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
 
 {{!-- Create a table --}}
-<table id="units-table">
+<table id="units-table" border="1" cellpadding="5">
 
     {{!-- Header section --}}
     <thead>
@@ -13,6 +16,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
+            <th></th>
             {{#each data.[0]}}
             <th>
                 {{@key}}
@@ -26,7 +30,8 @@
 
         {{!-- For each row, print the id, fname, lname, homeworld and age, in order --}}
         {{#each data}}
-        <tr>
+        <tr data-value={{this.unit_id}}>
+            <td><button onclick="deleteUnit({{this.unit_id}})">Delete</button></td>
             <td>{{this.unit_id}}</td>
             <td>{{this.pressure_unit}}</td>
             <td>{{this.length_unit}}</td>
@@ -37,17 +42,43 @@
     </tbody>
 </table>
 
-<h2>Add New Unit:</h2>
+<script src="./js/delete_unit.js"></script>
+<p>&nbsp;</p>
+<h2>Add A New Unit:</h2>
 <p>To add a new unit set, please enter the information below and click 'Add Unit'!</p>
-<form id="addUnit" {{!--method="POST" action="/addDiver"--}}>
-    <legend><strong>Add Diver</strong></legend>
-    <fieldset class="fields">
-        <label for="insert_diver_name"> diver_name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> age </label> <input type="text" name="insert_diver_age" id="insert_diver_age">
-    </fieldset>
-    <input type="submit" value="Add Diver">
-    {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
+<div id="insert">
+<form id="addUnit" {{!--method="POST" action="/addUnit"--}}>
+        <label for="insert_unit_name"> unit_name </label> <input type="text" name="insert_unit_name" id="insert_unit_name">
+        <label for="insert_pressure_unit"> pressure_unit </label> <input type="text" name="insert_pressure_unit" id="insert_pressure_unit">
+        <label for="insert_length_unit"> length_unit </label> <input type="text" name="insert_length_unit" id="insert_length_unit">
+        <label for="insert_weight_unit"> weight_unit </label> <input type="text" name="insert_weight_unit" id="insert_weight_unit">
+        <label for="insert_temperature_unit"> temperature_unit </label> <input type="text" name="insert_temperature_unit" id="insert_temperature_unit">
+    <input class="btn" type="submit" value="Add Unit">
+    {{!--<input class="btn" type="button" value="cancel" onClick="browseUnits()">--}}
 </form>
 
-{{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
-<script src="./js/add_diver.js"></script>
+<script src="./js/add_unit.js"></script>
+</div>
+
+
+<h2>Updating A Unit</h2>
+    <p>To update a unit, select the unit name from the dropdown and update its information.</p>
+    <form id="updateUnit">
+        <label for="selected_unit_name">Unit Name: </label>
+        <select name="selected_unit_name" id="mySelect">
+            <option value="option">Select a Unit</option>
+            {{#each data}}
+            <option value="{{this.unit_id}}">{{this.unit_name}}</option>
+            {{/each}}
+        </select>
+        <label for="updated_unit_name">Updated Unit Name: </label> <input type="text" name="updated_unit_name" id="updated_unit_name">
+        <label for="selected_pressure_unit">Pressure Unit: </label> <input type="text" name="selected_pressure_unit" id="selected_pressure_unit">
+        <label for="selected_length_unit">Length Unit: </label> <input type="text" name="selected_length_unit" id="selected_length_unit">
+        <label for="selected_weight_unit">Weight Unit: </label> <input type="text" name="selected_pressure_unit" id="selected_pressure_unit">
+        <label for="selected_temperature_unit">Temperature Unit: </label> <input type="text" name="selected_pressure_unit" id="selected_pressure_unit">
+        <input type="submit">
+</form>
+
+<script src="./js/update_unit.js"></script>
+
+</body>

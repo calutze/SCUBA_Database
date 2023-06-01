@@ -137,13 +137,6 @@ app.put('/updateDiver', function(req, res, next){
         })
 });
 
-app.get('/units', function(req, res) {
-    let query1 = "SELECT * FROM Units;";
-
-    db.pool.query(query1, function(error, rows, fields){
-        res.render('units', {data: rows})
-    })
-});
 
 app.get('/dives', function(req, res) {
     let querySelectDives = "SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id;";
@@ -287,7 +280,7 @@ app.post('/addDive', function(req, res){
     
 });
 
-// Update Diver Form
+// Update Dive Form
 app.put('/updateDive', function(req, res, next){
     let data = req.body;
     console.log('Update Dive Data Received:', data);
@@ -402,6 +395,93 @@ app.delete('/delete-divelog/', function(req,res,next){
 
 app.get('/divestodivesites', function(req, res) {
     res.render('divestodivesites')
+});
+
+
+app.get('/units', function(req, res) {
+    let query1 = "SELECT * FROM Units;";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('units', {data: rows})
+    })
+});
+
+// Add Unit Form
+app.post('/addUnit', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO Units (unit_id, unit_name, pressure_unit, length_unit, weight_unit, temperature_unit) VALUES (${data.unit_id}, '${data.unit_name}', ${data.pressure_unit}, ${data.length_unit}, ${data.weight_unit}, ${data.temperature_unit});`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT * on divers
+            querySelectUnits = "SELECT * FROM Units";
+            db.pool.query(querySelectUnits, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
+
+// Delete Unit Route
+app.delete('/delete-unit/', function(req,res,next){
+    let data = req.body;
+    let unitID = parseInt(data.unit_id);
+    let deleteUnit = 'DELETE FROM Units WHERE unit_id = ?';
+
+    db.pool.query(deleteUnit, [unitID], function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+// Update Units Form
+app.put('/updateUnit', function(req, res, next){
+    let data = req.body;
+    console.log('Update Unit Data Received:', data);
+
+    let queryUpdateUnit = 'UPDATE Units SET unit_name = ?, pressure_unit = ?, length_unit = ?, weight_unit = ?, temperature_unit = ? WHERE unit_id = ?';
+    let selectUnit = querySelectUnits = "SELECT * FROM Units;";
+
+    db.pool.query(queryUpdateUnit, [data.unit_name, data.pressure_unit, data.length_unit, data.weight_unit, data.temperature_unit], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+
+            else
+            {
+                db.pool.query(selectUnit, [data.unit_id], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        console.log('Updated Unit Data:', rows)
+                        res.send(rows);
+                    }
+                })
+            }
+        })
 });
 
 /*
