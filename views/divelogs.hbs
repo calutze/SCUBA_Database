@@ -28,7 +28,6 @@
 
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
-
         <tr data-value={{this.divelog_id}}>
             {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
             <td><button onclick="deleteDivelog({{this.divelog_id}})">Delete</button></td>
@@ -69,7 +68,7 @@
 
 <h2>Updating A Dive Log</h2>
     <p>To update a dive log, select the divelog to update from the dropdowns and update the associated dive and diver name from the dropdowns.</p>
-    <form id="updateDiver">
+    <form id="updateDivelog">
         <label for="selected_divelog_id">Divelog ID: </label>
         <select name="selected_divelog_id" id="selectedDivelogId">
             <option value="option">divelog_id</option>

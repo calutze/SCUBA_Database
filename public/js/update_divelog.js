@@ -1,36 +1,29 @@
 // Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
-let updateDiverForm = document.getElementById('updateDiver');
+let updateDivelogForm = document.getElementById('updateDivelog');
 
-updateDiverForm.addEventListener("submit", function (e) {
+updateDivelogForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    let selectDivelogId = document.getElementById("mySelect");
-    let updatedDiveId = document.getElementById("selected_diver_age");
-    let updatedDiverId = document.getElementById("updated_diver_name")
-
-    let diverIdValue = selectDiverId.value;
-    let diverAgeValue = selectDiverAge.value;
-    let updatedDiverNameValue = updatedDiverName.value
-
+    let selectDivelogId = document.getElementById("selectedDivelogId").value;
+    let updatedDiveId = document.getElementById("updateDiveSelect").value;
+    let updatedDiverId = document.getElementById("updateDiverSelect").value;
 
     let data = {
-        diver_id: diverIdValue,
-        diver_name: updatedDiverNameValue,
-        diver_age: diverAgeValue
+        divelog_id: selectDivelogId,
+        dive_id: updatedDiveId,
+        diver_id: updatedDiverId
     }
 
-
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "/updateDiver", true);
+    xhttp.open("PUT", "/updateDivelog", true);
     xhttp.setRequestHeader("Content-type", "application/json");
-
     
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, diverIdValue);
+            updateRow(xhttp.response, selectDivelogId);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log ("There was an error with the input.")
@@ -40,19 +33,19 @@ updateDiverForm.addEventListener("submit", function (e) {
     xhttp.send(JSON.stringify(data));
 })
 
-function updateRow(data, diver_id){
+function updateRow(data, divelog_id){
     let parsedData = JSON.parse(data);
 
-    let table = document.getElementById("divers-table");
+    let table = document.getElementById("divelog-table");
 
     for (let i = 0, row; row = table.rows[i]; i++) {
         
-        if (table.rows[i].getAttribute("data-value") == diver_id) {
+        if (table.rows[i].getAttribute("data-value") == divelog_id) {
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            updateRowIndex.getElementsByTagName("td")[2].innerHTML = parsedData[0].diver_name;
-            updateRowIndex.getElementsByTagName("td")[3].innerHTML = parsedData[0].diver_age;
+            updateRowIndex.getElementsByTagName("td")[2].innerHTML = "Dive ID: ", parsedData[0].dive_id, "Date: ", parsedData[0].date, "Max Depth: ", parsedData[0].max_depth, "Duration: ", parsedData[0].duration;
+            updateRowIndex.getElementsByTagName("td")[3].innerHTML = parsedData[0].diver_name;
 
         }
     }

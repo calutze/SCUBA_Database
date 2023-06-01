@@ -113,7 +113,7 @@ app.put('/updateDiver', function(req, res, next){
     console.log('Update Diver Data Received:', data);
 
     let queryUpdateDiver = 'UPDATE Divers SET diver_name = ?, diver_age = ? WHERE diver_id = ?';
-    let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
+    let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?';
 
     db.pool.query(queryUpdateDiver, [data.diver_name, data.diver_age, data.diver_id], function(error, rows, fields){
             if (error) {
@@ -368,8 +368,41 @@ app.post('/addDivelog', function(req, res){
         else
         {
             // If no error, perform a SELECT on Divelogs
-            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
-            db.pool.query(querySelectDivelogs, function(error, rows, fields){
+            querySelectDivelog = "SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
+            db.pool.query(querySelectDivelog, [data.divelog_id], function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
+
+// Update Dive Form
+app.post('/updateDivelog', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+    console.log('Updated Divelog Data Received: ', data);
+
+    // Create the query and run it on the database
+    let query1 = `UPDATE Divelogs SET dive_id = ? diver_id = ? WHERE divelog_id = ?;`;
+    db.pool.query(query1, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT on Divelogs
+            let querySelectDivelogs = "SELECT divelog_id, date, max_depth, duration, Divelogs.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
+            db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
