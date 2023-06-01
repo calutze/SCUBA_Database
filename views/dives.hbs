@@ -67,9 +67,9 @@
             <option value="{{this.unit_id}}">{{this.unit_name}}</option>
             {{/each}}
         </select>
-        <label> date </label> <input type="date" name="insert_date" id="insert_date">
+       el <label> date </label> <input type="date" name="insert_date" id="insert_date">
         <label> max_depth </label> <input type="number" name="insert_max_depth" id="insert_max_depth">
-        <label> avg_depth </label> <input type="number" name="insert_avg_depth" id="insert_avg_depth">
+        <label> avg_depth </lab> <input type="number" name="insert_avg_depth" id="insert_avg_depth">
         <label> duration </label> <input type="number" name="insert_duration" id="insert_duration">
         <label> start_pressure </label> <input type="number" name="insert_start_pressure" id="insert_start_pressure">
         <label> end_pressure </label> <input type="number" name="insert_end_pressure" id="insert_end_pressure">
@@ -77,7 +77,7 @@
         <label> water_temperature </label> <input type="number" name="insert_water_temperature" id="insert_water_temperature">
         <label> weight </label> <input type="number" name="insert_weight" id='insert_weight'>
         <label> visibility </label> <input type="number" name="insert_visibility" id="insert_visibility">
-        <label> entry_details </label> <input type="text" name="insert_entry_details" id=insert_entry_details>
+        <label> entry_details </label> <input type="text" name="insert_entry_details" id="insert_entry_details">
         <label> condition_note </label> <input type="text" name="insert_condition_note" id="insert_condition_note">
         <label> note </label> <textarea cols='50' rows="5" name="insert_note" id="insert_note"></textarea>
         <label> site_rating </label>
@@ -96,17 +96,43 @@
 
 
 <h2>Updating A Dive</h2>
-    <p>To update a dive, select the diver name from the dropdown and update the dive information.</p>
+    <p>To update a dive, select the dive from the dropdown and enter the updated the dive information below.</p>
     <form id="updateDive">
-        <label for="selected_diver_name">Diver Name: </label>
-        <select name="selected_diver_name" id="mySelect">
-            <option value="option">Select a Diver</option>
+        <label for="selected_dive_name">Dive: </label>
+        <select name="selected_dive_name" id="diveSelect">
+            <option value="option">Select a Dive</option>
             {{#each data}}
-            <option value="{{this.diver_id}}">{{this.diver_name}}</option>
+            <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
-        <label for="updated_diver_name">Updated Diver Name: </label> <input type="text" name="updated_diver_name" id="updated_diver_name">
-        <label for="selected_diver_age">Diver Age: </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
+        <p>&nbsp;</p>
+        <label> Units: </label>
+        <select name="selected_unit_id" id="unitsUpdateSelect">Units: 
+            {{#each unitsData}}
+            <option value="{{this.unit_id}}">{{this.unit_name}}</option>
+            {{/each}}
+        </select>
+        <label> date </label> <input type="date" name="update_date" id="update_date">
+        <label> max_depth </label> <input type="number" name="update_max_depth" id="update_max_depth">
+        <label> avg_depth </label> <input type="number" name="update_avg_depth" id="update_avg_depth">
+        <label> duration </label> <input type="number" name="update_duration" id="update_duration">
+        <label> start_pressure </label> <input type="number" name="update_start_pressure" id="update_start_pressure">
+        <label> end_pressure </label> <input type="number" name="update_end_pressure" id="update_end_pressure">
+        <label> gas_type </label> <input type="text" name="update_gas_type" id="update_gas_type">
+        <label> water_temperature </label> <input type="number" name="update_water_temperature" id="update_water_temperature">
+        <label> weight </label> <input type="number" name="update_weight" id='update_weight'>
+        <label> visibility </label> <input type="number" name="update_visibility" id="update_visibility">
+        <label> entry_details </label> <input type="text" name="update_entry_details" id="update_entry_details">
+        <label> condition_note </label> <input type="text" name="update_condition_note" id="update_condition_note">
+        <label> note </label> <textarea cols='50' rows="5" name="update_note" id="update_note"></textarea>
+        <label> site_rating </label>
+        <select name="update_site_rating" id="update_site_rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>  
+        </select>
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 

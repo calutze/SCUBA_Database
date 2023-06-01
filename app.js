@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12315;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12316;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -196,6 +196,10 @@ app.get('/dives', function(req, res) {
             {
                 rows[i].SAC = "N/A"
             }
+            let oldDate = rows[i].date;
+            let newDate = new Date(oldDate);
+            //let new2 = newDate.split('T')[0];
+            console.log(newDate.getFullYear(), newDate.getMonth()+1, newDate.getDate());
         }
         db.pool.query(querySelectUnits, function (error, Units, fields) {
             if (error) {
@@ -282,6 +286,36 @@ app.post('/addDive', function(req, res){
         }
     })
     
+});
+
+// Update Diver Form
+app.put('/updateDive', function(req, res, next){
+    let data = req.body;
+    console.log('Update Dive Data Received:', data);
+
+    let queryUpdateDive = 'UPDATE Dives SET unit_id = ?, date = ?, max_depth = ?, avg_depth = ?, duration = ?, start_pressure = ?, end_pressure = ?, gas_type = ?, weight = ?, water_temperature = ?, visibility = ?, entry_details = ?, condition_note = ?, note = ?, site_rating = ? WHERE dive_id = ?';
+    let selectDive = querySelectDives = "SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id WHERE Dives_View.dive_id = ?;";
+
+    db.pool.query(queryUpdateDive, [data.unit_id, data.date, data.max_depth, data.avg_depth, data.duration, data.start_pressure, data.end_pressure, data.gas_type, data.weight, data.water_temperature, data.visibility, data.entry_details, data.condition_note, data.note, data.site_rating, data.dive_id], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+
+            else
+            {
+                db.pool.query(selectDive, [data.dive_id], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        console.log('Updated Dive Data:', rows)
+                        res.send(rows);
+                    }
+                })
+            }
+        })
 });
 
 // Delete Dive Route
