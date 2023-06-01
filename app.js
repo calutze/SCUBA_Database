@@ -113,7 +113,7 @@ app.put('/updateDiver', function(req, res, next){
     console.log('Update Diver Data Received:', data);
 
     let queryUpdateDiver = 'UPDATE Divers SET diver_name = ?, diver_age = ? WHERE diver_id = ?';
-    let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?';
+    let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
 
     db.pool.query(queryUpdateDiver, [data.diver_name, data.diver_age, data.diver_id], function(error, rows, fields){
             if (error) {
@@ -326,9 +326,6 @@ app.delete('/delete-dive/', function(req,res,next){
     })
 });
 
-app.get('/divesites', function(req, res) {
-    res.render('divesites')
-});
 
 // Display Divelogs Route
 app.get('/divelogs', function(req, res) {
@@ -361,41 +358,8 @@ app.post('/addDivelog', function(req, res){
         else
         {
             // If no error, perform a SELECT on Divelogs
-            querySelectDivelog = "SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
-            db.pool.query(querySelectDivelog, [data.divelog_id], function(error, rows, fields){
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                else {
-                    res.send(rows);
-                }
-            })
-        }
-    })
-    
-});
-
-// Update Dive Form
-app.post('/updateDivelog', function(req, res){
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-    console.log('Updated Divelog Data Received: ', data);
-
-    // Create the query and run it on the database
-    let query1 = `UPDATE Divelogs SET dive_id = ? diver_id = ? WHERE divelog_id = ?;`;
-    db.pool.query(query1, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
-        // Check to see if there was an error
-        if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-        }
-        else
-        {
-            // If no error, perform a SELECT on Divelogs
-            let querySelectDivelogs = "SELECT divelog_id, date, max_depth, duration, Divelogs.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
-            db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
+            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
+            db.pool.query(querySelectDivelogs, function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -493,9 +457,9 @@ app.put('/updateUnit', function(req, res, next){
     console.log('Update Unit Data Received:', data);
 
     let queryUpdateUnit = 'UPDATE Units SET unit_name = ?, pressure_unit = ?, length_unit = ?, weight_unit = ?, temperature_unit = ? WHERE unit_id = ?';
-    let selectUnit = "SELECT * FROM Units WHERE unit_id = ?";
+    let selectUnit = 'SELECT * FROM Units WHERE unit_id = ?'
 
-    db.pool.query(queryUpdateUnit, [data.unit_name, data.pressure_unit, data.length_unit, data.weight_unit, data.temperature_unit], function(error, rows, fields){
+    db.pool.query(queryUpdateUnit, [data.unit_name, data.pressure_unit, data.length_unit, data.weight_unit, data.temperature_unit, data.unit_id], function(error, rows, fields){
             if (error) {
                 console.log(error);
                 res.sendStatus(400);
@@ -510,6 +474,93 @@ app.put('/updateUnit', function(req, res, next){
                         res.sendStatus(400);
                     } else {
                         console.log('Updated Unit Data:', rows)
+                        res.send(rows);
+                    }
+                })
+            }
+        })
+});
+
+
+app.get('/divesites', function(req, res) {
+    let query1 = "SELECT * FROM DiveSites";
+
+    db.pool.query(query1, function(error, rows, fields){
+        res.render('divesites', {data: rows})
+    })
+});
+
+// Add Dive Sites Form
+app.post('/addDiveSite', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO DiveSites (site_name, city, country) VALUES ('${data.site_name}', '${data.city}', '${data.country}')`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT * on divers
+            query2 = `SELECT * FROM DiveSites;`;
+            db.pool.query(query2, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
+
+// Delete DiveSite Route
+app.delete('/delete-divesite/', function(req,res,next){
+    let data = req.body;
+    let divesiteID = parseInt(data.divesite_id);
+    let deleteDiveSite = 'DELETE FROM DiveSites WHERE divesite_id = ?';
+
+    db.pool.query(deleteDiveSite, [divesiteID], function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.sendStatus(204);
+        }
+    })
+});
+
+// Update DiveSite Form
+app.put('/updateDiveSite', function(req, res, next){
+    let data = req.body;
+    console.log('Update Dive Site Data Received:', data);
+
+    let queryUpdateDiveSite = 'UPDATE DiveSites SET site_name = ?, city = ?, country = ? WHERE divesite_id = ?';
+    let selectDiveSite = 'SELECT * FROM DiveSites WHERE divesite_id = ?'
+
+    db.pool.query(queryUpdateDiveSite, [data.site_name, data.city, data.country, data.divesite_id], function(error, rows, fields){
+            if (error) {
+                console.log(error);
+                res.sendStatus(400);
+            }
+
+            else
+            {
+                db.pool.query(selectDiveSite, [data.divesite_id], function(error, rows, fields) {
+
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    } else {
+                        console.log('Updated Dive Site Data:', rows)
                         res.send(rows);
                     }
                 })

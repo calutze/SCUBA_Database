@@ -6,22 +6,22 @@ updateUnitForm.addEventListener("submit", function (e) {
 
     e.preventDefault();
 
-    let selectUnitId = document.getElementById("mySelect").value;
-    let selectPressureUnit = document.getElementById("selected_pressure_unit").value;
-    let selectLengthUnit = document.getElementById("selected_length_unit").value;
-    let selectWeightUnit = document.getElementById("selected_weight_unit").value;
-    let selectTemperatureUnit = document.getElementById("selected_temperature_unit").value;
-    let updatedUnitName = document.getElementById("updated_unit_name").value;
+    let unitId = document.getElementById("unitSelect").value;
+    let updateUnitName = document.getElementById("update_unit_name").value;
+    let updatePressureUnit = document.getElementById("update_pressure_unit").value;
+    let updateLengthUnit = document.getElementById("update_length_unit").value;
+    let updateWeightUnit = document.getElementById("update_weight_unit").value;
+    let updateTemperatureUnit = document.getElementById("update_temperature_unit").value;
 
 
 
     let data = {
-        unit_id: selectUnitId,
-        unit_name: updatedUnitName,
-        pressure_unit: selectPressureUnit,
-        length_unit: selectLengthUnit,
-        weight_unit: selectWeightUnit,
-        temperature_unit: selectTemperatureUnit
+        unit_id: unitId,
+        unit_name: updateUnitName,
+        pressure_unit: updatePressureUnit,
+        length_unit: updateLengthUnit,
+        weight_unit: updateWeightUnit,
+        temperature_unit: updateTemperatureUnit
     }
 
 
@@ -33,7 +33,7 @@ updateUnitForm.addEventListener("submit", function (e) {
     xhttp.onreadystatechange = () => {
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            updateRow(xhttp.response, selectUnitId);
+            updateRow(xhttp.response, unitId);
         }
         else if (xhttp.readyState == 4 && xhttp.status != 200) {
             console.log ("There was an error with the input.")
