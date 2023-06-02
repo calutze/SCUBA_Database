@@ -4,7 +4,9 @@
   "description": "simple web app that interacts with SQL database to perform CRUD operations on a SCUBA database",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "./node_modules/forever/bin/forever start app.js",
+    "stop": "./node_modules/forever/bin/forever stop app.js"
   },
   "repository": {
     "type": "git",
