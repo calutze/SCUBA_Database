@@ -24,8 +24,8 @@ SELECT dives_to_divesites_id FROM DivesToDiveSites;
 
 
 -- Divers Page Queries --------------------
--- select all data from Divers table
-SELECT * FROM Divers;
+-- select all data from Divers_View table
+SELECT * FROM Divers_View;
 
 -- insert new diver into Divers table
 INSERT INTO Divers (diver_name, diver_age)
@@ -38,6 +38,9 @@ SELECT diver_name, diver_age FROM Divers WHERE diver_id = :selectedDiverId
 UPDATE Divers
 SET diver_name = :diverNameInput, diver_age = :ageInput
 WHERE diver_id = :selectedDiverId
+
+-- select specific updated diver for AJAX updating
+SELECT * FROM Divers WHERE diver_id = :updatedDiverId
 
 -- delete selected diver from Divers table
 DELETE FROM Divers where diver_id = :selectedDiverId
@@ -62,24 +65,24 @@ WHERE unit_id = :selectedUnitId
 
 -- Dives Page Queries -------------------------
 -- show all data from Dives table
-SELECT * FROM Dives;
+SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating 
+FROM Dives_View 
+JOIN Units on Dives_View.unit_id = Units.unit_id;
 
 -- insert new dive entry into Dives table
-INSERT INTO Dives (duration, max_depth, avg_depth, start_pressure, end_pressure, weight, water_temperature, visibility, note, date, SAC, gas_type, entry_details, site_rating, condition_note)
-values (:durationInput, :max_depthInput, :avg_depthInput, :start_pressureInput, :end_pressureInput, :weightInput, :water_tempInput, :visibilityInput, :noteInput, :dateInput, 
-:SACInput, :gas_typeInput, :detailsInput, :ratingInput, :conditionInput);
+INSERT INTO Dives (unit_id, date, max_depth, avg_depth, duration, start_pressure, end_pressure, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating) 
+VALUES (:unit_idInput, :dateInput, :max_depthInput, :avg_depthInput, :durationInput, :start_pressureInput, :end_pressureInput, :gas_typeInput, :weightInput, :water_temperatureInput, :visibilityInput, :entry_detailsInput, :condition_noteInput, :noteInput, :site_ratingInput)
 
 -- show existing values in update dives area
-SELECT diver_name, diver_age, unit_id, date, max_depth, avg_depth, duration, start_pressure,
-end_pressure, gas_type, water_temperature, weight, visibility, entry_details, condition_note, note, site_rating FROM Dives
-WHERE dive_id = :selectedDiveId
+SELECT dive_id, unit_name as units, date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating 
+FROM Dives_View 
+JOIN Units on Dives_View.unit_id = Units.unit_id 
+WHERE Dives_View.dive_id = :selectedDiveId
 
 -- update dives in Dives table
-UPDATE Dives
-SET diver_name = :diverNameInput, diver_age = :ageInput, unit_id = :unitIdInput, date = :dateInput, max_depth = :maxDepthInput,
-avg_depth = :avg_depthInput, duration = :durationInput, start_pressure = :start_pressureInput, end_pressure = :end_pressureInput,
-gas_type = :gas_typeInput, water_temperature = :water_tempInput, weight = :weightInput, visibility = :visibilityInput, entry_details = :detailsInput,
-condition_note = :conditionInput, note = :noteInput, site_rating = ratingInput WHERE dive_id = selectedDiveId
+UPDATE Dives 
+SET unit_id = :unit_idInput, date = :dateInput, max_depth = :max_depthInput, avg_depth = :avg_depthInput, duration = :durationInput, start_pressure = :start_pressureInput, end_pressure = :end_pressureInput, gas_type = :gas_typeInput, weight = :weightInput, water_temperature = ?, visibility = ?, entry_details = ?, condition_note = ?, note = ?, site_rating = ? 
+WHERE dive_id = :updateDiveId
 
 -- delete selected dive from Dives table
 DELETE FROM Dives WHERE dive_id = :selectedDiveId
@@ -106,14 +109,23 @@ DELETE FROM DiveSites WHERE divesite_id = :selectedDiveSiteId
 
 -- Dive Logs Page Queries -------------------------
 -- show all data from DiveLogs table
-SELECT * from DiveLogs;
+SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.dive_id, diver_name 
+FROM Divelogs 
+JOIN Divers ON Divelogs.diver_id = Divers.diver_id 
+JOIN Dives ON Divelogs.dive_id = Dives.dive_id 
+ORDER BY divelog_id;
 
 -- insert new intersection between Dives and Divers
 INSERT INTO DiveLogs (dive_id, diver_id)
 values (:diveIdInput, :diverIdInput)
 
 -- show existing values in update dive logs area
-SELECT dive_id, diver_id FROM DiveLogs WHERE divelog_id = selectedDiveLogId
+SELECT divelog_id, Divelogs.dive_id, date, max_depth, duration, Divers.dive_id, diver_name 
+FROM Divelogs 
+JOIN Divers ON Divelogs.diver_id = Divers.diver_id 
+JOIN Dives ON Divelogs.dive_id = Dives.dive_id 
+WHERE Dives_View.dive_id = :updateDivelogId
+ORDER BY divelog_id;
 
 -- update dive log in dive logs table
 UPDATE DiveLogs
