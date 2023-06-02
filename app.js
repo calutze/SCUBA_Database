@@ -341,7 +341,7 @@ app.get('/divelogs', function(req, res) {
     });
 });
 
-// Add Dive Form
+// Add Divelog Form
 app.post('/addDivelog', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -388,10 +388,6 @@ app.delete('/delete-divelog/', function(req,res,next){
             res.sendStatus(204);
         }
     })
-});
-
-app.get('/divestodivesites', function(req, res) {
-    res.render('divestodivesites')
 });
 
 
@@ -566,6 +562,53 @@ app.put('/updateDiveSite', function(req, res, next){
                 })
             }
         })
+});
+
+
+app.get('/divestodivesites', function(req, res) {
+    let queryDivesToDiveSites = 'SELECT dives_to_divesites_id, DivesToDiveSites.dive_id, date, max_depth, duration, DiveSites.divesite_id, site_name FROM DivesToDiveSites JOIN DiveSites ON DivesToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DivesToDiveSites.dive_id = Dives.dive_id ORDER BY dives_to_divesites_id;';
+
+    db.pool.query(queryDivesToDiveSites, function(error, rows, fields) {
+        if (error) {
+            console.log(error);
+            res.sendStatus(400);
+        } else {
+            res.render('divestodivesites', {data: rows})
+        }
+    });
+});
+
+// Add DiveToDiveSites Form
+app.post('/addDiveToDiveSites', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `INSERT INTO DiveToDiveSites (dive_id, divesite_id) VALUES (${data.dive_id}, ${data.divesite_id});`;
+    db.pool.query(query1, function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT on Divelogs
+            querySelectDiveToDiveSites = "SELECT dive_to_divesites_id, DiveToDiveSites.dive_id, date, max_depth, duration, DiveSites.divesite_id, site_name FROM DiveToDiveSites JOIN DiveSites ON DiveToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DiveToDiveSites.dive_id = Dives.dive_id ORDER BY dive_to_divesites_id;";
+            db.pool.query(querySelectDiveToDiveSites, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    console.log(rows)
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
 });
 
 /*
