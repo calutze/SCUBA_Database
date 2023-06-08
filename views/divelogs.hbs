@@ -48,14 +48,14 @@
         <label for="insert_dive_name">Dive: </label>
         <select name="insert_dive_name" id="insertDiveSelect">
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="insert_diver_name">Diver Name: </label>
         <select name="insert_diver_name" id="insertDiverSelect">
             <option value="option">Diver Name</option>
-            {{#each data}}
+            {{#each diverData}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
         </select>
@@ -79,23 +79,21 @@
        <label for="update_dive_name">Dive: </label>
         <select name="update_dive_name" id="updateDiveSelect">
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="update_diver_name">Diver Name: </label>
         <select name="update_diver_name" id="updateDiverSelect">
             <option value="option">Diver Name</option>
-            {{#each data}}
+            {{#each diverData}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
         </select>
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
- 
-
-<script src="./js/update_divelog.js"></script>
+ <script src="./js/update_divelog.js"></script>
 
 
 </body>

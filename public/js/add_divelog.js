@@ -89,7 +89,7 @@ addRowToTable = (data) => {
     // Adds into the dropdown menu of updating a diver
     let selectMenu = document.getElementById("selectedDivelogId");
     let option = document.createElement("option");
-    option.text = newRow.diver_name;
+    option.text = newRow.divelog_id;
     option.value = newRow.divelog_id;
     selectMenu.add(option);
 }

@@ -189,10 +189,6 @@ app.get('/dives', function(req, res) {
             {
                 rows[i].SAC = "N/A"
             }
-            let oldDate = rows[i].date;
-            let newDate = new Date(oldDate);
-            //let new2 = newDate.split('T')[0];
-            console.log(newDate.getFullYear(), newDate.getMonth()+1, newDate.getDate());
         }
         db.pool.query(querySelectUnits, function (error, Units, fields) {
             if (error) {
@@ -286,7 +282,7 @@ app.put('/updateDive', function(req, res, next){
     console.log('Update Dive Data Received:', data);
 
     let queryUpdateDive = 'UPDATE Dives SET unit_id = ?, date = ?, max_depth = ?, avg_depth = ?, duration = ?, start_pressure = ?, end_pressure = ?, gas_type = ?, weight = ?, water_temperature = ?, visibility = ?, entry_details = ?, condition_note = ?, note = ?, site_rating = ? WHERE dive_id = ?';
-    let selectDive = querySelectDives = "SELECT dive_id, unit_name as units, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id WHERE Dives_View.dive_id = ?;";
+    let selectDive = "SELECT dive_id, unit_name as units, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, avg_depth, duration, start_pressure, end_pressure, SAC, gas_type, weight, water_temperature, visibility, entry_details, condition_note, note, site_rating FROM Dives_View JOIN Units on Dives_View.unit_id = Units.unit_id WHERE Dives_View.dive_id = ?;";
 
     db.pool.query(queryUpdateDive, [data.unit_id, data.date, data.max_depth, data.avg_depth, data.duration, data.start_pressure, data.end_pressure, data.gas_type, data.weight, data.water_temperature, data.visibility, data.entry_details, data.condition_note, data.note, data.site_rating, data.dive_id], function(error, rows, fields){
             if (error) {
@@ -330,13 +326,28 @@ app.delete('/delete-dive/', function(req,res,next){
 // Display Divelogs Route
 app.get('/divelogs', function(req, res) {
     let queryDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Divers.diver_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
-
+    let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
+    let queryDivers = "SELECT diver_id, diver_name FROM Divers;";
     db.pool.query(queryDivelogs, function(error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
         } else {
-            res.render('divelogs', {data: rows})
+            db.pool.query(queryDives, function(error, diveData, fields) {
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                } else {
+                    db.pool.query(queryDivers, function(error, diverData, fields) {
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        } else {
+                            res.render('divelogs', {data: rows, diveData: diveData, diverData: diverData})
+                        }
+                    })
+                }
+            })
         }
     });
 });
@@ -348,6 +359,8 @@ app.post('/addDivelog', function(req, res){
 
     // Create the query and run it on the database
     query1 = `INSERT INTO Divelogs (dive_id, diver_id) VALUES (${data.dive_id}, ${data.diver_id});`;
+    let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
+    let queryDivers = "SELECT diver_id, diver_name FROM Divers;";
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -358,8 +371,40 @@ app.post('/addDivelog', function(req, res){
         else
         {
             // If no error, perform a SELECT on Divelogs
-            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Divers.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
+            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
             db.pool.query(querySelectDivelogs, function(error, rows, fields){
+                if (error) {
+                    console.log(error);
+                    res.sendStatus(400);
+                }
+                else {
+                    res.send(rows);
+                }
+            })
+        }
+    })
+    
+});
+
+// Add Divelog Form
+app.put('/updateDivelog', function(req, res){
+    // Capture the incoming data and parse it back to a JS object
+    let data = req.body;
+
+    // Create the query and run it on the database
+    query1 = `UPDATE Divelogs SET dive_id = ?, diver_id = ? WHERE divelog_id = ?;`;
+    db.pool.query(query1, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
+        // Check to see if there was an error
+        if (error) {
+            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+            console.log(error);
+            res.sendStatus(400);
+        }
+        else
+        {
+            // If no error, perform a SELECT on Divelogs
+            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
+            db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -374,7 +419,7 @@ app.post('/addDivelog', function(req, res){
     
 });
 
-// Delete Dive Route
+// Delete Divelog Route
 app.delete('/delete-divelog/', function(req,res,next){
     let data = req.body;
     let divelogID = parseInt(data.divelog_id);
