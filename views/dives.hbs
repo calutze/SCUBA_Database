@@ -68,15 +68,15 @@
             {{/each}}
         </select>
        el <label> date </label> <input type="date" name="insert_date" id="insert_date">
-        <label> max_depth </label> <input type="number" name="insert_max_depth" id="insert_max_depth">
-        <label> avg_depth </lab> <input type="number" name="insert_avg_depth" id="insert_avg_depth">
-        <label> duration </label> <input type="number" name="insert_duration" id="insert_duration">
-        <label> start_pressure </label> <input type="number" name="insert_start_pressure" id="insert_start_pressure">
-        <label> end_pressure </label> <input type="number" name="insert_end_pressure" id="insert_end_pressure">
+        <label> max_depth </label> <input type="number" min=0 name="insert_max_depth" id="insert_max_depth">
+        <label> avg_depth </lab> <input type="number" min=0 name="insert_avg_depth" id="insert_avg_depth">
+        <label> duration </label> <input type="number" min=0 name="insert_duration" id="insert_duration">
+        <label> start_pressure </label> <input type="number" min=0 name="insert_start_pressure" id="insert_start_pressure">
+        <label> end_pressure </label> <input type="number" min=0 name="insert_end_pressure" id="insert_end_pressure">
         <label> gas_type </label> <input type="text" name="insert_gas_type" id="insert_gas_type">
-        <label> water_temperature </label> <input type="number" name="insert_water_temperature" id="insert_water_temperature">
-        <label> weight </label> <input type="number" name="insert_weight" id='insert_weight'>
-        <label> visibility </label> <input type="number" name="insert_visibility" id="insert_visibility">
+        <label> water_temperature </label> <input type="number" min=0 name="insert_water_temperature" id="insert_water_temperature">
+        <label> weight </label> <input type="number" min=0 name="insert_weight" id='insert_weight'>
+        <label> visibility </label> <input type="number" min=0 name="insert_visibility" id="insert_visibility">
         <label> entry_details </label> <input type="text" name="insert_entry_details" id="insert_entry_details">
         <label> condition_note </label> <input type="text" name="insert_condition_note" id="insert_condition_note">
         <label> note </label> <textarea cols='50' rows="5" name="insert_note" id="insert_note"></textarea>
@@ -113,15 +113,15 @@
             {{/each}}
         </select>
         <label> date </label> <input type="date" name="update_date" id="update_date">
-        <label> max_depth </label> <input type="number" name="update_max_depth" id="update_max_depth">
-        <label> avg_depth </label> <input type="number" name="update_avg_depth" id="update_avg_depth">
-        <label> duration </label> <input type="number" name="update_duration" id="update_duration">
-        <label> start_pressure </label> <input type="number" name="update_start_pressure" id="update_start_pressure">
-        <label> end_pressure </label> <input type="number" name="update_end_pressure" id="update_end_pressure">
+        <label> max_depth </label> <input type="number" min=0 name="update_max_depth" id="update_max_depth">
+        <label> avg_depth </label> <input type="number" min=0 name="update_avg_depth" id="update_avg_depth">
+        <label> duration </label> <input type="number" min=0 name="update_duration" id="update_duration">
+        <label> start_pressure </label> <input type="number" min=0 name="update_start_pressure" id="update_start_pressure">
+        <label> end_pressure </label> <input type="number" min=0 name="update_end_pressure" id="update_end_pressure">
         <label> gas_type </label> <input type="text" name="update_gas_type" id="update_gas_type">
-        <label> water_temperature </label> <input type="number" name="update_water_temperature" id="update_water_temperature">
-        <label> weight </label> <input type="number" name="update_weight" id='update_weight'>
-        <label> visibility </label> <input type="number" name="update_visibility" id="update_visibility">
+        <label> water_temperature </label> <input type="number" min=0 name="update_water_temperature" id="update_water_temperature">
+        <label> weight </label> <input type="number" min=0 name="update_weight" id='update_weight'>
+        <label> visibility </label> <input type="number" min=0 name="update_visibility" id="update_visibility">
         <label> entry_details </label> <input type="text" name="update_entry_details" id="update_entry_details">
         <label> condition_note </label> <input type="text" name="update_condition_note" id="update_condition_note">
         <label> note </label> <textarea cols='50' rows="5" name="update_note" id="update_note"></textarea>

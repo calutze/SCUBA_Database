@@ -52,7 +52,7 @@
 <div id="insert">
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
         <label for="insert_diver_name"> Diver Name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> Age </label> <input type="number" name="insert_diver_age" id="insert_diver_age">
+        <label for="insert_diver_age"> Age </label> <input type="number" min=0 max=150 name="insert_diver_age" id="insert_diver_age">
     <input class="btn" type="submit" value="Add Diver">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
