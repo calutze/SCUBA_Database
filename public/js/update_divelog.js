@@ -44,7 +44,7 @@ function updateRow(data, divelog_id){
 
             let updateRowIndex = table.getElementsByTagName("tr")[i];
 
-            updateRowIndex.getElementsByTagName("td")[2].innerHTML = "Dive ID: " + parsedData[0].dive_id + " Date: " + parsedData[0].date + " Max Depth: " + parsedData[0].max_depth + " Duration: " + parsedData[0].duration;
+            updateRowIndex.getElementsByTagName("td")[2].innerHTML = `<strong>Dive ID: </strong>` + parsedData[0].dive_id + `<strong> Date: </strong>` + parsedData[0].date + `<strong> Max Depth: </strong>` + parsedData[0].max_depth + `<strong> Duration: </strong>` + parsedData[0].duration;
             updateRowIndex.getElementsByTagName("td")[3].innerHTML = parsedData[0].diver_name;
 
         }
