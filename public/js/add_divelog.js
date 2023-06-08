@@ -71,7 +71,7 @@ addRowToTable = (data) => {
     deleteCell.appendChild(deleteButton);
 
     divelogIdCell.innerText = newRow.divelog_id;
-    diveCell.innerText = 'Dive ID: ' + newRow.dive_id + ' ' + "Date: " + ' ' + newRow.date + ' ' + "Max Depth: " + ' ' + newRow.max_depth + ' ' + "Duration: " + ' ' + newRow.duration;
+    diveCell.innerHTML = `<strong>Dive ID: </strong>` + newRow.dive_id + `<strong> Date: </strong>` + newRow.date + `<strong> Max Depth: </strong>` + newRow.max_depth + `<strong> Duration: </strong>` + newRow.duration;
     diverCell.innerText = newRow.diver_name;
 
     // Add the cells to the row 
