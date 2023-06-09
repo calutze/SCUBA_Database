@@ -110,7 +110,7 @@ app.delete('/delete-diver/', function(req,res,next){
 // Update Diver Form
 app.put('/updateDiver', function(req, res, next){
     let data = req.body;
-    console.log('Update Diver Data Received:', data);
+    //console.log('Update Diver Data Received:', data);
 
     let queryUpdateDiver = 'UPDATE Divers SET diver_name = ?, diver_age = ? WHERE diver_id = ?';
     let selectDiver = 'SELECT * FROM Divers WHERE diver_id = ?'
@@ -125,7 +125,7 @@ app.put('/updateDiver', function(req, res, next){
                         console.log(error);
                         res.sendStatus(400);
                     } else {
-                        console.log('Updated Diver Data:', rows)
+                        //console.log('Updated Diver Data:', rows)
                         res.send(rows);
                     }
                 })
