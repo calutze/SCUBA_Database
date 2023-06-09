@@ -8,6 +8,8 @@ function updateDiver(diverID) {
 
     document.getElementById("updated_diver_name").removeAttribute("disabled");
     document.getElementById("selected_diver_age").removeAttribute("disabled");
+    document.getElementById("updated_diver_name").required = "required";
+    document.getElementById("selected_diver_age").required = "required";
 
     const rowToUpdate = document.querySelector(`[data-value="${diverID}"]`)
 
