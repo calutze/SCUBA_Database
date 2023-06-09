@@ -72,6 +72,14 @@ addRowToTable = (data) => {
     let diverNumDives = document.createElement("TD");
     let diverTotalDiveTime = document.createElement("TD");
 
+    let updateCell = document.createElement("TD");
+    let updateButton = document.createElement("button");
+    updateButton.innerHTML = "Update";
+    updateButton.onclick = function(){
+        updateDiver(newRow.diver_id);
+    };
+    updateCell.appendChild(updateButton);
+
     let deleteCell = document.createElement("TD");
     let deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
@@ -88,6 +96,7 @@ addRowToTable = (data) => {
     diverTotalDiveTime.innerText = newRow.total_dive_time;
 
     // Add the cells to the row 
+    row.appendChild(updateCell);
     row.appendChild(deleteCell);
     row.appendChild(diverIdCell);
     row.appendChild(diverNameCell);
@@ -98,14 +107,11 @@ addRowToTable = (data) => {
 
     // Add a row attribute so the deleteRow function can find a newly added row
     row.setAttribute('data-value', newRow.diver_id);
+
+    // Add class attribute to cells so updateRow function can find the auto-fill data
+    diverNameCell.setAttribute('class', 'diver-name');
+    diverAgeCell.setAttribute('class', 'diver-age');
     
     // Add the row to the table
     currentTable.appendChild(row);
-
-    // Adds into the dropdown menu of updating a diver
-    let selectMenu = document.getElementById("mySelect");
-    let option = document.createElement("option");
-    option.text = newRow.diver_name;
-    option.value = newRow.diver_id;
-    selectMenu.add(option);
 }
