@@ -16,7 +16,7 @@
         {{!-- For just the first row, we print each key of the row object as a header cell so we
         know what each column means when the page renders --}}
         <tr>
-            <th></th>
+            <th colspan="2">Divers</th>
             {{#each data.[0]}}
             <th>
                 {{@key}}
@@ -31,11 +31,11 @@
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
         <tr data-value={{this.diver_id}}>
-            {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
+            <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td>
             <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
-            <td>{{this.diver_id}}</td>
-            <td>{{this.diver_name}}</td>
-            <td>{{this.diver_age}}</td>
+            <td class="diver-id">{{this.diver_id}}</td>
+            <td class="diver-name">{{this.diver_name}}</td>
+            <td class="diver-age">{{this.diver_age}}</td>
             <td>{{this.avg_SAC}}</td>
             <td>{{this.num_dives}}</td>
             <td>{{this.total_dive_time}}</td>
@@ -62,16 +62,17 @@
 
 <h2>Updating A Diver</h2>
     <p>To update a diver, select the diver name from the dropdown and update their information.</p>
-    <form id="updateDiver">
-        <label for="selected_diver_name">Diver Name: </label>
+    <form id="update-diver-form">
+        {{!--<label for="selected_diver_name">Diver Name: </label>
         <select name="selected_diver_name" id="mySelect">
             <option value="option">Select a Diver</option>
             {{#each data}}
             <option value={{this.diver_id}}>{{this.diver_name}}</option>
             {{/each}}
-        </select>
-        <label for="updated_diver_name">Updated Diver Name: </label> <input required type="text" name="updated_diver_name" id="updated_diver_name" value={{this.diver_name}}>
-        <label for="selected_diver_age">Diver Age: </label> <input required type="number" min=0 max=150 name="selected_diver_age" id="selected_diver_age">
+        </select> --}}
+        <label for="update_diver_id">Diver ID: </label> <input disabled type-"number" name="update_diver_id" id="update_diver_id">
+        <label for="updated_diver_name">Diver Name: </label> <input disabled type="text" name="updated_diver_name" id="updated_diver_name">
+        <label for="selected_diver_age">Diver Age: </label> <input disabled type="number" min=0 max=150 name="selected_diver_age" id="selected_diver_age">
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
