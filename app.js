@@ -119,12 +119,8 @@ app.put('/updateDiver', function(req, res, next){
             if (error) {
                 console.log(error);
                 res.sendStatus(400);
-            }
-
-            else
-            {
+            } else {
                 db.pool.query(selectDiver, [data.diver_id], function(error, rows, fields) {
-
                     if (error) {
                         console.log(error);
                         res.sendStatus(400);

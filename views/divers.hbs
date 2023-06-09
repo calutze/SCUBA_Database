@@ -30,7 +30,6 @@
 
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
-
         <tr data-value={{this.diver_id}}>
             {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
             <td><button onclick="deleteDiver({{this.diver_id}})">Delete</button></td>
@@ -51,8 +50,8 @@
 <p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
 <div id="insert">
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-        <label for="insert_diver_name"> Diver Name </label> <input type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> Age </label> <input type="number" min=0 max=150 name="insert_diver_age" id="insert_diver_age">
+        <label for="insert_diver_name"> Diver Name </label> <input required type="text" name="insert_diver_name" id="insert_diver_name">
+        <label for="insert_diver_age"> Age </label> <input required type="number" min=0 max=150 name="insert_diver_age" id="insert_diver_age">
     <input class="btn" type="submit" value="Add Diver">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
@@ -68,11 +67,11 @@
         <select name="selected_diver_name" id="mySelect">
             <option value="option">Select a Diver</option>
             {{#each data}}
-            <option value="{{this.diver_id}}">{{this.diver_name}}</option>
+            <option value={{this.diver_id}}>{{this.diver_name}}</option>
             {{/each}}
         </select>
-        <label for="updated_diver_name">Updated Diver Name: </label> <input type="text" name="updated_diver_name" id="updated_diver_name">
-        <label for="selected_diver_age">Diver Age: </label> <input type="text" name="selected_diver_age" id="selected_diver_age">
+        <label for="updated_diver_name">Updated Diver Name: </label> <input required type="text" name="updated_diver_name" id="updated_diver_name" value={{this.diver_name}}>
+        <label for="selected_diver_age">Diver Age: </label> <input required type="number" min=0 max=150 name="selected_diver_age" id="selected_diver_age">
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
