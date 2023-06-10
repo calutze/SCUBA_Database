@@ -46,14 +46,14 @@
 <div id="insert">
 <form id="addDivesToDiveSites" {{!--method="POST" action="/addDiver"--}}>
         <label for="insert_dive_name">Dive: </label>
-        <select name="insert_dive_name" id="insertDiveSelect">
+        <select name="insert_dive_name" id="insertDiveSelect" required>
             <option value="option">Select a Dive</option>
             {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="insert_site_name">Site Name: </label>
-        <select name="insert_site_name" id="insertSiteSelect">
+        <select name="insert_site_name" id="insertSiteSelect" required>
             <option value="option">Site Name</option>
             {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
@@ -70,21 +70,21 @@
     <p>To update a dive to dive site log, select the log to update from the dropdowns and update the associated dive and site name from the dropdowns.</p>
     <form id="updateDivesToDiveSites">
         <label for="selected_dives_to_divesites_id">DTDS ID: </label>
-        <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId">
+        <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId" required>
             <option value="option">dives_to_divesites_id</option>
             {{#each data}}
             <option value="{{this.dives_to_divesites_id}}">{{this.dives_to_divesites_id}}</option>
             {{/each}}
         </select>
        <label for="update_dive_name">Dive: </label>
-        <select name="update_dive_name" id="updateDiveSelect">
+        <select name="update_dive_name" id="updateDiveSelect" required>
             <option value="option">Select a Dive</option>
             {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="update_site_name">Site Name: </label>
-        <select name="update_site_name" id="updateSiteSelect">
+        <select name="update_site_name" id="updateSiteSelect" required>
             <option value="option">Site Name</option>
             {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
