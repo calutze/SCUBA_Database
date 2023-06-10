@@ -28,12 +28,11 @@
 
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
-
         <tr data-value={{this.dives_to_divesites_id}}>
             {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
             <td><button onclick="deleteDivesToDiveSites({{this.dives_to_divesites_id}})">Delete</button></td>
             <td>{{this.dives_to_divesites_id}}</td>
-            <td><strong>Dive ID: </strong> {{this.dive_id}} <strong>Date: </strong> {{this.date}} <strong>Max Depth: </strong> {{this.max_depth}} <strong>Duration: </strong> {{this.duration}}</td>
+            <td><strong>Dives ID: </strong> {{this.dive_id}} <strong>Date: </strong> {{this.date}} <strong>Max Depth: </strong> {{this.max_depth}} <strong>Duration: </strong> {{this.duration}}</td>
             <td>{{this.site_name}}</td>
         </tr>
         {{/each}}
@@ -49,14 +48,14 @@
         <label for="insert_dive_name">Dive: </label>
         <select name="insert_dive_name" id="insertDiveSelect">
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="insert_site_name">Site Name: </label>
         <select name="insert_site_name" id="insertSiteSelect">
             <option value="option">Site Name</option>
-            {{#each data}}
+            {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
@@ -69,7 +68,7 @@
 
 <h2>Updating A Dive To Dive Site</h2>
     <p>To update a dive to dive site log, select the log to update from the dropdowns and update the associated dive and site name from the dropdowns.</p>
-    <form id="updatesDiveToDiveSites">
+    <form id="updateDivesToDiveSites">
         <label for="selected_dives_to_divesites_id">DTDS ID: </label>
         <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId">
             <option value="option">dives_to_divesites_id</option>
@@ -80,14 +79,14 @@
        <label for="update_dive_name">Dive: </label>
         <select name="update_dive_name" id="updateDiveSelect">
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="update_site_name">Site Name: </label>
         <select name="update_site_name" id="updateSiteSelect">
             <option value="option">Site Name</option>
-            {{#each data}}
+            {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
