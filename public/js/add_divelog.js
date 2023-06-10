@@ -66,7 +66,7 @@ addRowToTable = (data) => {
     let deleteButton = document.createElement("button");
     deleteButton.innerHTML = "Delete";
     deleteButton.onclick = function(){
-        deleteDiver(newRow.diver_id);
+        deleteDivelog(newRow.divelog_id);
     };
     deleteCell.appendChild(deleteButton);
 

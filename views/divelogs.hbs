@@ -46,15 +46,15 @@
 <div id="insert">
 <form id="addDivelog" {{!--method="POST" action="/addDiver"--}}>
         <label for="insert_dive_name">Dive: </label>
-        <select name="insert_dive_name" id="insertDiveSelect">
-            <option value="option">Select a Dive</option>
+        <select name="insert_dive_name" id="insertDiveSelect" required>
+            <option value="">Select a Dive</option>
             {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="insert_diver_name">Diver Name: </label>
-        <select name="insert_diver_name" id="insertDiverSelect">
-            <option value="option">Diver Name</option>
+        <select name="insert_diver_name" id="insertDiverSelect" required>
+            <option value="">Diver Name</option>
             {{#each diverData}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
@@ -70,22 +70,22 @@
     <p>To update a dive log, select the divelog to update from the dropdowns and update the associated dive and diver name from the dropdowns.</p>
     <form id="updateDivelog">
         <label for="selected_divelog_id">Divelog ID: </label>
-        <select name="selected_divelog_id" id="selectedDivelogId">
-            <option value="option">divelog_id</option>
+        <select name="selected_divelog_id" id="selectedDivelogId" required>
+            <option value="">divelog_id</option>
             {{#each data}}
             <option value="{{this.divelog_id}}">{{this.divelog_id}}</option>
             {{/each}}
         </select>
        <label for="update_dive_name">Dive: </label>
-        <select name="update_dive_name" id="updateDiveSelect">
-            <option value="option">Select a Dive</option>
+        <select name="update_dive_name" id="updateDiveSelect" required>
+            <option value="">Select a Dive</option>
             {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="update_diver_name">Diver Name: </label>
-        <select name="update_diver_name" id="updateDiverSelect">
-            <option value="option">Diver Name</option>
+        <select name="update_diver_name" id="updateDiverSelect" required>
+            <option value="">Diver Name</option>
             {{#each diverData}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
