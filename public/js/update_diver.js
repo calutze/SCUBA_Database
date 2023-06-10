@@ -1,7 +1,7 @@
 // Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
 
 function updateDiver(diverID) {
-
+    // Autofill code adapted from Group 59, Will Tripp and Seth Stephanz
     window.scrollTo(0, document.body.scrollHeight);
     
     let updateDiverForm = document.getElementById('update-diver-form');
