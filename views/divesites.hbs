@@ -48,9 +48,9 @@
 <p>To add a new dive site, please enter the dive information below and click 'Add Dive Site'!</p>
 <div id="insert">
 <form id="addDiveSite" {{!--method="POST" action="/addDive"--}}>
-        <label for="insert_site_name"> Site Name </label> <input type="text" name="insert_site_name" id="insert_site_name">
-        <label for="insert_city"> City </label> <input type="text" name="insert_city" id="insert_city">
-        <label for="insert_country"> Country </label> <input type="text" name="insert_country" id="insert_country">
+        <label for="insert_site_name"> Site Name </label> <input type="text" name="insert_site_name" id="insert_site_name" required>
+        <label for="insert_city"> City </label> <input type="text" name="insert_city" id="insert_city" required>
+        <label for="insert_country"> Country </label> <input type="text" name="insert_country" id="insert_country" required>
     <input class="btn" type="submit" value="Add Dive Site">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
@@ -62,15 +62,15 @@
     <p>To update a dive site, select the dive from the dropdown and enter the updated the dive information below.</p>
     <form id="updateDiveSite">
         <label for="selected_site_name">Dive Site: </label>
-        <select name="selected_site_name" id="siteSelect">
+        <select name="selected_site_name" id="siteSelect" required>
             <option value="option">Select a Dive Site</option>
             {{#each data}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
-        <label> site_name </label> <input type="text" name="update_site_name" id="update_site_name">
-        <label> city </label> <input type="text" name="update_city" id="update_city">
-        <label> country </label> <input type="text" name="update_country" id="update_country">
+        <label> site_name </label> <input type="text" name="update_site_name" id="update_site_name" required>
+        <label> city </label> <input type="text" name="update_city" id="update_city" required>
+        <label> country </label> <input type="text" name="update_country" id="update_country" required>
         <input type="submit">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
