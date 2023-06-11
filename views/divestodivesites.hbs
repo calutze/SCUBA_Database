@@ -59,7 +59,7 @@
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
-        <input class="btn" type="submit" value="Add Dive To Dive Site">
+        <input class="btn" type="submit" value="Add Dives-To-Dive Site">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_divestodivesite.js"></script>
@@ -71,7 +71,7 @@
     <form id="updateDivesToDiveSites">
         <label for="selected_dives_to_divesites_id">DTDS ID: </label>
         <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId" required>
-            <option value="option">dives_to_divesites_id</option>
+            <option value="option">Select an ID</option>
             {{#each data}}
             <option value="{{this.dives_to_divesites_id}}">{{this.dives_to_divesites_id}}</option>
             {{/each}}
@@ -90,7 +90,7 @@
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
-        <input type="submit">
+        <input type="submit" value="Update Dives-To-Dive Site">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
  

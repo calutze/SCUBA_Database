@@ -69,9 +69,9 @@
 <h2>Updating A Dive Log</h2>
     <p>To update a dive log, select the divelog to update from the dropdowns and update the associated dive and diver name from the dropdowns.</p>
     <form id="updateDivelog">
-        <label for="selected_divelog_id">Divelog ID: </label>
+        <label for="selected_divelog_id">Dive Log ID: </label>
         <select name="selected_divelog_id" id="selectedDivelogId" required>
-            <option value="">divelog_id</option>
+            <option value="">Select an ID</option>
             {{#each data}}
             <option value="{{this.divelog_id}}">{{this.divelog_id}}</option>
             {{/each}}
@@ -90,7 +90,7 @@
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
         </select>
-        <input type="submit">
+        <input type="submit" value="Update Dive Log">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
  <script src="./js/update_divelog.js"></script>

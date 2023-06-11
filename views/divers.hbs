@@ -50,8 +50,8 @@
 <p>To add a new diver, please enter their information below and click 'Add Diver'!</p>
 <div id="insert">
 <form id="addDiver" {{!--method="POST" action="/addDiver"--}}>
-        <label for="insert_diver_name"> Diver Name </label> <input required type="text" name="insert_diver_name" id="insert_diver_name">
-        <label for="insert_diver_age"> Age </label> <input required type="number" min=0 max=150 name="insert_diver_age" id="insert_diver_age">
+        <label for="insert_diver_name"> Diver Name: </label> <input required type="text" name="insert_diver_name" id="insert_diver_name">
+        <label for="insert_diver_age"> Age: </label> <input required type="number" min=0 max=150 name="insert_diver_age" id="insert_diver_age">
     <input class="btn" type="submit" value="Add Diver">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseDivers()">--}}
 </form>
@@ -73,7 +73,7 @@
         <label for="update_diver_id">Diver ID: </label> <input disabled type-"number" name="update_diver_id" id="update_diver_id">
         <label for="updated_diver_name">Diver Name: </label> <input disabled type="text" name="updated_diver_name" id="updated_diver_name">
         <label for="selected_diver_age">Diver Age: </label> <input disabled type="number" min=0 max=150 name="selected_diver_age" id="selected_diver_age">
-        <input type="submit">
+        <input type="submit" value="Update Diver">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
  
