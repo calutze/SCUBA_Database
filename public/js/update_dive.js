@@ -92,4 +92,5 @@ function updateRow(data, dive_id){
 
         }
     }
+    location.reload();
 }

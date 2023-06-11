@@ -55,4 +55,5 @@ function updateRow(data, divesite_id){
 
         }
     }
+    location.reload();
 }

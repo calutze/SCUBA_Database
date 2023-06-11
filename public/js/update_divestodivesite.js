@@ -49,4 +49,5 @@ function updateRow(data, dives_to_divesites_id){
 
         }
     }
+    location.reload();
 }
