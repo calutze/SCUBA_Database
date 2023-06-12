@@ -49,11 +49,11 @@
 <p>To add a new unit set, please enter the information below and click 'Add Unit'!</p>
 <div id="insert">
 <form id="addUnit" {{!--method="POST" action="/addUnit"--}}>
-        <label for="insert_unit_name"> unit_name </label> <input type="text" name="insert_unit_name" id="insert_unit_name">
-        <label for="insert_pressure_unit"> pressure_unit </label> <input type="text" name="insert_pressure_unit" id="insert_pressure_unit">
-        <label for="insert_length_unit"> length_unit </label> <input type="text" name="insert_length_unit" id="insert_length_unit">
-        <label for="insert_weight_unit"> weight_unit </label> <input type="text" name="insert_weight_unit" id="insert_weight_unit">
-        <label for="insert_temperature_unit"> temperature_unit </label> <input type="text" name="insert_temperature_unit" id="insert_temperature_unit">
+        <label for="insert_unit_name"> Unit Name: </label> <input type="text" name="insert_unit_name" id="insert_unit_name" required>
+        <label for="insert_pressure_unit"> Pressure Unit: </label> <input type="text" name="insert_pressure_unit" id="insert_pressure_unit" required>
+        <label for="insert_length_unit"> Length Unit: </label> <input type="text" name="insert_length_unit" id="insert_length_unit" required>
+        <label for="insert_weight_unit"> Weight Unit: </label> <input type="text" name="insert_weight_unit" id="insert_weight_unit" required>
+        <label for="insert_temperature_unit"> Temperature Unit: </label> <input type="text" name="insert_temperature_unit" id="insert_temperature_unit" required>
     <input class="btn" type="submit" value="Add Unit">
     {{!--<input class="btn" type="button" value="cancel" onClick="browseUnits()">--}}
 </form>
@@ -66,18 +66,18 @@
     <p>To update a unit, select the unit name from the dropdown and update its information.</p>
     <form id="updateUnit">
         <label for="selected_unit_name">Unit Name: </label>
-        <select name="selected_unit_name" id="unitSelect">
+        <select name="selected_unit_name" id="unitSelect" required>
             <option value="option">Select a Unit</option>
             {{#each data}}
             <option value="{{this.unit_id}}">{{this.unit_name}}</option>
             {{/each}}
         </select>
-        <label> unit_name </label> <input type="text" name="update_unit_name" id="update_unit_name">
-        <label> pressure_unit </label> <input type="text" name="update_pressure_unit" id="update_pressure_unit">
-        <label> length_unit </label> <input type="text" name="update_length_unit" id="update_length_unit">
-        <label> weight_unit </label> <input type="text" name="update_weight_unit" id="update_weight_unit">
-        <label> temperature_unit </label> <input type="text" name="update_temperature_unit" id="update_temperature_unit">
-        <input type="submit">
+        <label> Unit Name: </label> <input type="text" name="update_unit_name" id="update_unit_name" required>
+        <label> Pressure Unit: </label> <input type="text" name="update_pressure_unit" id="update_pressure_unit" required>
+        <label> Length Unit: </label> <input type="text" name="update_length_unit" id="update_length_unit" required>
+        <label> Weight Unit: </label> <input type="text" name="update_weight_unit" id="update_weight_unit" required>
+        <label> Temperature Unit: </label> <input type="text" name="update_temperature_unit" id="update_temperature_unit" required>
+        <input type="submit" value ="Update Unit">
 </form>
 
 <script src="./js/update_unit.js"></script>

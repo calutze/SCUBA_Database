@@ -62,4 +62,5 @@ function updateRow(data, unit_id){
 
         }
     }
+    location.reload();
 }

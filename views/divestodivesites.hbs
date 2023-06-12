@@ -2,8 +2,8 @@
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
-<h1>Dives To Dive Sites</h1>
-<p>Display, Add, Update, and Delete Dive Log Records</p>
+<h1>Dives-To-Dive Sites</h1>
+<p>Display, Add, Update, and Delete Dives-To-Dive Sites Records</p>
 
 [<a href="/">Index</a> | <a href="/divers">Divers</a> | <a href="/units">Units</a> | <a href="/dives">Dives</a> | <a href="/divesites">Dive Sites</a> | <a href="/divelogs">Dive Logs</a> | <a href="/divestodivesites">Dives-to-Dive Sites</a>]
 
@@ -28,12 +28,11 @@
 
         {{!-- For each row, print the attributes in order --}}
         {{#each data}}
-
         <tr data-value={{this.dives_to_divesites_id}}>
             {{!-- <td><button onclick="updateDiver({{this.diver_id}})">Update</button></td> --}}
             <td><button onclick="deleteDivesToDiveSites({{this.dives_to_divesites_id}})">Delete</button></td>
             <td>{{this.dives_to_divesites_id}}</td>
-            <td><strong>Dive ID: </strong> {{this.dive_id}} <strong>Date: </strong> {{this.date}} <strong>Max Depth: </strong> {{this.max_depth}} <strong>Duration: </strong> {{this.duration}}</td>
+            <td><strong>Dives ID: </strong> {{this.dive_id}} <strong>Date: </strong> {{this.date}} <strong>Max Depth: </strong> {{this.max_depth}} <strong>Duration: </strong> {{this.duration}}</td>
             <td>{{this.site_name}}</td>
         </tr>
         {{/each}}
@@ -42,56 +41,56 @@
 
 <script src="./js/delete_divestodivesite.js"></script>
 <p>&nbsp;</p>
-<h2>Add A New Dive To Dive Site</h2>
-<p>To add a new dive to dive site log, please enter the information below and click 'Add Dive To Dive Site'!</p>
+<h2>Add A New Dive-To-Dive Site</h2>
+<p>To add a new dive-to-dive site log, please enter the information below and click 'Add Dives-To-Dive Site'!</p>
 <div id="insert">
 <form id="addDivesToDiveSites" {{!--method="POST" action="/addDiver"--}}>
         <label for="insert_dive_name">Dive: </label>
-        <select name="insert_dive_name" id="insertDiveSelect">
+        <select name="insert_dive_name" id="insertDiveSelect" required>
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="insert_site_name">Site Name: </label>
-        <select name="insert_site_name" id="insertSiteSelect">
+        <select name="insert_site_name" id="insertSiteSelect" required>
             <option value="option">Site Name</option>
-            {{#each data}}
+            {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
-        <input class="btn" type="submit" value="Add Dive To Dive Site">
+        <input class="btn" type="submit" value="Add Dives-To-Dive Site">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}}
 <script src="./js/add_divestodivesite.js"></script>
 </div>
 
 
-<h2>Updating A Dive To Dive Site</h2>
-    <p>To update a dive to dive site log, select the log to update from the dropdowns and update the associated dive and site name from the dropdowns.</p>
-    <form id="updatesDiveToDiveSites">
+<h2>Updating A Dives-To-Dive Site</h2>
+    <p>To update a dive-to-dive site log, select the log to update from the dropdowns and update the associated dive and site name from the dropdowns.</p>
+    <form id="updateDivesToDiveSites">
         <label for="selected_dives_to_divesites_id">DTDS ID: </label>
-        <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId">
-            <option value="option">dives_to_divesites_id</option>
+        <select name="selected_dives_to_divesites_id" id="selectedDivesToDiveSitesId" required>
+            <option value="option">Select an ID</option>
             {{#each data}}
             <option value="{{this.dives_to_divesites_id}}">{{this.dives_to_divesites_id}}</option>
             {{/each}}
         </select>
        <label for="update_dive_name">Dive: </label>
-        <select name="update_dive_name" id="updateDiveSelect">
+        <select name="update_dive_name" id="updateDiveSelect" required>
             <option value="option">Select a Dive</option>
-            {{#each data}}
+            {{#each diveData}}
             <option value="{{this.dive_id}}">Dive ID: {{this.dive_id}} Date: {{this.date}}, Max Depth: {{this.max_depth}} Duration: {{this.duration}}</option>
             {{/each}}
         </select>
         <label for="update_site_name">Site Name: </label>
-        <select name="update_site_name" id="updateSiteSelect">
+        <select name="update_site_name" id="updateSiteSelect" required>
             <option value="option">Site Name</option>
-            {{#each data}}
+            {{#each siteData}}
             <option value="{{this.divesite_id}}">{{this.site_name}}</option>
             {{/each}}
         </select>
-        <input type="submit">
+        <input type="submit" value="Update Dives-To-Dive Site">
 </form>
 {{!-- Embed our javascript to handle the DOM manipulation and AJAX request --}} 
  

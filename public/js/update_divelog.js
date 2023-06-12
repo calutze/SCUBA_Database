@@ -55,4 +55,5 @@ function updateRow(data, divelog_id){
 
         }
     }
+    location.reload();
 }

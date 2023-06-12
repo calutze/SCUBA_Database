@@ -76,4 +76,5 @@ function updateRow(data, diver_id){
 
         }
     }
+    location.reload();
 }
