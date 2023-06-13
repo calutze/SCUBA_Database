@@ -1,2 +1,183 @@
 /* CSS Document */
 
+/* CSS Document */
+
+/*   ----- Imports  -----  */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Questrial&display=swap');
+
+/*   ----- Variables  -----  */
+:root {
+  --custom:rgb(85, 201, 85);
+  --sea: rgb(32, 176, 170);
+  --linksea: rgb(6, 94, 175);
+  --transparent-sea: rgb(32, 176, 170);
+  --seabed: #082422;
+  --kelp: #bdcdba;
+  --transparent-kelp: rgb(189, 205, 186);
+  --rock: #849699;
+  --light-rock: #e9f3e9;
+  --background: rgb(240,255,240,0.95)
+}
+
+/*  ----- Viewport ----- elements inherited by all remaining elements ----- */
+body {       /* Can alternatively define in html {} or :root {} */
+  background-color:var(--background);
+  /*background-image: url(images/mossy-tidal-pool.jpg);*/
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: var(--seabed);
+  font-family: 'EB Garamond', serif;
+  font-size: 1.2em;
+  line-height: 1.2;
+  margin: 10px auto;
+  width: 80%;
+  max-width: 2000px;
+  min-width: 700px;
+  /*padding:;*/
+}
+
+/*  ----- Page layout blocks -----  */
+header {
+  background-color: var(--transparent-sea);
+  margin: 0;
+  padding: 5px;
+  font-family: 'Questrial', 'sans-serif';
+}
+
+footer {
+  background-color: var(--transparent-sea);
+  margin: 0;
+  padding: 5px;
+  font-family: 'Questrial', 'sans-serif';
+}
+
+main {
+  background-color: var(--background);
+  margin:0;
+  padding:2%;
+}
+section {}
+  article {}
+    #topic1 {}
+    #topic2 {}
+div {}
+aside {}
+footer {}
+
+/* ----- Anchors ----- Text links */
+a {}
+a:link {}
+a[href^="mailto:"] {
+  color: var(--linksea)
+}
+a:hover {}
+a:active {}
+a:visited {}
+
+/*  ----- Navigation ----- Override text links for navigation only.  */
+nav {
+  padding:10px 0 10px 0px;
+}
+nav a {
+  background-color: var(--kelp);
+  border: 6px var(--rock);
+  border-radius: 6px;
+  color: var(--seabed);
+  margin: 10px;
+  padding: 5px;
+  font-family: 'Questrial', 'sans-serif';
+  text-decoration: none;
+}
+nav a:hover {
+  background-color: var(--rock);
+  color: var(--kelp)
+}
+
+/*  -----  Typography  ----- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Questrial', sans-serif;
+} 
+
+/*  ----- Table ----- */
+table {
+  border-collapse: collapse;
+  min-width: 200 px;
+  max-width: 1000 px;
+}
+caption {
+  text-align: left;
+  font-size: 1.5em;
+  padding: 8px 0px     
+}
+thead {}
+tbody {}
+tfoot {}
+tr {background-color: var(--kelp);
+  text-align: center
+}
+  tr:nth-child(even) {background-color: var(--light-rock)}
+  tr:hover {background-color: var(--transparent-sea);}
+td, th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+td {}
+.tablenums {
+  text-align: right
+}
+  td:nth-child(1) {}
+colgroup {}
+data {}
+datalist {}
+
+
+/*  ----- Form ----- */
+form {}
+fieldset {
+  /*border:;
+  margin-top:;
+  padding:;*/
+}
+  legend {
+    color: var(--sea);
+    font-size: 2em;
+  }
+label {
+  display: block;
+  margin-top: 2%;
+}
+:focus {
+  background-color: honeydew;
+}
+*:required {
+  border: 2px solid green;
+}
+label.required:after {
+  content: " *";
+  color: red;
+}
+  input, button, select {
+    font-size: 110%;
+    padding: 1%;
+    font-family: inherit;
+  }
+  textarea {
+    color: var(--rock)
+  }
+  input {}
+  input:invalid {
+    border: 3px solid red;
+  }
+  input:valid {
+    border: 2px solid green;
+  }
+  input:disabled {
+    background: repeating-linear-gradient(142dec, #CCCCCC, #CCCCCC 4px, #999999 22px);
+  }
+  input:enabled {
+    background: var(--kelp);
+  }
+  input:placeholder {
+    color: darkgray;
+  }
