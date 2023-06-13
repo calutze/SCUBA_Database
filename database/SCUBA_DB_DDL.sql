@@ -104,7 +104,7 @@ FROM Dives;
 CREATE OR REPLACE TABLE Divelogs (
   `divelog_id` INT NOT NULL AUTO_INCREMENT,
   `dive_id` INT NOT NULL,
-  `diver_id` INT NOT NULL,
+  `diver_id` INT NULL,
   INDEX `fk_Dives_has_Divers_Divers1_idx` (`diver_id` ASC) VISIBLE,
   INDEX `fk_Dives_has_Divers_Dives1_idx` (`dive_id` ASC) VISIBLE,
   PRIMARY KEY (`divelog_id`),
@@ -116,7 +116,7 @@ CREATE OR REPLACE TABLE Divelogs (
   CONSTRAINT `fk_Dives_has_Divers_Divers1`
     FOREIGN KEY (`diver_id`)
     REFERENCES `Divers` (`diver_id`)
-    ON DELETE CASCADE
+    ON DELETE SET NULL
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
@@ -124,7 +124,7 @@ ENGINE = InnoDB;
 
 CREATE OR REPLACE TABLE DivesToDiveSites (
   `dives_to_divesites_id` INT NOT NULL AUTO_INCREMENT,
-  `dive_id` INT,
+  `dive_id` INT NOT NULL,
   `divesite_id` INT NOT NULL,
   PRIMARY KEY (`dives_to_divesites_id`),
   INDEX `fk_Dives_has_DiveSites_DiveSites1_idx` (`divesite_id` ASC) VISIBLE,
@@ -132,7 +132,7 @@ CREATE OR REPLACE TABLE DivesToDiveSites (
   CONSTRAINT `fk_Dives_has_DiveSites_Dives1`
     FOREIGN KEY (`dive_id`)
     REFERENCES `Dives` (`dive_id`)
-    ON DELETE SET NULL
+    ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `fk_Dives_has_DiveSites_DiveSites1`
     FOREIGN KEY (`divesite_id`)
