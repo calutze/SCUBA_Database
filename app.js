@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12317;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12318;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -643,12 +643,12 @@ app.get('/divestodivesites', function(req, res) {
 });
 
 // Add DiveToDiveSites Form
-app.post('/addDiveToDiveSites', function(req, res){
+app.post('/addDivesToDiveSites', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO DiveToDiveSites (dive_id, divesite_id) VALUES (${data.dive_id}, ${data.divesite_id});`;
+    query1 = `INSERT INTO DivesToDiveSites (dive_id, divesite_id) VALUES (${data.dive_id}, ${data.divesite_id});`;
     let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
     let querySiteNames = "SELECT divesite_id, site_name FROM DiveSites;";
     db.pool.query(query1, function(error, rows, fields){
@@ -662,7 +662,7 @@ app.post('/addDiveToDiveSites', function(req, res){
         {
             // If no error, perform a SELECT on Divelogs
             querySelectDivesToDiveSites = "SELECT dives_to_divesites_id, DivesToDiveSites.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, site_name FROM DivesToDiveSites JOIN DiveSites ON DivesToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DivesToDiveSites.dive_id = Dives.dive_id ORDER BY dives_to_divesites_id;";
-            db.pool.query(querySelectDiveToDiveSites, function(error, rows, fields){
+            db.pool.query(querySelectDivesToDiveSites, function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -725,7 +725,6 @@ app.delete('/delete-divestodivesites/', function(req,res,next){
         }
     })
 });
-
 /*
     LISTENER
 */
