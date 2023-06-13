@@ -6,7 +6,7 @@
 // Express
 var express = require('express');   // We are using the express library for the web server
 var app     = express();            // We need to instantiate an express object to interact with the server in our code
-PORT        = 12317;                 // Set a port number at the top so it's easy to change in the future
+PORT        = 12315;                 // Set a port number at the top so it's easy to change in the future
 
 // Database
 var db = require('./database/db-connector')
@@ -321,7 +321,7 @@ app.delete('/delete-dive/', function(req,res,next){
 
 // Display Divelogs Route
 app.get('/divelogs', function(req, res) {
-    let queryDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Divers.diver_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
+    let queryDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Divers.diver_id, diver_name FROM Divelogs LEFT JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id ORDER BY divelog_id;";
     let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
     let queryDivers = "SELECT diver_id, diver_name FROM Divers;";
     db.pool.query(queryDivelogs, function(error, rows, fields) {
@@ -339,6 +339,14 @@ app.get('/divelogs', function(req, res) {
                             console.log(error);
                             res.sendStatus(400);
                         } else {
+                            for (let i=0; i < rows.length; i++) {
+                                // Capture NULL values
+                                    let diver_name = rows[i].diver_name;
+                                    if (diver_name === null)
+                                    {
+                                        rows[i].diver_name = "NULL"
+                                    }
+                                }
                             res.render('divelogs', {data: rows, diveData: diveData, diverData: diverData})
                         }
                     })
@@ -382,7 +390,7 @@ app.post('/addDivelog', function(req, res){
     
 });
 
-// Update Divelog Form
+// Add Divelog Form
 app.put('/updateDivelog', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
@@ -608,41 +616,24 @@ app.put('/updateDiveSite', function(req, res, next){
 
 app.get('/divestodivesites', function(req, res) {
     let queryDivesToDiveSites = "SELECT dives_to_divesites_id, DivesToDiveSites.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, DiveSites.divesite_id, site_name FROM DivesToDiveSites JOIN DiveSites ON DivesToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DivesToDiveSites.dive_id = Dives.dive_id ORDER BY dives_to_divesites_id;";
-    let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
-    let querySiteNames = "SELECT divesite_id, site_name FROM DiveSites;";
+
     db.pool.query(queryDivesToDiveSites, function(error, rows, fields) {
         if (error) {
             console.log(error);
             res.sendStatus(400);
         } else {
-            db.pool.query(queryDives, function(error, diveData, fields) {
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                } else {
-                    db.pool.query(querySiteNames, function(error, siteData, fields) {
-                        if (error) {
-                            console.log(error);
-                            res.sendStatus(400);
-                        } else {
-                            res.render('divestodivesites', {data: rows, diveData: diveData, siteData: siteData})
-                        }
-                    })
-                }
-            })
+            res.render('divestodivesites', {data: rows})
         }
     });
 });
 
 // Add DiveToDiveSites Form
-app.post('/addDivesToDiveSites', function(req, res){
+app.post('/addDiveToDiveSites', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
 
     // Create the query and run it on the database
-    query1 = `INSERT INTO DivesToDiveSites (dive_id, divesite_id) VALUES (${data.dive_id}, ${data.divesite_id});`;
-    let queryDives = "SELECT dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration FROM Dives;";
-    let querySiteNames = "SELECT divesite_id, site_name FROM DiveSites;";
+    query1 = `INSERT INTO DiveToDiveSites (dive_id, divesite_id) VALUES (${data.dive_id}, ${data.divesite_id});`;
     db.pool.query(query1, function(error, rows, fields){
         // Check to see if there was an error
         if (error) {
@@ -653,8 +644,8 @@ app.post('/addDivesToDiveSites', function(req, res){
         else
         {
             // If no error, perform a SELECT on Divelogs
-            querySelectDivesToDiveSites = "SELECT dives_to_divesites_id, DivesToDiveSites.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, site_name FROM DivesToDiveSites JOIN DiveSites ON DivesToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DivesToDiveSites.dive_id = Dives.dive_id ORDER BY dives_to_divesites_id;";
-            db.pool.query(querySelectDivesToDiveSites, function(error, rows, fields){
+            querySelectDiveToDiveSites = "SELECT dive_to_divesites_id, DiveToDiveSites.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, DiveSites.divesite_id, site_name FROM DiveToDiveSites JOIN DiveSites ON DiveToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DiveToDiveSites.dive_id = Dives.dive_id ORDER BY dive_to_divesites_id;";
+            db.pool.query(querySelectDiveToDiveSites, function(error, rows, fields){
                 if (error) {
                     console.log(error);
                     res.sendStatus(400);
@@ -667,55 +658,6 @@ app.post('/addDivesToDiveSites', function(req, res){
         }
     })
     
-});
-
-// Update DivesToDiveSites Form
-app.put('/updateDivesToDiveSites', function(req, res){
-    // Capture the incoming data and parse it back to a JS object
-    let data = req.body;
-
-    // Create the query and run it on the database
-    query1 = `UPDATE DivesToDiveSites SET dive_id = ?, divesite_id = ? WHERE dives_to_divesites_id = ?;`;
-    db.pool.query(query1, [data.dive_id, data.divesite_id, data.dives_to_divesites_id], function(error, rows, fields){
-        // Check to see if there was an error
-        if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-        }
-        else
-        {
-            // If no error, perform a SELECT on Divelogs
-            querySelectDivesToDiveSites = "SELECT dives_to_divesites_id, DivesToDiveSites.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, site_name FROM DivesToDiveSites JOIN DiveSites ON DivesToDiveSites.divesite_id = DiveSites.divesite_id JOIN Dives ON DivesToDiveSites.dive_id = Dives.dive_id WHERE dives_to_divesites_id = ?;";
-            db.pool.query(querySelectDivesToDiveSites, [data.dives_to_divesites_id], function(error, rows, fields){
-                if (error) {
-                    console.log(error);
-                    res.sendStatus(400);
-                }
-                else {
-                    console.log(rows)
-                    res.send(rows);
-                }
-            })
-        }
-    })
-    
-});
-
-// Delete DivesToDiveSites Route
-app.delete('/delete-divestodivesites/', function(req,res,next){
-    let data = req.body;
-    let divesToDiveSitesID = parseInt(data.dives_to_divesites_id);
-    let deleteDivesToDiveSites = 'DELETE FROM DivesToDiveSites WHERE dives_to_divesites_id = ?';
-
-    db.pool.query(deleteDivesToDiveSites, [divesToDiveSitesID], function(error, rows, fields) {
-        if (error) {
-            console.log(error);
-            res.sendStatus(400);
-        } else {
-            res.sendStatus(204);
-        }
-    })
 });
 
 /*
