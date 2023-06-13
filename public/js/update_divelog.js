@@ -1,43 +1,37 @@
 // Based on starter code described in https://github.com/osu-cs340-ecampus/nodejs-starter-app
-function updateDivelog(divelogID) {
-    let updateDivelogForm = document.getElementById('updateDivelog');
+//function updateDivelog() {
+let updateDivelogForm = document.getElementById('updateDivelog');
 
-    const rowToUpdate = document.querySelector(`[data-value="${divelogID}"]`);
+updateDivelogForm.addEventListener("submit", function (e) {
 
-    let dive = rowToUpdate.getElementsByClassName("dive")[0].textContent;
-    document.getElementById("updateDiveSelect").value = dive;
+    e.preventDefault();
 
-    updateDivelogForm.addEventListener("submit", function (e) {
+    let selectDivelogId = document.getElementById("selectedDivelogId").value;
+    let updatedDiveId = document.getElementById("updateDiveSelect").value;
+    let updatedDiverId = document.getElementById("updateDiverSelect").value;
 
-        e.preventDefault();
+    let data = {
+        divelog_id: selectDivelogId,
+        dive_id: updatedDiveId,
+        diver_id: updatedDiverId
+    }
 
-        let selectDivelogId = document.getElementById("selectedDivelogId").value;
-        let updatedDiveId = document.getElementById("updateDiveSelect").value;
-        let updatedDiverId = document.getElementById("updateDiverSelect").value;
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "/updateDivelog", true);
+    xhttp.setRequestHeader("Content-type", "application/json");
+    
+    xhttp.onreadystatechange = () => {
+        if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-        let data = {
-            divelog_id: selectDivelogId,
-            dive_id: updatedDiveId,
-            diver_id: updatedDiverId
+            updateRow(xhttp.response, selectDivelogId);
         }
-
-        var xhttp = new XMLHttpRequest();
-        xhttp.open("PUT", "/updateDivelog", true);
-        xhttp.setRequestHeader("Content-type", "application/json");
-        
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4 && xhttp.status == 200) {
-
-                updateRow(xhttp.response, selectDivelogId);
-            }
-            else if (xhttp.readyState == 4 && xhttp.status != 200) {
-                console.log ("There was an error with the input.")
-            }
+        else if (xhttp.readyState == 4 && xhttp.status != 200) {
+            console.log ("There was an error with the input.")
         }
+    }
 
-        xhttp.send(JSON.stringify(data));
-    })
-}
+    xhttp.send(JSON.stringify(data));
+})
 
 function updateRow(data, divelog_id){
     let parsedData = JSON.parse(data);
