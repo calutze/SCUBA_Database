@@ -394,33 +394,62 @@ app.post('/addDivelog', function(req, res){
 app.put('/updateDivelog', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
+    console.log(data);
 
-    // Create the query and run it on the database
-    query1 = `UPDATE Divelogs SET dive_id = ?, diver_id = ? WHERE divelog_id = ?;`;
-    db.pool.query(query1, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
-        // Check to see if there was an error
-        if (error) {
-            // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
-            console.log(error);
-            res.sendStatus(400);
-        }
-        else
-        {
-            // If no error, perform a SELECT on Divelogs
-            querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
-            db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
+    if (data.diver_id === null) {
+            // Create the query and run it on the database
+            nullquery = `UPDATE Divelogs SET dive_id = ?, diver_id = NULL WHERE divelog_id = ?;`;
+            db.pool.query(nullquery, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
+                // Check to see if there was an error
                 if (error) {
+                    // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
                     console.log(error);
                     res.sendStatus(400);
                 }
-                else {
-                    console.log(rows)
-                    res.send(rows);
+                else
+                {
+                    // If no error, perform a SELECT on Divelogs
+                    querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
+                    db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
+                        if (error) {
+                            console.log(error);
+                            res.sendStatus(400);
+                        }
+                        else {
+                            console.log(rows)
+                            res.send(rows);
+                        }
+                    })
                 }
             })
-        }
-    })
-    
+    }
+    else {
+        // Create the query and run it on the database
+        query1 = `UPDATE Divelogs SET dive_id = ?, diver_id = ? WHERE divelog_id = ?;`;
+        db.pool.query(query1, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
+            // Check to see if there was an error
+            if (error) {
+                // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
+                console.log(error);
+                res.sendStatus(400);
+            }
+            else
+            {
+                // If no error, perform a SELECT on Divelogs
+                querySelectDivelogs = "SELECT divelog_id, Divelogs.dive_id, DATE_FORMAT(date, '%d-%M-%Y') as date, max_depth, duration, Dives.dive_id, diver_name FROM Divelogs JOIN Divers ON Divelogs.diver_id = Divers.diver_id JOIN Dives ON Divelogs.dive_id = Dives.dive_id WHERE divelog_id = ?;";
+                db.pool.query(querySelectDivelogs, [data.divelog_id], function(error, rows, fields){
+                    if (error) {
+                        console.log(error);
+                        res.sendStatus(400);
+                    }
+                    else {
+                        console.log(rows)
+                        res.send(rows);
+                    }
+                })
+            }
+        })
+    }
 });
 
 // Delete Divelog Route

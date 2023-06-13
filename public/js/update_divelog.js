@@ -10,6 +10,10 @@ updateDivelogForm.addEventListener("submit", function (e) {
     let updatedDiveId = document.getElementById("updateDiveSelect").value;
     let updatedDiverId = document.getElementById("updateDiverSelect").value;
 
+    if (updatedDiverId == "NULL") {
+        updatedDiverId = null
+    }
+
     let data = {
         divelog_id: selectDivelogId,
         dive_id: updatedDiveId,

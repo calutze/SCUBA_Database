@@ -1,7 +1,5 @@
 /* CSS Document */
 
-/* CSS Document */
-
 /*   ----- Imports  -----  */
 @import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,600;1,400&family=Questrial&display=swap');
 
@@ -22,7 +20,6 @@
 /*  ----- Viewport ----- elements inherited by all remaining elements ----- */
 body {       /* Can alternatively define in html {} or :root {} */
   background-color:var(--background);
-  /*background-image: url(images/mossy-tidal-pool.jpg);*/
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;

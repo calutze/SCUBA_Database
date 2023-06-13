@@ -81,8 +81,9 @@
             {{/each}}
         </select>
         <label for="update_diver_name">Diver Name: </label>
-        <select name="update_diver_name" id="updateDiverSelect" required>
+        <select name="update_diver_name" id="updateDiverSelect">
             <option value="">Diver Name</option>
+            <option value="NULL">None</option>
             {{#each diverData}}
             <option value="{{this.diver_id}}">{{this.diver_name}}</option>
             {{/each}}
