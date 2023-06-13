@@ -394,12 +394,11 @@ app.post('/addDivelog', function(req, res){
 app.put('/updateDivelog', function(req, res){
     // Capture the incoming data and parse it back to a JS object
     let data = req.body;
-    console.log(data);
 
     if (data.diver_id === null) {
             // Create the query and run it on the database
             nullquery = `UPDATE Divelogs SET dive_id = ?, diver_id = NULL WHERE divelog_id = ?;`;
-            db.pool.query(nullquery, [data.dive_id, data.diver_id, data.divelog_id], function(error, rows, fields){
+            db.pool.query(nullquery, [data.dive_id, data.divelog_id], function(error, rows, fields){
                 // Check to see if there was an error
                 if (error) {
                     // Log the error to the terminal so we know what went wrong, and send the visitor an HTTP response 400 indicating it was a bad request.
