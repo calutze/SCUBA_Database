@@ -9,7 +9,7 @@ function deleteUnit(unitID) {
   var result = confirm("Are you sure you want to delete this Unit?");
 
   if (result){
-    alert("Unit deleted successfully")
+    
   }
   else {
     alert("Delete action canceled")
@@ -23,6 +23,10 @@ function deleteUnit(unitID) {
     contentType: "application/json; charset=utf-8",
     success: function(result) {
       deleteRow(unitID);
+      alert("Unit deleted successfully")
+    },
+    error: function(result) {
+      alert("Unit is referenced in a dive and cannot be deleted")
     }
   });
   console.log(unitID);
